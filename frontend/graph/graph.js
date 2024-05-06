@@ -1,7 +1,7 @@
 
 import { getRelativeTimeseriesData } from './graphData.js';
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
-import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY } from '../utilities/units.js';
+import { FUELS_KEY } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 
 const timeframeSelectDropdown = document.getElementById('timeframe-select');
@@ -16,7 +16,6 @@ powerStationFilterDropdown.addEventListener('change', () => onGeneratorDropdownS
 clearButton.addEventListener('click', () => onClearButtonSelect());
 
 let graphLastUpdatedTimestamp = "";
-//let isProd = (window.location.origin === 'https://electricitymap.frenchsta.gg');
 
 let updateInProgress = false;
 

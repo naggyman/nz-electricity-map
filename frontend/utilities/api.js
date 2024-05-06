@@ -1,3 +1,5 @@
+import { getCurrentTimeInNZ } from "./units.js";
+
 let localUrl = (path) => `http://[::]:8000/backend/output/${path}`;
 let prodUrl = (path) => `https://api.frenchsta.gg/v1/${path}`;
 let isProd = (window.location.origin === 'https://electricitymap.frenchsta.gg');
@@ -18,10 +20,15 @@ export async function fetchJson(path){
     return data.json();
 }
 
-export async function getTimeseriesGenerationData(date){
-    var dateStr = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+function formatDate(date){
+    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+}
 
-    if(timeseriesGenerationDataCache[dateStr]){
+export async function getTimeseriesGenerationData(date){
+    var currentTimeFormatted = formatDate(getCurrentTimeInNZ());
+    var dateStr = formatDate(date);
+
+    if(timeseriesGenerationDataCache[dateStr] && (dateStr != currentTimeFormatted)){
         return timeseriesGenerationDataCache[dateStr];
     }
 

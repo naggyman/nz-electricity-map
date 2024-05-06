@@ -1,4 +1,5 @@
 import { getTimeseriesGenerationData } from '../utilities/api.js';
+import { getDateRelativeToNowInNZ, getCurrentTimeInNZ } from '../utilities/units.js';
 
 const MILLISECONDS_IN_DAY = (1000 * 60 * 60 * 24);
 const DAYS_IN_WEEK = 7;
@@ -25,7 +26,6 @@ export async function getRelativeTimeseriesData(timeframe) {
 
     let daysAgoToFetch = 0;
     let startingDate = {};
-
     
     if (hoursSelected){ 
         startingDate = getDateRelativeToNowInNZ(0, -number);
@@ -61,17 +61,6 @@ export async function getRelativeTimeseriesData(timeframe) {
     statusSpan.innerHTML = "";
 
     return data;
-}
-
-function getCurrentTimeInNZ(){
-    return new Date(new Date().toLocaleString("en-US", { timeZone: "Pacific/Auckland" }));
-}
-
-function getDateRelativeToNowInNZ(daysAgo = 0, hoursAgo = 0){
-    var currentTimeInNZ = getCurrentTimeInNZ();
-
-    const adjustedByDaysAgo = new Date(currentTimeInNZ.setDate(currentTimeInNZ.getDate() - daysAgo));
-    return new Date(adjustedByDaysAgo.setHours(currentTimeInNZ.getHours() - hoursAgo));
 }
 
 function timeIsBefore(time, comparisonTime){

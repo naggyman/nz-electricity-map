@@ -118,22 +118,3 @@ function filterGeneratorList(liveGenData, generators, siteFilter, islandFilter, 
         return isGeneratorInFilter(generator.site, liveGenData, siteFilter, islandFilter, zoneFilter);
     });
 }
-
-
-// function getColourForFuel(fuel) {
-//     if (fuel === 'WIN') {
-//         return 'rgb(65, 117, 5)'
-//     } else if (fuel === 'HYD') {
-//         return 'rgb(69, 130, 180)'
-//     } else if (fuel === 'GEO') {
-//         return 'rgb(252, 3, 3)'
-//     } else if (fuel === 'SOL') {
-//         return 'rgb(254, 213, 0)'
-//     } else if (fuel === 'BESS' || fuel === 'BESS-C') {
-//         return '#76721E'
-//     } else if (fuel === 'CLG') {
-//         return 'rgb(139, 87, 42)'
-//     } else {
-//         return 'rgb(253, 180, 98)'
-//     }
-// }
