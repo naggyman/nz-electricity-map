@@ -196,6 +196,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const mostRecentTradingPeriodTimestamp = tradingPeriodTimestamps[tradingPeriodTimestamps.length - 1];
 
     if (!forceUpdate && mostRecentTradingPeriodTimestamp === graphLastUpdatedTimestamp) {
+        updateInProgress = false;
         return;
     }
 
@@ -310,7 +311,6 @@ async function getTradingPeriodStats(forceUpdate = false) {
     });
 
     updateInProgress = false;
-    //todo - set last updated time
 }
 
 getTradingPeriodStats();
