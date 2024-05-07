@@ -30,7 +30,7 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
         ${generatorData.operator} (${generatorData.site})<br><br>
         ${populateGenerationData(generatorData)}
         <i> Last Updated: ${lastUpdated}</i>
-        <br><a href="index.html?site=${generatorData.site}">View Generation Chart</a>
+        <br><a href="index.html?site=${generatorData.site}&timeframe=-3h&redirect=true">View Generation Chart</a>
             `;
 }
 
@@ -46,6 +46,7 @@ function populateGenerationUnit(unit){
     return `
         <div style="padding-bottom: 5px;">
             <b>${unit.name}</b> - ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(unit.capacity)}MW<br>
+            ${populatePercentage(Math.round(unit.generation / unit.capacity * 100))}
         </div>`
 }
 
@@ -84,9 +85,10 @@ function populateGeneratorUnitList(generatorData) {
 let chargingBattery = (unit) => unit.fuel === "Battery (Charging)";
 
 export function populateSubstationPopup(substationData) {
-    let html = `<h5>${substationData.description}</h5>`
-
-    html += `<div style="padding-bottom: 0px;"><b>Load:</b> ${substationData.totalLoadMW} MW</div>`
+    let html = `
+        <h5>${substationData.description}</h5>
+        <div style="padding-bottom: 0px;"><b>Load:</b> ${substationData.totalLoadMW} MW</div>
+    `    
 
     if(substationData.totalGenerationCapacityMW > 0){
         html += `<div style="padding-bottom: 0px;"><b>Generation:</b> ${substationData.totalGenerationMW} MW / ${substationData.totalGenerationCapacityMW} MW</div>`
@@ -105,17 +107,17 @@ export function populateSubstationPopup(substationData) {
             html += `<br>`
         }
 
-        if(details.totalLoadMW > 0) {
+        //if(details.totalLoadMW > 0) {
             html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Load: ${details.totalLoadMW} MW ($${details.priceDollarsPerMegawattHour}/MWh)</div>`
-        };
+        //};
         
-        if(details.totalGenerationMW > 0){
+        //if(details.totalGenerationMW > 0){
             details.connections.forEach(connection => {
                 if(connection.generatorInfo.plantName != undefined){
                     html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Generation: ${connection.generationMW}MW / ${connection.generatorInfo.nameplateCapacityMW}MW (${connection.generatorInfo.plantName} - ${connection.generatorInfo.fuel})</div>`
                 }
             })
-        }
+        //}
     })
 
     return html;

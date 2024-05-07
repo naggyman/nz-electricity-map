@@ -159,6 +159,15 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
     status.innerHTML = `Last Updated: ${minutesAgoString}`;
 
+    //show back button if this request was directed from the map
+    var redirect = (new URLSearchParams(window.location.search)).get("redirect");
+    var backButton = document.getElementById("back-link");
+    if(redirect){
+        backButton.style.display = "block";
+    } else {
+        backButton.style.display = "none";
+    }
+
     let sortedGenerationData = liveGenData.generators.sort((a, b) => a.name.localeCompare(b.name));
 
     //populate generator dropdown

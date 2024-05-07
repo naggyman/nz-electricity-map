@@ -1,4 +1,5 @@
 import { detemineMapColour } from "../utilities/colours.js";
+import { populateGeneratorPopup, populateSubstationPopup } from "./mapPopup.js";
 
 const apiKey = 'c01hrv1pebxm8k47wfehxa7kg8h'; //for LINZ basemap
 
@@ -129,75 +130,6 @@ function getQueryParam(param){
     return searchParams.get(param);
 }
 
-function roundMw(value) {
-    return Math.round(value * 100) / 100;
-}
-
-function populatePercentage(percentage, green) {
-    let html = '';
-    if (percentage > 15) {
-        html +=
-            `<div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar ${(green) ? "bg-success" : ""}" style="width: ${percentage}%">
-        <div style="margin-left: 4px;">${percentage}% </div>
-        </div>
-    </div><br>`
-    } else {
-        html +=
-            `<div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar ${(green) ? "bg-success" : ""}" style="width: ${percentage}%"></div>
-        <div style="margin-left: 4px;">${percentage}% </div>
-    </div><br>`
-    }
-
-    return html;
-}
-
-function populateGeneratorPopup(generatorData, lastUpdated) {
-    let html = `<h5>${generatorData.name}</h5>`
-    html += `${generatorData.operator} (${generatorData.site})<br><br>`
-
-    if (generatorData.units.length > 1) {
-        let totalGeneration = 0;
-        let totalCapacity = 0;
-        let totalOutage = 0;
-
-        generatorData.units.forEach((unit) => {
-            if (unit.generation === undefined || unit.generation === null) {
-                return;
-            }
-
-            var chargingBattery = unit.fuel === 'Battery (Charging)';
-
-            html += `<div style="padding-bottom: 5px;"><b>${unit.name}</b> - ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(unit.capacity)}MW<br></div>`;
-
-            totalGeneration += unit.generation;
-
-            if (!chargingBattery) totalCapacity += unit.capacity;
-
-            html += populatePercentage(Math.round(unit.generation / unit.capacity * 100));
-
-            if (unit.outage.length > 0) {
-                unit.outage.forEach((outage) => {
-                    html += `<div">Outage: ${outage.mwLost}MW</div><br><br>`
-                    totalOutage += outage.mwLost;
-                })
-            }
-        })
-
-        html += `<br><b>Total:</b> ${roundMw(totalGeneration)}MW / ${roundMw(totalCapacity)}MW - <b>Outage:</b> ${totalOutage}MW</br>`
-        html += populatePercentage(Math.round(totalGeneration / totalCapacity * 100), true);
-    } else {
-        let unit = generatorData.units[0];
-        html += `<div style="padding-bottom: 5px;">${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(unit.capacity)}MW<br></div>`;
-        html += populatePercentage(Math.round(unit.generation / unit.capacity * 100));
-    }
-
-    html += `<i> Last Updated: ${lastUpdated}</i>`;
-    html += `<br><a href="index.html?site=${generatorData.site}">View Generation Chart</a>`
-    return html;
-}
-
 function updateGenerationMap(generationData, generationLayer) {
     generationLayer.clearLayers();
     generationLayer.setZIndex(1);
@@ -225,6 +157,7 @@ function updateGenerationMap(generationData, generationLayer) {
     });
 }
 
+//todo - move to utilties/api.js
 async function getGenerationData(substationMarkers) {
     setNavStatus(`Loading...`);
 
@@ -251,6 +184,7 @@ function setNavStatus(value){
     status.innerHTML = value;
 }
 
+//todo - move to utilties/api.js
 async function getSubstationData(substationLayer) {
     let substationApiResponse;
 
@@ -263,44 +197,6 @@ async function getSubstationData(substationLayer) {
     const substationData = await substationApiResponse.json();
     
     updateSubstationMap(substationData, substationLayer);
-}
-
-function populateSubstationPopup(substationData) {
-    let html = `<h5>${substationData.description}</h5>`
-
-    html += `<div style="padding-bottom: 0px;"><b>Load:</b> ${substationData.totalLoadMW} MW</div>`
-
-    if(substationData.totalGenerationCapacityMW > 0){
-        html += `<div style="padding-bottom: 0px;"><b>Generation:</b> ${substationData.totalGenerationMW} MW / ${substationData.totalGenerationCapacityMW} MW</div>`
-
-        if(substationData.netImportMW > 0){
-            html += `<div style="padding-bottom: 0px;"><b>Net Import:</b> ${substationData.netImportMW} MW</div>`
-        } else {
-            html += `<div style="padding-bottom: 0px;"><b>Net Export:</b> ${0 - substationData.netImportMW} MW</div>`
-        }
-    }
-
-    Object.keys(substationData.busbars).forEach((busbar) => {
-        const details = substationData.busbars[busbar];
-
-        if(details.totalLoadMW > 0 || details.totalGenerationMW > 0){
-            html += `<br>`
-        }
-
-        if(details.totalLoadMW > 0) {
-            html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Load: ${details.totalLoadMW} MW ($${details.priceDollarsPerMegawattHour}/MWh)</div>`
-        };
-        
-        if(details.totalGenerationMW > 0){
-            details.connections.forEach(connection => {
-                if(connection.generatorInfo.plantName != undefined){
-                    html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Generation: ${connection.generationMW}MW / ${connection.generatorInfo.nameplateCapacityMW}MW (${connection.generatorInfo.plantName} - ${connection.generatorInfo.fuel})</div>`
-                }
-            })
-        }
-    })
-
-    return html;
 }
 
 function updateSubstationMap(substationData, substationLayer) {
