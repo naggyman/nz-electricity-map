@@ -27,7 +27,7 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
                 fuels[fuel] = [];
             }
 
-            fuels[fuel].push(tradingPeriodGeneration[fuel] || 0);
+            fuels[fuel].push(tradingPeriodGeneration[fuel] || null);
         });
     });
 
@@ -35,6 +35,10 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
 }
 
 function summariseGenerationByFuelForThisTradingPeriod(liveGenData, tradingPeriodData, allFuels, siteFilter, islandFilter, zoneFilter){
+    if(Object.keys(tradingPeriodData).length === 0){
+        return {};
+    }
+
     var generationByFuel = {};
 
     filterGeneratorList(liveGenData, tradingPeriodData, siteFilter, islandFilter, zoneFilter)
@@ -86,10 +90,9 @@ function orderedFuelList(fuels){
 
 function getDatapointForFuelFilteredGraph(fuel, fuels, fuelFilter){
     var fuelName = FUELS_KEY[fuel] || fuel;
-    var fuelGenerationListMW = fuels[fuel].map(gen => Math.round(gen));
     return {
         name: fuelName,
-        data: fuelGenerationListMW,
+        data: fuels[fuel],
         visible: fuelFilter.length == 0 || fuelFilter.includes(fuel),
         color: getColourForFuel(fuel)
     }

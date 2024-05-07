@@ -19,6 +19,40 @@ let graphLastUpdatedTimestamp = "";
 
 let updateInProgress = false;
 
+/**
+ * Checks for any gaps in the data and fills them in with empty objects
+ * @param {*} data 
+ * @returns 
+ */
+function fillInGaps(data){
+    const fifteenMinues = 15 * 60 * 1000;
+    var timestamps = Object.keys(data);
+    var returnData = {};
+
+    let previousTimestamp = new Date(timestamps[0]);
+    timestamps.forEach((timestamp) => {
+        var currentTimestamp = previousTimestamp;
+
+        while (currentTimestamp < (new Date(timestamp) - fifteenMinues)){
+            currentTimestamp = new Date(currentTimestamp.getTime() + 300000);
+            let date = currentTimestamp;
+
+            let monthWithLeadingZero = (date.getMonth() + 1).toString().padStart(2, '0');
+            let dateWithLeadingZero = date.getDate().toString().padStart(2, '0');
+            let hoursWithLeadingZero = date.getHours().toString().padStart(2, '0');
+            let minutesWithLeadingZero = date.getMinutes().toString().padStart(2, '0');
+
+            let formattedDateString = `${date.getFullYear()}-${monthWithLeadingZero}-${dateWithLeadingZero}T${hoursWithLeadingZero}:${minutesWithLeadingZero}:00`
+            returnData[formattedDateString] = {};
+        }
+
+        returnData[timestamp] = data[timestamp];
+        previousTimestamp = new Date(timestamp);
+    })
+
+    return returnData;
+}
+
 async function onGeneratorDropdownSelect(dropdownObject) {
     var selectedSiteCode = dropdownObject.options[dropdownObject.selectedIndex].value;
     setQueryParam("site", selectedSiteCode);
@@ -110,8 +144,11 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
     timeframeSelectDropdown.value = timeframe;
 
-    const data = await getRelativeTimeseriesData(timeframe);
+    let data = await getRelativeTimeseriesData(timeframe);
     const liveGenData = await getLiveGenerationData();
+
+    data = fillInGaps(data);
+
     const tradingPeriodTimestamps = Object.keys(data);
 
     // populate 'Last updated x minutes ago' on statusbar
