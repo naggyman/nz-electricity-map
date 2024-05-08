@@ -4,6 +4,9 @@ import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './grap
 import { FUELS_KEY } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 
+const FIFTEEN_MINUTES_IN_MS = 15 * 60 * 1000;
+const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
+
 const timeframeSelectDropdown = document.getElementById('timeframe-select');
 timeframeSelectDropdown.addEventListener('change', () => onTimeframeDropdownSelect(timeframeSelectDropdown));
 
@@ -25,7 +28,7 @@ let updateInProgress = false;
  * @returns 
  */
 function fillInGaps(data){
-    const fifteenMinues = 15 * 60 * 1000;
+    const maximumDataGapAllowed = FIFTEEN_MINUTES_IN_MS;
     var timestamps = Object.keys(data);
     var returnData = {};
 
@@ -33,8 +36,8 @@ function fillInGaps(data){
     timestamps.forEach((timestamp) => {
         var currentTimestamp = previousTimestamp;
 
-        while (currentTimestamp < (new Date(timestamp) - fifteenMinues)){
-            currentTimestamp = new Date(currentTimestamp.getTime() + 300000);
+        while (currentTimestamp < (new Date(timestamp) - maximumDataGapAllowed)){
+            currentTimestamp = new Date(currentTimestamp.getTime() + FIVE_MINUTES_IN_MS);
             let date = currentTimestamp;
 
             let monthWithLeadingZero = (date.getMonth() + 1).toString().padStart(2, '0');
