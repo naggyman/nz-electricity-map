@@ -153,7 +153,7 @@ function updateGenerationMap(generationData, generationLayer) {
             fill: true,
             fillOpacity: 1,
             fillColor: markerColour
-        }).bindPopup(generatorHtml, { maxWidth: 800 }).addTo(generationLayer)
+        }).bindPopup(generatorHtml, { maxWidth: 1200 }).addTo(generationLayer)
     });
 }
 

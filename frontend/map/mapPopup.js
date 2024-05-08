@@ -34,20 +34,26 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
             `;
 }
 
-function populateGenerationData(generatorData){
-    if(generatorData.units.length > 1){
+function populateGenerationData(generatorData) {
+    if (generatorData.units.length > 1) {
         return populateGeneratorUnitList(generatorData);
     }
 
     return populateGenerationUnit(generatorData.units[0]);
 }
 
-function populateGenerationUnit(unit){
+function populateGenerationUnit(unit) {
+    let outageLoss = calculateOutageLoss(unit.outage);
+    let totalCapacityIncludingOutage = unit.capacity - outageLoss;
     return `
         <div style="padding-bottom: 5px;">
-            <b>${unit.name}</b> - ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(unit.capacity)}MW<br>
-            ${populatePercentage(Math.round(unit.generation / unit.capacity * 100))}
+            <b>${unit.name}</b> - ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(totalCapacityIncludingOutage)}MW ${(unit.outage?.length > 0) ? `(${outageLoss}MW Outage)` : ""}<br>
+            ${populatePercentage(Math.round(unit.generation / totalCapacityIncludingOutage * 100))}
         </div>`
+}
+
+function calculateOutageLoss(outages) {
+    return outages.reduce((total, outage) => total + outage.mwLost, 0);
 }
 
 function populateGeneratorUnitList(generatorData) {
@@ -56,28 +62,20 @@ function populateGeneratorUnitList(generatorData) {
     let totalOutage = 0;
     let html = '';
 
-    generatorData.units.forEach((unit) => {
+    generatorData.units.sort((a, b) => a.unitCode.localeCompare(b.unitCode)).forEach((unit) => {
         if (unit.generation === undefined || unit.generation === null) {
             return;
         }
 
         totalGeneration += unit.generation;
-        if (!chargingBattery(unit)) totalCapacity += unit.capacity;
+        if (!chargingBattery(unit)) totalCapacity += unit.capacity; //if we didn't do this, units with both charging and discharging would show as 0MW capacity.
 
+        totalOutage += calculateOutageLoss(unit.outage);
         html += populateGenerationUnit(unit);
-
-        //html += populatePercentage(Math.round(unit.generation / unit.capacity * 100));
-
-        if (unit.outage.length > 0) {
-            unit.outage.forEach((outage) => {
-                html += `<div">Outage: ${outage.mwLost}MW</div><br><br>`
-                totalOutage += outage.mwLost;
-            })
-        }
     })
 
-    html += `<br><b>Total:</b> ${roundMw(totalGeneration)}MW / ${roundMw(totalCapacity)}MW - <b>Outage:</b> ${totalOutage}MW</br>`
-    html += populatePercentage(Math.round(totalGeneration / totalCapacity * 100), true);
+    html += `<br><b>Total:</b> ${roundMw(totalGeneration)}MW / ${roundMw(totalCapacity - totalOutage)}MW ${(totalOutage != 0) ? `(${totalOutage}MW Outage)` : ""}</br>`
+    html += populatePercentage(Math.round(totalGeneration / (totalCapacity - totalOutage) * 100), true);
 
     return html;
 }
@@ -88,36 +86,31 @@ export function populateSubstationPopup(substationData) {
     let html = `
         <h5>${substationData.description}</h5>
         <div style="padding-bottom: 0px;"><b>Load:</b> ${substationData.totalLoadMW} MW</div>
-    `    
+    `
 
-    if(substationData.totalGenerationCapacityMW > 0){
+    if (substationData.totalGenerationCapacityMW > 0) {
         html += `<div style="padding-bottom: 0px;"><b>Generation:</b> ${substationData.totalGenerationMW} MW / ${substationData.totalGenerationCapacityMW} MW</div>`
 
-        if(substationData.netImportMW > 0){
+        if (substationData.netImportMW > 0) {
             html += `<div style="padding-bottom: 0px;"><b>Net Import:</b> ${substationData.netImportMW} MW</div>`
         } else {
             html += `<div style="padding-bottom: 0px;"><b>Net Export:</b> ${0 - substationData.netImportMW} MW</div>`
         }
     }
 
+    html += '<br>';
+
     Object.keys(substationData.busbars).forEach((busbar) => {
         const details = substationData.busbars[busbar];
 
-        if(details.totalLoadMW > 0 || details.totalGenerationMW > 0){
-            html += `<br>`
-        }
+        html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Load: ${details.totalLoadMW} MW ($${details.priceDollarsPerMegawattHour}/MWh)</div>`
 
-        //if(details.totalLoadMW > 0) {
-            html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Load: ${details.totalLoadMW} MW ($${details.priceDollarsPerMegawattHour}/MWh)</div>`
-        //};
-        
-        //if(details.totalGenerationMW > 0){
-            details.connections.forEach(connection => {
-                if(connection.generatorInfo.plantName != undefined){
-                    html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Generation: ${connection.generationMW}MW / ${connection.generatorInfo.nameplateCapacityMW}MW (${connection.generatorInfo.plantName} - ${connection.generatorInfo.fuel})</div>`
-                }
-            })
-        //}
+        details.connections.forEach(connection => {
+            if (connection.generatorInfo.plantName != undefined) {
+                html += `<div style="padding-bottom: 0px;">-- Generation: ${connection.generationMW}MW / ${connection.generatorInfo.nameplateCapacityMW}MW (${connection.generatorInfo.plantName} - ${connection.generatorInfo.fuel})</div>`
+            }
+        })
+
     })
 
     return html;
