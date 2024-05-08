@@ -143,6 +143,8 @@ function updateGenerationMap(generationData, generationLayer) {
             return;
         }
 
+        if(generator.site === "SZR") return; //SolarZero is distributed across the country, so it's hard to show on a map
+
         var markerColour = detemineMapColour(generator);
         var generatorHtml = populateGeneratorPopup(generator, formattedLastUpdated);
 
