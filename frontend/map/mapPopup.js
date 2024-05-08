@@ -66,7 +66,7 @@ function populateGeneratorUnitList(generatorData) {
 
         html += populateGenerationUnit(unit);
 
-        html += populatePercentage(Math.round(unit.generation / unit.capacity * 100));
+        //html += populatePercentage(Math.round(unit.generation / unit.capacity * 100));
 
         if (unit.outage.length > 0) {
             unit.outage.forEach((outage) => {
