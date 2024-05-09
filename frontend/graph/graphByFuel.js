@@ -3,14 +3,14 @@ import { getColourForFuel } from '../utilities/colours.js';
 
 // defines the order that the fuels will be displayed in the chart
 const keyOrder = [
+    "BESS",
+    "DIE",
     "SOL",
     "WIN",
     "HYD",
     "GAS",
     "CLG",
     "GEO",
-    "DIE",
-    "BESS",
     "BESS-C"
 ];
 
