@@ -173,6 +173,13 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
     let sortedGenerationData = liveGenData.generators.sort((a, b) => a.name.localeCompare(b.name));
 
+    //clear generator dropdown
+    powerStationFilterDropdown.innerHTML = "";
+    var defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.innerHTML = "Filter by Power Station";
+    powerStationFilterDropdown.appendChild(defaultOption);
+
     //populate generator dropdown
     sortedGenerationData.forEach(generator => {
         var opt = document.createElement("option");
