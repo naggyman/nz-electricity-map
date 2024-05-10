@@ -186,11 +186,11 @@ async function getTradingPeriodStats(forceUpdate = false) {
         opt.value = generator.site;
         opt.innerHTML = generator.name;
 
-        if(zoneToFilterTo.length > 0 && zoneToFilterTo.includes(generator.gridZone)){
+        if(zoneToFilterTo.length > 0 && !zoneToFilterTo.includes(generator.gridZone)){
             return;
         }
 
-        if(islandToFilterTo.length > 0 && islandToFilterTo.includes(generator.island)){
+        if(islandToFilterTo.length > 0 && !islandToFilterTo.includes(generator.island)){
             return;
         }
 
