@@ -356,6 +356,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
                 marker: {
                     enabled: false
                 },
+                animation: false
             },
             area: {
                 stacking: 'normal'
