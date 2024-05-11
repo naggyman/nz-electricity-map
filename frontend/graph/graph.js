@@ -183,7 +183,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     powerStationFilterDropdown.innerHTML = "";
     var defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.innerHTML = "Filter by Power Station";
+    defaultOption.innerHTML = "Power Station";
     powerStationFilterDropdown.appendChild(defaultOption);
 
     //populate generator dropdown
@@ -319,12 +319,12 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
         title: {
             text: `NZ Electricity Generation ${(filterDescription !== "") ? " - " + filterDescription : ""}`,
-            align: 'left'
+            align: 'center'
         },
 
         subtitle: {
             text: subtitleText,
-            align: 'left'
+            align: 'center'
         },
 
         tooltip: {
@@ -350,9 +350,9 @@ async function getTradingPeriodStats(forceUpdate = false) {
         },
 
         legend: {
-            layout: 'horizontal',
+            layout: 'vertical',
             align: 'right',
-            verticalAlign: 'bottom'
+            verticalAlign: 'middle'
         },
 
         plotOptions: {
@@ -376,11 +376,12 @@ async function getTradingPeriodStats(forceUpdate = false) {
         responsive: {  
             rules: [{  
               condition: {  
-                maxWidth: 500  
+                maxWidth: 900  
               },  
               chartOptions: {  
                 legend: {  
-                  enabled: false  
+                  layout: 'horizontal',
+                  verticalAlign: 'bottom',  
                 }  
               }  
             }]  
