@@ -38,15 +38,10 @@ export async function getRelativeTimeseriesData(timeframe) {
     console.debug(`Fetching data since ${startingDate.toLocaleDateString('en-NZ') + " " + startingDate.toLocaleTimeString('en-NZ')}`)
     console.debug(`Days ago to fetch: ${daysAgoToFetch}`);
 
-    var statusSpan = document.getElementById("graph-status");
-    statusSpan.innerHTML = "Fetching data...";
-
     for (let relativeTimeUnit = daysAgoToFetch; relativeTimeUnit >= 0; relativeTimeUnit--) {
         let date = {};
 
         date = getDateRelativeToNowInNZ(relativeTimeUnit);
-
-        statusSpan.innerHTML = `Fetching data for ${date.toLocaleDateString('en-NZ')}`;
 
         let timeseriesData = await getTimeseriesGenerationData(date);
         Object.assign(data, timeseriesData);
@@ -57,8 +52,6 @@ export async function getRelativeTimeseriesData(timeframe) {
     Object.keys(data)
         .filter((time) => timeIsBefore(time, startingDate))
         .forEach((time) => delete data[time]);
-
-    statusSpan.innerHTML = "";
 
     return data;
 }

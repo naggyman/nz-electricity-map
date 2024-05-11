@@ -13,6 +13,8 @@ timeframeSelectDropdown.addEventListener('change', () => onTimeframeDropdownSele
 const powerStationFilterDropdown = document.getElementById('power-station-select');
 const regionSelectDropdown = document.getElementById('region-select');
 const clearButton = document.getElementById('clear-button');
+const statusSpan = document.getElementById("graph-status");
+const navbarStatus = document.getElementById("status");
 
 regionSelectDropdown.addEventListener('change', () => onRegionDropdownSelect(regionSelectDropdown));
 powerStationFilterDropdown.addEventListener('change', () => onGeneratorDropdownSelect(powerStationFilterDropdown));
@@ -136,8 +138,10 @@ async function getTradingPeriodStats(forceUpdate = false) {
     updateInProgress = true;
     console.debug("Updating trading period stats graph");
     
-    var status = document.getElementById("status");
-    status.innerHTML = "Last Updated: .. minutes ago";
+    
+    navbarStatus.innerHTML = "Last Updated: .. minutes ago";
+    statusSpan.innerHTML = "Fetching data...";
+    statusSpan.style.display = "block";
 
     const siteToFilterTo = (new URLSearchParams(window.location.search)).get("site")?.split(',') || [];
     const islandToFilterTo = (new URLSearchParams(window.location.search)).get("island")?.split(',') || [];
@@ -150,6 +154,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
     let data = await getRelativeTimeseriesData(timeframe);
     const liveGenData = await getLiveGenerationData();
 
+    statusSpan.innerHTML = "Updating graph...";
+
     data = fillInGaps(data);
 
     const tradingPeriodTimestamps = Object.keys(data);
@@ -160,7 +166,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     var updatedMinutesAgo = Math.round((now - lastUpdatedDate) / 1000 / 60);
     var minutesAgoString = `${updatedMinutesAgo} minutes ago`;
 
-    status.innerHTML = `Last Updated: ${minutesAgoString}`;
+    navbarStatus.innerHTML = `Last Updated: ${minutesAgoString}`;
 
     //show back button if this request was directed from the map
     var redirect = (new URLSearchParams(window.location.search)).get("redirect");
@@ -252,6 +258,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
     if (!forceUpdate && mostRecentTradingPeriodTimestamp === graphLastUpdatedTimestamp) {
         updateInProgress = false;
+        statusSpan.innerHTML = "";
+        statusSpan.style.display = "none";
         return;
     }
 
@@ -364,9 +372,24 @@ async function getTradingPeriodStats(forceUpdate = false) {
         },
 
         series: seriesData,
+
+        responsive: {  
+            rules: [{  
+              condition: {  
+                maxWidth: 500  
+              },  
+              chartOptions: {  
+                legend: {  
+                  enabled: false  
+                }  
+              }  
+            }]  
+          }
     });
 
     updateInProgress = false;
+    statusSpan.innerHTML = "";
+    statusSpan.style.display = "none";
 }
 
 getTradingPeriodStats();

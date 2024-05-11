@@ -1,5 +1,7 @@
 import { getCurrentTimeInNZ } from "./units.js";
 
+var statusSpan = document.getElementById("graph-status");
+
 let localUrl = (path) => `http://[::]:8000/backend/output/${path}`;
 let prodUrl = (path) => `https://api.frenchsta.gg/v1/${path}`;
 let isProd = (window.location.origin === 'https://electricitymap.frenchsta.gg');
@@ -31,6 +33,8 @@ export async function getTimeseriesGenerationData(date){
     if(timeseriesGenerationDataCache[dateStr] && (dateStr != currentTimeFormatted)){
         return timeseriesGenerationDataCache[dateStr];
     }
+
+    statusSpan.innerHTML = `Fetching data for ${date.toLocaleDateString('en-NZ')}`;
 
     const response = await fetchJson(`generator-history/5-min/${dateStr}.json`)
 
