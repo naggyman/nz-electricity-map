@@ -53,9 +53,6 @@
             <a class="nav-link" aria-current="page" href="summary.html">Live Summary</a>
           </li>
         </ul>
-        <span class="navbar-text" id="status">
-          Loading...
-        </span>
       </div>
     </div>
   </nav>
@@ -79,19 +76,13 @@
           <option value="USI">-- Upper South Island</option>
           <option value="LSI">-- Lower South Island</option>
         </select>
-        <select class="form-select" id="timeframe-select">
-          <option value="-1h">Last hour</option>
-          <option value="-3h">Last 3 hours</option>
-          <option value="-12h">Last 12 hours</option>
-          <option value="-24h" selected>Last 24 Hours</option>
-          <option value="-48h">Last 48 hours</option>
-          <option value="-0d">Today</option>
-          <option value="-1d">Since 1 day ago</option>
-          <option value="-3d">Since 3 days ago</option>
-          <option value="-1w">Since 1 week ago</option>
-        </select>
         <span id="graph-status" class="input-group-text">Loading...</span>
-        <button class="btn btn-primary btn-sm" type="button" id="clear-button">Reset</button>
+        <button class="btn btn-secondary btn-sm" type="button" id="3h-button">3h</button>
+        <button class="btn btn-secondary btn-sm" type="button" id="1d-button">Today</button>
+        <button class="btn btn-secondary btn-sm" type="button" id="24h-button">24h</button>
+        <button class="btn btn-secondary btn-sm" type="button" id="3d-button">3d</button>
+        <button class="btn btn-secondary btn-sm" type="button" id="7d-button">7d</button>
+        <button class="btn btn-danger btn-sm" type="button" id="clear-button">Clear</button>
       </div>
     </div>
   </div>

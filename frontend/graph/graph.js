@@ -3,22 +3,53 @@ import { getRelativeTimeseriesData } from './graphData.js';
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
 import { FUELS_KEY } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
+import { getCurrentTimeInNZ } from '../utilities/units.js';
 
 const FIFTEEN_MINUTES_IN_MS = 15 * 60 * 1000;
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
-
-const timeframeSelectDropdown = document.getElementById('timeframe-select');
-timeframeSelectDropdown.addEventListener('change', () => onTimeframeDropdownSelect(timeframeSelectDropdown));
 
 const powerStationFilterDropdown = document.getElementById('power-station-select');
 const regionSelectDropdown = document.getElementById('region-select');
 const clearButton = document.getElementById('clear-button');
 const statusSpan = document.getElementById("graph-status");
-const navbarStatus = document.getElementById("status");
 
 regionSelectDropdown.addEventListener('change', () => onRegionDropdownSelect(regionSelectDropdown));
 powerStationFilterDropdown.addEventListener('change', () => onGeneratorDropdownSelect(powerStationFilterDropdown));
 clearButton.addEventListener('click', () => onClearButtonSelect());
+
+let buttons = [];
+
+addButton('3h-button', '-3h');
+addButton('1d-button', '-0d');
+addButton('24h-button', '-24h');
+addButton('3d-button', '-3d');
+addButton('7d-button', '-7d');
+
+console.log(buttons)
+
+function addButton(id, timeframeValue){    
+    let button = document.getElementById(id);
+    buttons.push(button);
+    button.addEventListener('click', (event) => onDateButtonPressed(timeframeValue, event));
+
+    if((new URLSearchParams(window.location.search)).get("timeframe") === timeframeValue){
+        button.classList.remove("btn-secondary");
+        button.classList.add("btn-primary");
+    }
+}
+
+function onDateButtonPressed(timeframe, button){
+    setQueryParam("timeframe", timeframe);
+    getTradingPeriodStats(true);
+
+    buttons.forEach((button) => {
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-secondary");
+    });
+
+    button.target.classList.remove("btn-secondary");
+    button.target.classList.add("btn-primary");
+}
 
 let graphLastUpdatedTimestamp = "";
 
@@ -180,8 +211,6 @@ async function getTradingPeriodStats(forceUpdate = false) {
     updateInProgress = true;
     console.debug("Updating trading period stats graph");
 
-
-    navbarStatus.innerHTML = "Last Updated: .. minutes ago";
     statusSpan.innerHTML = "Fetching data...";
     statusSpan.style.display = "block";
 
@@ -190,8 +219,6 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const zoneToFilterTo = (new URLSearchParams(window.location.search)).get("zone")?.split(',') || [];
     const fuelsToFilterTo = (new URLSearchParams(window.location.search)).get("fuel")?.split(',') || [];
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
-
-    timeframeSelectDropdown.value = timeframe;
 
     let data = await getRelativeTimeseriesData(timeframe);
     const liveGenData = await getLiveGenerationData();
@@ -203,12 +230,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const tradingPeriodTimestamps = Object.keys(data);
 
     // populate 'Last updated x minutes ago' on statusbar
-    var now = new Date();
     var lastUpdatedDate = new Date(liveGenData.lastUpdate + "+12:00");
-    var updatedMinutesAgo = Math.round((now - lastUpdatedDate) / 1000 / 60);
-    var minutesAgoString = `${updatedMinutesAgo} minutes ago`;
-
-    navbarStatus.innerHTML = `Last Updated: ${minutesAgoString}`;
+    var lastUpdatedString = `Last Updated: ${Math.round((getCurrentTimeInNZ() - lastUpdatedDate) / 1000 / 60)} minutes ago`;
 
     //show back button if this request was directed from the map
     var redirect = (new URLSearchParams(window.location.search)).get("redirect");
@@ -277,8 +300,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
     if (!forceUpdate && mostRecentTradingPeriodTimestamp === graphLastUpdatedTimestamp) {
         updateInProgress = false;
-        statusSpan.innerHTML = "";
-        statusSpan.style.display = "none";
+        statusSpan.innerHTML = lastUpdatedString;
         return;
     }
 
@@ -418,8 +440,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     });
 
     updateInProgress = false;
-    statusSpan.innerHTML = "";
-    statusSpan.style.display = "none";
+    statusSpan.innerHTML = lastUpdatedString;
 }
 
 getTradingPeriodStats();
