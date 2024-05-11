@@ -183,7 +183,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     powerStationFilterDropdown.innerHTML = "";
     var defaultOption = document.createElement("option");
     defaultOption.value = "";
-    defaultOption.innerHTML = "Power Station";
+    defaultOption.innerHTML = "Select Power Station";
     powerStationFilterDropdown.appendChild(defaultOption);
 
     //populate generator dropdown
@@ -384,7 +384,17 @@ async function getTradingPeriodStats(forceUpdate = false) {
                   verticalAlign: 'bottom',  
                 }  
               }  
-            }]  
+            },
+            {  
+                condition: {  
+                  maxWidth: 400  
+                },  
+                chartOptions: {  
+                  legend: {  
+                    enabled: false 
+                  }  
+                }  
+              }]  
           }
     });
 

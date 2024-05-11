@@ -7,13 +7,24 @@
   <title>NZ Electricity Map</title>
 
   <style>
-    @media (max-width: 1450px) {
+    @media (max-width: 1500px) {
       .fixed-bottom {
         position: inherit!important;
       }
 
       .credit {
         float: none!important;
+      }
+    }
+
+    @media (max-width: 720px){
+      .input-group {
+        padding-left: 0!important;
+        padding-right: 0!important;
+      }
+
+      .form-select {
+        min-width: 200px!important;
       }
     }
   </style>
@@ -49,16 +60,17 @@
     </div>
   </nav>
 
-  <span id="back-link" style="display: none;"><a href="javascript:history.back()">Back to map</a></span>
+  
   <div class="pt-2 px-2">
-    <div id="generation-chart" style="height: 85vh"></div>
-    <div class="pb-3 px-2">
+    <span id="back-link" style="display: none;"><a href="javascript:history.back()">Back to map</a></span>
+    <div id="generation-chart" style="height: 83vh"></div>
+    <div class="pb-4 px-2">
       <div class="input-group pt-2 px-3" id="filters">
         <select class="form-select" id="power-station-select">
           <option value="" selected></option>
         </select>
         <select class="form-select" id="region-select">
-          <option value="" selected>Region</option>
+          <option value="" selected>Select Region</option>
           <option value="NI">North Island</option>
           <option value="UNI">-- Upper North Island</option>
           <option value="CNI">-- Central North Island</option>
@@ -112,8 +124,6 @@
       </a>
     </div>
   </div>
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
