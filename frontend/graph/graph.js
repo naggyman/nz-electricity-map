@@ -32,7 +32,7 @@ function addButton(id, timeframeValue){
     buttons.push(button);
     button.addEventListener('click', (event) => onDateButtonPressed(timeframeValue, event));
 
-    if((new URLSearchParams(window.location.search)).get("timeframe") === timeframeValue){
+    if(((new URLSearchParams(window.location.search)).get("timeframe") || "-0d") === timeframeValue){
         button.classList.remove("btn-secondary");
         button.classList.add("btn-primary");
     }
