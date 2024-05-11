@@ -19,6 +19,7 @@ clearButton.addEventListener('click', () => onClearButtonSelect());
 
 let buttons = [];
 
+addButton('1h-button', '-1h');
 addButton('3h-button', '-3h');
 addButton('1d-button', '-0d');
 addButton('24h-button', '-24h');
