@@ -59,7 +59,11 @@
 
   
   <div class="pt-2 px-2">
-    <span id="back-link" style="display: none;"><a href="javascript:history.back()">Back to map</a></span>
+    <span id="back-link" style="display: none;">
+      <form action="javascript:history.back()">
+        <button class="btn btn-primary btn-sm" type="submit">Back to Map</button>
+      </form>
+    </span>
     <div id="generation-chart" style="height: 83vh"></div>
     <div class="pb-4 px-2">
       <div class="input-group pt-2 px-3" id="filters">

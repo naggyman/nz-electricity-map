@@ -116,13 +116,6 @@ async function onRegionDropdownSelect(dropdownObject) {
     getTradingPeriodStats(true);
 }
 
-function onTimeframeDropdownSelect(dropdownObject) {
-    var selectedTimeframe = dropdownObject.options[dropdownObject.selectedIndex].value;
-
-    setQueryParam("timeframe", selectedTimeframe);
-    getTradingPeriodStats(true);
-}
-
 function setQueryParam(param, value) {
     var searchParams = new URLSearchParams(window.location.search);
 
@@ -133,7 +126,7 @@ function setQueryParam(param, value) {
     }
 
     var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-    history.pushState(null, '', newRelativePathQuery);
+    history.replaceState(null, '', newRelativePathQuery);
 }
 
 function onClearButtonSelect() {
@@ -142,6 +135,7 @@ function onClearButtonSelect() {
     setQueryParam("island", "");
     setQueryParam("zone", "");
     setQueryParam("fuel", "");
+    setQueryParam("redirect", "");
     getTradingPeriodStats(true);
 }
 
