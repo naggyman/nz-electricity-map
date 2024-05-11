@@ -29,7 +29,7 @@ let updateInProgress = false;
  * @param {*} data 
  * @returns 
  */
-function fillInGaps(data){
+function fillInGaps(data) {
     const maximumDataGapAllowed = FIFTEEN_MINUTES_IN_MS;
     var timestamps = Object.keys(data);
     var returnData = {};
@@ -38,7 +38,7 @@ function fillInGaps(data){
     timestamps.forEach((timestamp) => {
         var currentTimestamp = previousTimestamp;
 
-        while (currentTimestamp < (new Date(timestamp) - maximumDataGapAllowed)){
+        while (currentTimestamp < (new Date(timestamp) - maximumDataGapAllowed)) {
             currentTimestamp = new Date(currentTimestamp.getTime() + FIVE_MINUTES_IN_MS);
             let date = currentTimestamp;
 
@@ -68,11 +68,11 @@ async function onGeneratorDropdownSelect(dropdownObject) {
 async function onRegionDropdownSelect(dropdownObject) {
     var selectedRegion = dropdownObject.options[dropdownObject.selectedIndex].value;
 
-    if(selectedRegion.length === 2){
+    if (selectedRegion.length === 2) {
         setQueryParam("site", "");
         setQueryParam("island", selectedRegion);
         setQueryParam("zone", "");
-    } else if (selectedRegion.length === 3){
+    } else if (selectedRegion.length === 3) {
         setQueryParam("site", "");
         setQueryParam("island", "");
         setQueryParam("zone", selectedRegion);
@@ -84,17 +84,17 @@ async function onRegionDropdownSelect(dropdownObject) {
     getTradingPeriodStats(true);
 }
 
-function onTimeframeDropdownSelect(dropdownObject){
+function onTimeframeDropdownSelect(dropdownObject) {
     var selectedTimeframe = dropdownObject.options[dropdownObject.selectedIndex].value;
 
     setQueryParam("timeframe", selectedTimeframe);
     getTradingPeriodStats(true);
 }
 
-function setQueryParam(param, value){
+function setQueryParam(param, value) {
     var searchParams = new URLSearchParams(window.location.search);
 
-    if(value === ""){
+    if (value === "") {
         searchParams.delete(param);
     } else {
         searchParams.set(param, value);
@@ -104,7 +104,7 @@ function setQueryParam(param, value){
     history.pushState(null, '', newRelativePathQuery);
 }
 
-function onClearButtonSelect(){
+function onClearButtonSelect() {
     setQueryParam("timeframe", "");
     setQueryParam("site", "");
     setQueryParam("island", "");
@@ -113,7 +113,7 @@ function onClearButtonSelect(){
     getTradingPeriodStats(true);
 }
 
-function getSubtitleText(oldestTimestamp, newestTimestamp){
+function getSubtitleText(oldestTimestamp, newestTimestamp) {
     const formattedOldDate = new Date(oldestTimestamp)
         .toLocaleDateString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
 
@@ -124,21 +124,63 @@ function getSubtitleText(oldestTimestamp, newestTimestamp){
 
     const formattedLatestTime = new Date(newestTimestamp).toLocaleTimeString('en-NZ', { hour: "numeric", minute: "numeric" });
 
-    return (formattedOldDate == formattedLatestDate) ? 
-        `${formattedOldDate} ${formattedOldTime} - ${formattedLatestTime}` : 
+    return (formattedOldDate == formattedLatestDate) ?
+        `${formattedOldDate} ${formattedOldTime} - ${formattedLatestTime}` :
         `${formattedOldDate} ${formattedOldTime} - ${formattedLatestDate} ${formattedLatestTime}`;
 }
 
+function setGeneratorDropdown(liveGenData, zoneToFilterTo = [], islandToFilterTo = []) {
+    let sortedGenerationData = liveGenData.generators.sort((a, b) => a.name.localeCompare(b.name));
+
+    //clear generator dropdown
+    powerStationFilterDropdown.innerHTML = "";
+    var defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.innerHTML = "Select Power Station";
+    powerStationFilterDropdown.appendChild(defaultOption);
+
+    //populate generator dropdown
+    sortedGenerationData.forEach(generator => {
+        if (generator.site === "SZR") return;
+        var thisUnitFuels = [];
+
+        generator.units.forEach(unit => {
+            let unitFuel = unit.fuel;
+            if (unitFuel === "Battery (Charging)" || unitFuel === "Battery (Discharging)") {
+                unitFuel = "Battery";
+            }
+
+            if (!thisUnitFuels.includes(unitFuel)) {
+                thisUnitFuels.push(unitFuel);
+            }
+        });
+
+        var opt = document.createElement("option");
+        opt.value = generator.site;
+        opt.innerHTML = `${generator.name} (${thisUnitFuels.join(", ")})`;
+
+        if (zoneToFilterTo.length > 0 && !zoneToFilterTo.includes(generator.gridZone)) {
+            return;
+        }
+
+        if (islandToFilterTo.length > 0 && !islandToFilterTo.includes(generator.island)) {
+            return;
+        }
+
+        powerStationFilterDropdown.appendChild(opt);
+    });
+}
+
 async function getTradingPeriodStats(forceUpdate = false) {
-    if(updateInProgress){
+    if (updateInProgress) {
         console.log("Update already in progress")
         return;
     }
 
     updateInProgress = true;
     console.debug("Updating trading period stats graph");
-    
-    
+
+
     navbarStatus.innerHTML = "Last Updated: .. minutes ago";
     statusSpan.innerHTML = "Fetching data...";
     statusSpan.style.display = "block";
@@ -171,37 +213,13 @@ async function getTradingPeriodStats(forceUpdate = false) {
     //show back button if this request was directed from the map
     var redirect = (new URLSearchParams(window.location.search)).get("redirect");
     var backButton = document.getElementById("back-link");
-    if(redirect){
+    if (redirect) {
         backButton.style.display = "block";
     } else {
         backButton.style.display = "none";
     }
 
-    let sortedGenerationData = liveGenData.generators.sort((a, b) => a.name.localeCompare(b.name));
-
-    //clear generator dropdown
-    powerStationFilterDropdown.innerHTML = "";
-    var defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.innerHTML = "Select Power Station";
-    powerStationFilterDropdown.appendChild(defaultOption);
-
-    //populate generator dropdown
-    sortedGenerationData.forEach(generator => {
-        var opt = document.createElement("option");
-        opt.value = generator.site;
-        opt.innerHTML = generator.name;
-
-        if(zoneToFilterTo.length > 0 && !zoneToFilterTo.includes(generator.gridZone)){
-            return;
-        }
-
-        if(islandToFilterTo.length > 0 && !islandToFilterTo.includes(generator.island)){
-            return;
-        }
-
-        powerStationFilterDropdown.appendChild(opt);
-    });
+    setGeneratorDropdown(liveGenData, zoneToFilterTo, islandToFilterTo);
 
     // Build up a string that contains the sites we are filtering to
     let filterDescription = "";
@@ -210,7 +228,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
         siteToFilterTo.forEach(site => {
             var liveGeneratorData = (liveGenData.generators.filter((gen) => gen.site === site))[0];
-            if(liveGeneratorData)
+            if (liveGeneratorData)
                 filterDescription += (filterDescription != "") ? ", " + liveGeneratorData.name : liveGeneratorData.name;
         });
     } else {
@@ -230,27 +248,28 @@ async function getTradingPeriodStats(forceUpdate = false) {
         regionSelectDropdown.value = zoneToFilterTo[0];
 
         var zoneNames = zoneToFilterTo.map(zone => {
-                switch(zone){
-                    case "UNI":
-                        return "Upper North Island"
-                    case "CNI":
-                        return "Central North Island"
-                    case "LNI":
-                        return "Lower North Island"
-                    case "USI":
-                        return "Upper South Island"
-                    case "LSI":
-                        return "Lower South Island"
-                    default:
-                        return zone;
-            }}
+            switch (zone) {
+                case "UNI":
+                    return "Upper North Island"
+                case "CNI":
+                    return "Central North Island"
+                case "LNI":
+                    return "Lower North Island"
+                case "USI":
+                    return "Upper South Island"
+                case "LSI":
+                    return "Lower South Island"
+                default:
+                    return zone;
+            }
+        }
         );
 
         filterDescription += (filterDescription != "") ? ", " : "";
         filterDescription += zoneNames.join(", ");
     }
 
-    if(islandToFilterTo.length == 0 && zoneToFilterTo.length == 0){
+    if (islandToFilterTo.length == 0 && zoneToFilterTo.length == 0) {
         regionSelectDropdown.value = "";
     }
 
@@ -274,7 +293,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
                 width: 1,
                 value: index,
                 label: {
-                    text: new Date(time).toLocaleString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"}),
+                    text: new Date(time).toLocaleString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" }),
                     align: 'top',
                     x: 10,
                     y: 10
@@ -292,25 +311,25 @@ async function getTradingPeriodStats(forceUpdate = false) {
                 minute: "numeric"
             })
     );
-    
+
     let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
-    
+
     Highcharts.chart('generation-chart', {
         chart: {
             type: 'area',
             zoomType: 'x',
-            
+
             events: {
-                redraw: function(event) {
+                redraw: function (event) {
                     let visibleSeriesCommaSeparatedString = "";
                     const series = this.userOptions.series;
                     series.forEach((series, index) => {
-                        
-                        if(series.visible !== false){
+
+                        if (series.visible !== false) {
                             visibleSeriesCommaSeparatedString += (visibleSeriesCommaSeparatedString.length > 0) ? "," : "";
                             visibleSeriesCommaSeparatedString += Object.keys(FUELS_KEY).at(Object.values(FUELS_KEY).indexOf(series.name));
                         }
-                        
+
                     });
                     setQueryParam("fuel", visibleSeriesCommaSeparatedString);
                 }
@@ -373,29 +392,29 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
         series: seriesData,
 
-        responsive: {  
-            rules: [{  
-              condition: {  
-                maxWidth: 900  
-              },  
-              chartOptions: {  
-                legend: {  
-                  layout: 'horizontal',
-                  verticalAlign: 'bottom',  
-                }  
-              }  
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 900
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        verticalAlign: 'bottom',
+                    }
+                }
             },
-            {  
-                condition: {  
-                  maxWidth: 400  
-                },  
-                chartOptions: {  
-                  legend: {  
-                    enabled: false 
-                  }  
-                }  
-              }]  
-          }
+            {
+                condition: {
+                    maxWidth: 400
+                },
+                chartOptions: {
+                    legend: {
+                        enabled: false
+                    }
+                }
+            }]
+        }
     });
 
     updateInProgress = false;
