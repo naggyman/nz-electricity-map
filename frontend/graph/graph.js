@@ -225,7 +225,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const tradingPeriodTimestamps = Object.keys(data);
 
     // populate 'Last updated x minutes ago' on statusbar
-    var lastUpdatedDate = new Date(liveGenData.lastUpdate + "+12:00");
+    var lastUpdatedDate = Date.parse(liveGenData.lastUpdate);
     var lastUpdatedString = `Last Updated: ${Math.round((getCurrentTimeInNZ() - lastUpdatedDate) / 1000 / 60)} minutes ago`;
 
     //show back button if this request was directed from the map
