@@ -64,11 +64,18 @@
         <button class="btn btn-primary btn-sm" type="submit">Back to Map</button>
       </form>
     </span>
-    <div id="generation-chart" style="height: 83vh"></div>
+    <div id="generation-chart" style="height: 83vh">
+      <div class="text-center" style="padding-top: 30vh;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div><br> 
+        <div class="pt-4">Loading graph...</div>
+      </div>
+    </div>
     <div class="pb-4 px-2">
       <div class="input-group pt-2 px-3" id="filters">
         <select class="form-select" id="power-station-select">
-          <option value="" selected></option>
+          <option value="" selected>Select Power Station</option>
         </select>
         <select class="form-select" id="region-select">
           <option value="" selected>Select Region</option>
