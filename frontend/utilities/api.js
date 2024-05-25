@@ -26,6 +26,8 @@ function formatDate(date){
     return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
 }
 
+const spinnerHtml = '<div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+
 export async function getTimeseriesGenerationData(date){
     var currentTimeFormatted = formatDate(getCurrentTimeInNZ());
     var dateStr = formatDate(date);
@@ -34,7 +36,7 @@ export async function getTimeseriesGenerationData(date){
         return timeseriesGenerationDataCache[dateStr];
     }
 
-    statusSpan.innerHTML = `Fetching data for ${date.toLocaleDateString('en-NZ')}`;
+    statusSpan.innerHTML = `${spinnerHtml} Fetching data for ${date.toLocaleDateString('en-NZ')}`;
 
     const response = await fetchJson(`generator-history/5-min/${dateStr}.json`)
 
