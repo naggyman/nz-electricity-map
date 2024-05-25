@@ -378,6 +378,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
             title: {
                 text: 'Generation (MW)'
             },
+            startOnTick: false,
+            endOnTick: false,
         },
 
         xAxis: {
