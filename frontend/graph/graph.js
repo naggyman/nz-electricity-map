@@ -5,7 +5,7 @@ import { FUELS_KEY } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
 
-const FIFTEEN_MINUTES_IN_MS = 15 * 60 * 1000;
+const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
 
 const powerStationFilterDropdown = document.getElementById('power-station-select');
@@ -62,7 +62,7 @@ let updateInProgress = false;
  * @returns 
  */
 function fillInGaps(data) {
-    const maximumDataGapAllowed = FIFTEEN_MINUTES_IN_MS;
+    const maximumDataGapAllowed = THIRTY_MINUTES_IN_MS;
     var timestamps = Object.keys(data);
     var returnData = {};
 
