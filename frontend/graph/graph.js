@@ -136,6 +136,7 @@ function onClearButtonSelect() {
     setQueryParam("zone", "");
     setQueryParam("fuel", "");
     setQueryParam("redirect", "");
+    onDateButtonPressed("-0d", {target: document.getElementById("1d-button")});
     getTradingPeriodStats(true);
 }
 
