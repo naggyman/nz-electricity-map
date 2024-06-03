@@ -26,3 +26,7 @@ export function getDateRelativeToNowInNZ(daysAgo = 0, hoursAgo = 0){
     const adjustedByDaysAgo = new Date(currentTimeInNZ.setDate(currentTimeInNZ.getDate() - daysAgo));
     return new Date(adjustedByDaysAgo.setHours(currentTimeInNZ.getHours() - hoursAgo));
 }
+
+export function formatApiDate(date){
+    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+}
