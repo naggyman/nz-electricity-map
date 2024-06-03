@@ -117,6 +117,7 @@ function getHighchartDatapointForFuel(fuel, fuels, fuelFilter){
     var fuelName = FUELS_KEY[fuel] || fuel;
     return {
         name: fuelName,
+        stack: (fuels[fuel].some((x) => x > 0)) ? "positive": "negative",
         data: fuels[fuel],
         visible: fuelFilter.length == 0 || fuelFilter.includes(fuel),
         color: getColourForFuel(fuel)
