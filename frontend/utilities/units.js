@@ -1,4 +1,6 @@
 export function displayMegawattsOrGigawatts(input) {
+    if(input < 100) return (input.toFixed(1)) + " MW";
+
     return (input > 1000) ? Math.round(input) / 1000 + " GW" : Math.round(input) + " MW";
 }
 

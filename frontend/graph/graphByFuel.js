@@ -90,11 +90,12 @@ export function getTooltipForFuelFilteredGraph(){
                 ${point.series.name}: 0 MW
                 <br>`;
         } else {
-            const percentage = (totalGeneration != 0) ? Math.round(point.y / totalGeneration * 100) : 0;
+            const generationSum = point.y;
+            const percentage = (totalGeneration != 0) ? Math.round(generationSum / totalGeneration * 100) : 0;
 
             body += `
                 <span style="color: ${point.color}">\u25CF</span> 
-                ${point.series.name}: <b>${displayMegawattsOrGigawatts(point.y)}</b> (${percentage}%)
+                ${point.series.name}: <b>${displayMegawattsOrGigawatts(generationSum)}</b> (${percentage}%)
                 <br>`;
         }
     })
