@@ -3,7 +3,9 @@ import { getRelativeTimeseriesData, getTimeseriesDataFromRange } from './graphDa
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
 import { FUELS_KEY } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
-import { getCurrentTimeInNZ, formatApiDate } from '../utilities/units.js';
+import { getCurrentTimeInNZ } from '../utilities/units.js';
+import { setupDatepicker } from './dateSelect.js';
+import { setQueryParam } from '../utilities/url.js';
 
 const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
@@ -114,19 +116,6 @@ async function onRegionDropdownSelect(dropdownObject) {
     }
 
     getTradingPeriodStats(true);
-}
-
-function setQueryParam(param, value) {
-    var searchParams = new URLSearchParams(window.location.search);
-
-    if (value === "") {
-        searchParams.delete(param);
-    } else {
-        searchParams.set(param, value);
-    }
-
-    var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-    history.replaceState(null, '', newRelativePathQuery);
 }
 
 function onClearButtonSelect() {
@@ -451,38 +440,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
     statusSpan.innerHTML = lastUpdatedString;
 }
 
-function setupDatepicker() {
-    new Datepicker('#date-select', {
-        ranged: true,
-
-        min: new Date(2024, 3, 27), //date I started storing historical data
-        max: getCurrentTimeInNZ(),
-
-        openOn: new Date(2024, 4, 7),
-        
-        onChange: function (dates) {
-            if(dates !== undefined && dates.length > 0){
-                setQueryParam("timeframe", "");
-                setQueryParam("dateFrom", formatApiDate(dates[0]));
-                
-                if(dates.length > 1){
-                    setQueryParam("dateTo", formatApiDate(dates[dates.length-1]));
-                } else {
-                    setQueryParam("dateTo", "");
-                }
-            }
-
-            getTradingPeriodStats(true);
-            buttons.forEach((button) => {
-                button.classList.remove("btn-primary");
-                button.classList.add("btn-secondary");
-            });
-        }
-    });
-}
-
 function setupGraph() {
-    setupDatepicker();
+    setupDatepicker(() => getTradingPeriodStats(true), buttons);
 
     getTradingPeriodStats();
     window.setInterval(() => getTradingPeriodStats(), 30000);
