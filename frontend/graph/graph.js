@@ -1,9 +1,11 @@
 
-import { getRelativeTimeseriesData } from './graphData.js';
+import { getRelativeTimeseriesData, getTimeseriesDataFromRange } from './graphData.js';
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
 import { FUELS_KEY } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
+import { setupDatepicker } from './dateSelect.js';
+import { setQueryParam } from '../utilities/url.js';
 
 const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
@@ -26,8 +28,6 @@ addButton('24h-button', '-24h');
 addButton('3d-button', '-3d');
 addButton('7d-button', '-7d');
 
-console.log(buttons)
-
 function addButton(id, timeframeValue){    
     let button = document.getElementById(id);
     buttons.push(button);
@@ -41,6 +41,8 @@ function addButton(id, timeframeValue){
 
 function onDateButtonPressed(timeframe, button){
     setQueryParam("timeframe", timeframe);
+    setQueryParam("dateFrom", "");
+    setQueryParam("dateTo", "");
     getTradingPeriodStats(true);
 
     buttons.forEach((button) => {
@@ -114,19 +116,6 @@ async function onRegionDropdownSelect(dropdownObject) {
     }
 
     getTradingPeriodStats(true);
-}
-
-function setQueryParam(param, value) {
-    var searchParams = new URLSearchParams(window.location.search);
-
-    if (value === "") {
-        searchParams.delete(param);
-    } else {
-        searchParams.set(param, value);
-    }
-
-    var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-    history.replaceState(null, '', newRelativePathQuery);
 }
 
 function onClearButtonSelect() {
@@ -216,7 +205,17 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const fuelsToFilterTo = (new URLSearchParams(window.location.search)).get("fuel")?.split(',') || [];
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
 
-    let data = await getRelativeTimeseriesData(timeframe);
+    const dateFrom = (new URLSearchParams(window.location.search)).get("dateFrom") || "";
+    const dateTo = (new URLSearchParams(window.location.search)).get("dateTo") || dateFrom;
+
+    let data = {}
+
+    if (dateFrom) {
+        data = await getTimeseriesDataFromRange(dateFrom, dateTo);
+    } else {
+        data = await getRelativeTimeseriesData(timeframe);
+    }
+    
     const liveGenData = await getLiveGenerationData();
 
     statusSpan.innerHTML = "Updating graph...";
@@ -441,5 +440,11 @@ async function getTradingPeriodStats(forceUpdate = false) {
     statusSpan.innerHTML = lastUpdatedString;
 }
 
-getTradingPeriodStats();
-window.setInterval(() => getTradingPeriodStats(), 30000);
+function setupGraph() {
+    setupDatepicker(() => getTradingPeriodStats(true), buttons);
+
+    getTradingPeriodStats();
+    window.setInterval(() => getTradingPeriodStats(), 30000);
+}
+
+setupGraph();

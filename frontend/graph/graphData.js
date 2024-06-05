@@ -56,6 +56,32 @@ export async function getRelativeTimeseriesData(timeframe) {
     return data;
 }
 
+export async function getTimeseriesDataFromRange(dateFrom, dateTo){
+    let data = {};
+
+    let date = new Date(dateFrom);
+
+    if(dateTo === undefined){
+        console.log("Fetching data for single day")
+        let timeseriesData = await getTimeseriesGenerationData(date);
+        return timeseriesData;
+    }
+
+    while (timeIsBeforeOrEqual(date, dateTo)){
+        let timeseriesData = await getTimeseriesGenerationData(date);
+        Object.assign(data, timeseriesData);
+
+        date.setDate(date.getDate() + 1);
+    }
+
+    return data;
+
+}
+
+function timeIsBeforeOrEqual(time, comparisonTime){
+    return new Date(time).getTime() <= new Date(comparisonTime).getTime();
+}
+
 function timeIsBefore(time, comparisonTime){
     return new Date(time).getTime() < new Date(comparisonTime).getTime();
 }
