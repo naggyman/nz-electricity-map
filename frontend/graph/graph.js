@@ -62,7 +62,12 @@ let updateInProgress = false;
  * @returns 
  */
 function fillInGaps(data) {
-    const maximumDataGapAllowed = THIRTY_MINUTES_IN_MS;
+    let maximumDataGapAllowed = THIRTY_MINUTES_IN_MS;
+
+    if((new URLSearchParams(window.location.search)).get("gaps") === "true"){
+        maximumDataGapAllowed = FIVE_MINUTES_IN_MS;
+    }
+
     var timestamps = Object.keys(data);
     var returnData = {};
 
