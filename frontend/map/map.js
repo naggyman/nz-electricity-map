@@ -1,5 +1,6 @@
 import { detemineMapColour } from "../utilities/colours.js";
 import { populateGeneratorPopup, populateSubstationPopup } from "./mapPopup.js";
+import { underConstruction } from "../utilities/underConstruction.js";
 
 const apiKey = 'c01hrv1pebxm8k47wfehxa7kg8h'; //for LINZ basemap
 
@@ -34,10 +35,12 @@ function setupMap() {
 
     const generatorMarkers = L.layerGroup();
     const substationLayer = L.layerGroup();
+    const underConstructionLayer = L.layerGroup();
     
     const overlays = {
         "Power Stations": generatorMarkers,
-        "Substations": substationLayer
+        "Substations": substationLayer,
+        "Under Construction": underConstructionLayer
     }
 
     const map = L.map('map');
@@ -56,6 +59,9 @@ function setupMap() {
         map.addLayer(substationLayer);
     }
 
+    map.addLayer(underConstructionLayer);
+    addUnderConstructionSites(underConstructionLayer);
+
     map.setView(startPos, startZoom);
 
     map.on('moveend', (event) => onMapMove(map, event));
@@ -70,6 +76,20 @@ function setupMap() {
 
     getGenerationData(generatorMarkers);
     window.setInterval(() => getGenerationData(generatorMarkers), 60000);
+}
+
+function addUnderConstructionSites(layer){
+    underConstruction.forEach((site) => {
+        L.circleMarker([site.location.lat, site.location.long], {
+            color: '#000000',
+            radius: 4,
+            weight: 0.4,
+            fill: true,
+            fillOpacity: 0.9,
+            fillColor: detemineMapColour(site)
+        }).bindPopup(`<h5>${site.name}</h5><i><b>Under Construction</b></i><br>${site.fuel} - ${site.operator}<br>${site.capacity} </br>Expected opening: ${site.opening}`, { maxWidth: 800 }).addTo(layer)
+    });
+
 }
 
 function onMapMove(map, event){
@@ -145,15 +165,15 @@ function updateGenerationMap(generationData, generationLayer) {
 
         if(generator.site === "SZR") return; //SolarZero is distributed across the country, so it's hard to show on a map
 
-        var markerColour = detemineMapColour(generator);
+        var markerColour = detemineMapColour(generator.units[0]);
         var generatorHtml = populateGeneratorPopup(generator, formattedLastUpdated);
 
         L.circleMarker([generator.location.lat, generator.location.long], {
-            color: '#ffffff',
+            color: (generator.units[0].fuel == "Hydro") ? '#ffffff' : '#000000',
             radius: 5,
-            weight: 1,
+            weight: 0.4,
             fill: true,
-            fillOpacity: 1,
+            fillOpacity: 0.9,
             fillColor: markerColour
         }).bindPopup(generatorHtml, { maxWidth: 1200 }).addTo(generationLayer)
     });

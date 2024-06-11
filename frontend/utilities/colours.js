@@ -1,6 +1,5 @@
 
-export function detemineMapColour(generatorData) {
-    let unit = generatorData.units[0];
+export function detemineMapColour(unit) {
     if (unit.fuel === 'Wind') {
         return '#87CEEB'
     } else if (unit.fuel === 'Hydro') {
@@ -10,6 +9,8 @@ export function detemineMapColour(generatorData) {
     } else if (unit.fuel === 'Solar') {
         return '#ccff00'
     } else if (unit.fuel === 'Battery (Discharging)') {
+        return '#76721E'
+    } else if (unit.fuel === 'Battery'){
         return '#76721E'
     } else {
         return '#ff0000'
