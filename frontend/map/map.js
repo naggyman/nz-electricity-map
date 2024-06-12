@@ -2,7 +2,7 @@ import { detemineMapColour } from "../utilities/colours.js";
 import { populateGeneratorPopup, populateSubstationPopup } from "./mapPopup.js";
 import { underConstruction } from "../utilities/underConstruction.js";
 
-const apiKey = 'c01hrv1pebxm8k47wfehxa7kg8h'; //for LINZ basemap
+const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
 
 var isProd = (window.location.origin === 'https://electricitymap.frenchsta.gg');
 isProd = true;
