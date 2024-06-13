@@ -28,18 +28,18 @@ addButton('7d-button', '-7d');
 
 console.log(buttons)
 
-function addButton(id, timeframeValue){    
+function addButton(id, timeframeValue) {
     let button = document.getElementById(id);
     buttons.push(button);
     button.addEventListener('click', (event) => onDateButtonPressed(timeframeValue, event));
 
-    if(((new URLSearchParams(window.location.search)).get("timeframe") || "-0d") === timeframeValue){
+    if (((new URLSearchParams(window.location.search)).get("timeframe") || "-0d") === timeframeValue) {
         button.classList.remove("btn-secondary");
         button.classList.add("btn-primary");
     }
 }
 
-function onDateButtonPressed(timeframe, button){
+function onDateButtonPressed(timeframe, button) {
     setQueryParam("timeframe", timeframe);
     getTradingPeriodStats(true);
 
@@ -50,6 +50,10 @@ function onDateButtonPressed(timeframe, button){
 
     button.target.classList.remove("btn-secondary");
     button.target.classList.add("btn-primary");
+}
+
+function isMidnight(time) {
+    return time.split("T")[1] === "00:00:00";
 }
 
 let graphLastUpdatedTimestamp = "";
@@ -64,7 +68,7 @@ let updateInProgress = false;
 function fillInGaps(data) {
     let maximumDataGapAllowed = THIRTY_MINUTES_IN_MS;
 
-    if((new URLSearchParams(window.location.search)).get("gaps") === "true"){
+    if ((new URLSearchParams(window.location.search)).get("gaps") === "true") {
         maximumDataGapAllowed = FIVE_MINUTES_IN_MS;
     }
 
@@ -141,7 +145,7 @@ function onClearButtonSelect() {
     setQueryParam("zone", "");
     setQueryParam("fuel", "");
     setQueryParam("redirect", "");
-    onDateButtonPressed("-0d", {target: document.getElementById("1d-button")});
+    onDateButtonPressed("-0d", { target: document.getElementById("1d-button") });
     getTradingPeriodStats(true);
 }
 
@@ -308,15 +312,24 @@ async function getTradingPeriodStats(forceUpdate = false) {
     graphLastUpdatedTimestamp = mostRecentTradingPeriodTimestamp;
 
     let plotLines = [];
+    let xAxisLabels = [];
 
     tradingPeriodTimestamps.forEach((time, index) => {
-        if (time.split("T")[1] === "00:00:00") {
+        xAxisLabels.push(
+            new Date(time)
+                .toLocaleTimeString('en-NZ', {
+                    hour: "numeric",
+                    minute: "numeric"
+                }));
+
+        if (isMidnight(time) && index > 0) {
+            // adds a 'plotline' to the graph at Midnight to delineate when the date changes
             plotLines.push({
                 color: 'black',
                 width: 1,
                 value: index,
                 label: {
-                    text: new Date(time).toLocaleString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" }),
+                    text: new Date(time).toLocaleString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric" }),
                     align: 'top',
                     x: 10,
                     y: 10
@@ -326,15 +339,6 @@ async function getTradingPeriodStats(forceUpdate = false) {
     });
 
     let subtitleText = getSubtitleText(tradingPeriodTimestamps[0], mostRecentTradingPeriodTimestamp);
-
-    let xAxisLabels = tradingPeriodTimestamps.map(tradingPeriod =>
-        new Date(tradingPeriod)
-            .toLocaleTimeString('en-NZ', {
-                hour: "numeric",
-                minute: "numeric"
-            })
-    );
-
     let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
 
     Highcharts.chart('generation-chart', {
