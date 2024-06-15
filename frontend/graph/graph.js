@@ -304,6 +304,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const mostRecentTradingPeriodTimestamp = tradingPeriodTimestamps[tradingPeriodTimestamps.length - 1];
 
     if (!forceUpdate && mostRecentTradingPeriodTimestamp === graphLastUpdatedTimestamp) {
+        // don't update the graph if nothing has changed (forces a re-render)
         updateInProgress = false;
         statusSpan.innerHTML = lastUpdatedString;
         return;
@@ -348,6 +349,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
             events: {
                 redraw: function (event) {
+                    // if the user has manually hidden a series, update the URL query parameter to reflect this
                     let visibleSeriesCommaSeparatedString = "";
                     const series = this.userOptions.series;
                     series.forEach((series, index) => {
