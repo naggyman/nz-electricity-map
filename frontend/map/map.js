@@ -1,11 +1,9 @@
 import { detemineMapColour } from "../utilities/colours.js";
 import { populateGeneratorPopup, populateSubstationPopup } from "./mapPopup.js";
 import { underConstruction } from "../utilities/underConstruction.js";
+import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.js";
 
 const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
-
-var isProd = (window.location.origin === 'https://electricitymap.frenchsta.gg');
-isProd = true;
 
 setupMap();
 
@@ -179,19 +177,10 @@ function updateGenerationMap(generationData, generationLayer) {
     });
 }
 
-//todo - move to utilties/api.js
 async function getGenerationData(substationMarkers) {
     setNavStatus(`Loading...`);
 
-    var generationApiResponse;
-    if (!isProd) {
-        generationApiResponse = await fetch('/backend/output/generators.json');
-    } else {
-        generationApiResponse = await fetch('https://api.frenchsta.gg/v1/generators');
-    }
-
-    const generationData = await generationApiResponse.json();
-
+    const generationData = await getLiveGenerationData();
     var now = new Date();
 
     var lastUpdatedDate = new Date(generationData.lastUpdate + "+12:00");
@@ -206,17 +195,8 @@ function setNavStatus(value){
     status.innerHTML = value;
 }
 
-//todo - move to utilties/api.js
 async function getSubstationData(substationLayer) {
-    let substationApiResponse;
-
-    if (!isProd) {
-        substationApiResponse = await fetch('/backend/output.json');
-      } else {
-        substationApiResponse = await fetch('https://api.frenchsta.gg/v1/nzgrid');
-      }
-
-    const substationData = await substationApiResponse.json();
+    const substationData = await getLiveSubstationData();
     
     updateSubstationMap(substationData, substationLayer);
 }

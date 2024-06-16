@@ -4,9 +4,8 @@ var statusSpan = document.getElementById("graph-status");
 
 let localUrl = (path) => `http://[::]:8000/backend/output/${path}`;
 let prodUrl = (path) => `https://api.frenchsta.gg/v1/${path}`;
-let isProd = (window.location.origin === 'https://electricitymap.frenchsta.gg');
 
-isProd = true;
+let isProd = (new URLSearchParams(window.location.search)).get('local') !== 'true';
 
 let timeseriesGenerationDataCache = {};
 
@@ -47,8 +46,16 @@ export async function getTimeseriesGenerationData(date){
 
 export async function getLiveGenerationData(){
     if (!isProd) {
-        return fetchJson('generators.json');
+        return fetchJson('generatorOutput.json');
     }
 
     return fetchJson('generators');
+}
+
+export async function getLiveSubstationData(){
+    if (!isProd) {
+        return fetchJson('substationOutput.json');
+    }
+
+    return fetchJson('nzgrid');
 }
