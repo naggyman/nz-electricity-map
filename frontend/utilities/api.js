@@ -37,6 +37,12 @@ export async function getTimeseriesGenerationData(date){
 
     statusSpan.innerHTML = `${spinnerHtml} Fetching data for ${date.toLocaleDateString('en-NZ')}`;
 
+    if(!isProd){
+        const response = await fetchJson(`${dateStr}.json`)
+
+        timeseriesGenerationDataCache[dateStr] = response;
+        return response;
+    }
     const response = await fetchJson(`generator-history/5-min/${dateStr}.json`)
 
     timeseriesGenerationDataCache[dateStr] = response;
