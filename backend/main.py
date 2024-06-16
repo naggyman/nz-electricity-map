@@ -28,7 +28,7 @@ def create5MinuteIntervalFile(liveGenerators: LiveGenerators, realTimeDispatch: 
     lastUpdated = realTimeDispatch.lastUpdated()
 
     existingData = {}
-    dailyFile = pathPrefix + lastUpdated.split('T')[0] + '.json'
+    dailyFile = pathPrefix + '5min/' + lastUpdated.split('T')[0] + '.json'
 
     if path.isfile(dailyFile) is True:
         with open(dailyFile) as fp:
