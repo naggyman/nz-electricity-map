@@ -4,6 +4,10 @@ function roundMw(value) {
 
 function populatePercentage(percentage, green) {
     let html = '';
+    if (isNaN(percentage)) {
+        percentage = 0;
+    }
+
     if (percentage > 15) {
         html +=
             `<div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
