@@ -97,7 +97,7 @@ class LiveGenerators:
                     existingSummary[lastUpdated].append({
                         "site": generator['site'],
                         "fuel": fuel,
-                        "generation": totalGeneration[fuel],
+                        "gen": totalGeneration[fuel],
                     })
 
         return existingSummary
