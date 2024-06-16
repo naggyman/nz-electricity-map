@@ -1533,7 +1533,7 @@
         "name": "Whirinaki",
         "units": [
             {
-                "name": "Whiriniki Unit 1",
+                "name": "Whirinaki Unit 1",
                 "unitCode": "WHI1",
                 "node": "WHI2201 WHI1",
                 "capacity": 52,
@@ -1541,7 +1541,7 @@
                 "fuelCode": "DIE"
             },
             {
-                "name": "Whiriniki Unit 2",
+                "name": "Whirinaki Unit 2",
                 "unitCode": "WHI2",
                 "node": "WHI2201 WHI2",
                 "capacity": 52,
@@ -1549,7 +1549,7 @@
                 "fuelCode": "DIE"
             },
             {
-                "name": "Whiriniki Unit 3",
+                "name": "Whirinaki Unit 3",
                 "unitCode": "WHI3",
                 "node": "WHI2201 WHI3",
                 "capacity": 52,
