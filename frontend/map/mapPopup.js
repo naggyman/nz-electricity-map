@@ -51,9 +51,17 @@ function populateGenerationUnit(unit, showName = true) {
     let totalCapacityIncludingOutage = unit.capacity - outageLoss;
     let name = (showName) ? `<b>${unit.name}</b> - ` : '';
 
+    let outageEnd = (unit.outage?.length > 0 && "until" in unit.outage[unit.outage.length - 1]) ? 
+        `until ${new Date(unit.outage[unit.outage.length - 1].until).toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" })}` 
+        : "";
+
+    let outageBadge = (unit.outage?.length > 0) ? 
+        `<span class="badge text-bg-danger">${outageLoss}MW Outage ${outageEnd}</span>` 
+        : ""
+
     return `
         <div style="padding-bottom: 5px;">
-            ${name} ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(totalCapacityIncludingOutage)}MW ${(unit.outage?.length > 0) ? `<span class="badge text-bg-danger">${outageLoss}MW Outage</span>` : ""}<br>
+            ${name} ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW / ${roundMw(totalCapacityIncludingOutage)}MW ${outageBadge}<br>
             ${populatePercentage(Math.round(unit.generation / totalCapacityIncludingOutage * 100))}
         </div>`
 }
@@ -80,7 +88,7 @@ function populateGeneratorUnitList(generatorData) {
         html += populateGenerationUnit(unit);
     })
 
-    html += `<br><b>Total:</b> ${roundMw(totalGeneration)}MW / ${roundMw(totalCapacity - totalOutage)}MW ${(totalOutage != 0) ? `(${totalOutage}MW Outage)` : ""}</br>`
+    html += `<br><b>Total:</b> ${roundMw(totalGeneration)}MW / ${roundMw(totalCapacity - totalOutage)}MW ${(totalOutage != 0) ? `<span class="badge text-bg-danger">${totalOutage}MW Outage</span>` : ""}</br>`
     html += populatePercentage(Math.round(totalGeneration / (totalCapacity - totalOutage) * 100), true);
 
     return html;
