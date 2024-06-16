@@ -39,7 +39,7 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
 }
 
 function populateGenerationData(generatorData) {
-    if (generatorData.units.length > 1) {
+    if (generatorData.units.filter((unit) => unit.capacity > 0).length > 1) {
         return populateGeneratorUnitList(generatorData);
     }
 
