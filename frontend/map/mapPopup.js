@@ -52,10 +52,16 @@ function unitHasAnOutageEndDate(unit){
 
 function populateGenerationUnit(unit, showName = true) {
     let outageLoss = calculateOutageLoss(unit.outage);
+
+    if(outageLoss > unit.capacity){
+        // outage figures can sometimes sum up to more than the capacity of the unit, let's assume that in that situation the unit is just fully in outage.
+        outageLoss = unit.capacity;
+    }
+
     let totalCapacityIncludingOutage = unit.capacity - outageLoss;
     let name = (showName) ? `<b>${unit.name}</b> - ` : '';
 
-    let hasOutage = unit.outage?.length > 0 && unit.generation <= totalCapacityIncludingOutage;
+    let hasOutage = unit.outage?.length > 0 && (unit.generation <= totalCapacityIncludingOutage);
 
     if(!hasOutage){
         // sometimes the outage figures make absolutely no sense (e.g 65MW generation, 120MW capacity, 70MW outage)
