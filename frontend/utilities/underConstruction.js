@@ -1,6 +1,8 @@
 export const underConstruction = [
     {
         "name": "Pukenui",
+        "site": "PSF",
+        "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Far North Solar Farm",
         "capacity": "22 MWp",
@@ -12,6 +14,8 @@ export const underConstruction = [
     },
     {
         "name": "Ruakākā",
+        "site": "RUB",
+        "substation": "Bream Bay",
         "fuel": "Battery",
         "operator": "Meridian Energy",
         "capacity": "100 MW / 200MWh",
@@ -23,6 +27,8 @@ export const underConstruction = [
     },
     {
         "name": "Te Herenga o Te Rā",
+        "site": "HTR",
+        "substation": "Waiotahi",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
         "capacity": "30MWp",
@@ -34,6 +40,8 @@ export const underConstruction = [
     },
     {
         "name": "Te Puna Mauri ō Omaru",
+        "site": "RWI",
+        "substation": "Maungaturoto",
         "fuel": "Solar",
         "operator": "Northpower",
         "capacity": "16.7 MWp",
@@ -45,6 +53,8 @@ export const underConstruction = [
     },
     {
         "name": "Lauriston",
+        "site": "LAU",
+        "substation": "Ashburton",
         "fuel": "Solar",
         "operator": "Genesis Energy/FRV Australia",
         "capacity": "63MWp / 47MWAC",
