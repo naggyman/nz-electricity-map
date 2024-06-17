@@ -602,7 +602,7 @@
                 "name": "Karāpiro",
                 "unitCode": "KPO0",
                 "node": "KPO1101 KPO0",
-                "capacity": 96,
+                "capacity": 101.5,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
