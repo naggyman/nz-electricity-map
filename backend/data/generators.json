@@ -7,7 +7,7 @@
                 "name": "Ātiamuri",
                 "unitCode": "ATI0",
                 "node": "ATI2201 ATI0",
-                "capacity": 77,
+                "capacity": 84,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -70,7 +70,7 @@
                 "name": "Ōhakuri",
                 "unitCode": "OHK0",
                 "node": "OHK2201 OHK0",
-                "capacity": 109,
+                "capacity": 112,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
