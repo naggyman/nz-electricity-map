@@ -52,40 +52,66 @@ function unitHasAnOutageEndDate(unit){
 
 function populateGenerationUnit(unit, showName = true) {
     let outageLoss = calculateOutageLoss(unit.outage);
+    let unitCapacity = unit.capacity;
 
-    if(outageLoss > unit.capacity){
+    if(outageLoss > Math.abs(unitCapacity)){
         // outage figures can sometimes sum up to more than the capacity of the unit, let's assume that in that situation the unit is just fully in outage.
-        outageLoss = unit.capacity;
+        console.warn(`Outage loss (${outageLoss}MW) for ${unit.name} is greater than the capacity (${unitCapacity}MW) of the unit, assuming the unit is fully in outage.`);
+        outageLoss = unitCapacity;
     }
 
-    let totalCapacityIncludingOutage = unit.capacity - outageLoss;
-    let name = (showName) ? `<b>${unit.name}</b> - ` : '';
+    let totalCapacityIncludingOutage = unitCapacity - outageLoss;
 
-    let hasOutage = unit.outage?.length > 0 && (unit.generation <= totalCapacityIncludingOutage);
+    if("installedCapacity" in unit){
+        // outages are sometimes calculated based off the installed capacity, not the actual maximum service generation capacity of the unit
+        // example is Manapouri, which has an installed capacity of 896MW across all units but is only allowed to generate 800MW through resource consent limits.
+        // in that scenario we use the installed capacity to calculate the total capacity including outage
+        totalCapacityIncludingOutage = unit.installedCapacity - outageLoss;
+    }
 
-    if(!hasOutage){
+    //let hasOutage = unit.outage?.length > 0;
+    let hasOutage = outageLoss > 0;
+
+    if(hasOutage && unit.generation > totalCapacityIncludingOutage){
         // sometimes the outage figures make absolutely no sense (e.g 65MW generation, 120MW capacity, 70MW outage)
         // so in those situations we just ignore the outage, since it would result in > 100% generation
-        totalCapacityIncludingOutage = unit.capacity;
+        console.warn(`Generation (${unit.generation}MW) for ${unit.name} is greater than the capacity (${totalCapacityIncludingOutage}MW) of the unit, ignoring outage (${outageLoss}MW).`);
+        hasOutage = false;
+        totalCapacityIncludingOutage = unitCapacity;
     }
 
-    let outageEnd = (hasOutage && unitHasAnOutageEndDate(unit)) ? 
-        `until ${new Date(unit.outage[unit.outage.length - 1].until).toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" })}` 
-        : "";
+    let capacityText = `${roundMw(totalCapacityIncludingOutage)}MW`;
 
-    let outageBadge = (hasOutage) ? 
-        `<s>${roundMw(unit.capacity)}MW</s> ${roundMw(totalCapacityIncludingOutage)}MW <span class="badge text-bg-danger">${outageLoss}MW Outage ${outageEnd}</span>` 
-        : `${roundMw(totalCapacityIncludingOutage)}MW`
+    if(hasOutage){
+        let outageEndDate = new Date(unit.outage[unit.outage.length - 1].until);
+        let formattedOutageEndDate = outageEndDate.toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" });
+
+        let today = new Date();
+
+        if(today.getFullYear() == outageEndDate.getFullYear() && today.getMonth() == outageEndDate.getMonth() && today.getDate() == outageEndDate.getDate()){
+            formattedOutageEndDate = outageEndDate.toLocaleTimeString('en-NZ', { hour: "numeric", minute: "numeric" });
+        }
+
+        capacityText = 
+            `<s>${roundMw(unitCapacity)}MW</s> ${capacityText} ` + 
+            `<span class="badge text-bg-danger">${outageLoss}MW Outage until ${formattedOutageEndDate}</span>`;
+    }
+
+    let name = (showName) ? `<b>${unit.name}</b> - ` : '';
 
     return `
         <div style="padding-bottom: 5px;">
-            ${name} ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW /  ${outageBadge}<br>
+            ${name} ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW /  ${capacityText}<br>
             ${populatePercentage(Math.round(unit.generation / totalCapacityIncludingOutage * 100))}
         </div>`
 }
 
 function calculateOutageLoss(outages) {
-    return outages.reduce((total, outage) => total + outage.mwLost, 0);
+    var filteredOutages = outages.filter((outage) => {
+        var current = new Date(outage.from) < new Date() && new Date(outage.until) > new Date();
+        return current;
+    })
+    return filteredOutages.reduce((total, outage) => total + outage.mwLost, 0);
 }
 
 function populateGeneratorUnitList(generatorData) {
