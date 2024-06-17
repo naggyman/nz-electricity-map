@@ -708,6 +708,7 @@
                 "unitCode": "MAN0",
                 "node": "MAN2201 MAN0",
                 "capacity": 800,
+                "installedCapacity": 854,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
