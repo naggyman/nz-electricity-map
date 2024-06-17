@@ -72,6 +72,7 @@ class LiveGenerators:
     def createOutageOutput(self, outage):
         return {
             'mwLost': outage['mwattLost'],
+            'from': outage['timeStart'],
             'until': outage['timeEnd']
         }
     
