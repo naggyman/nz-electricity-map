@@ -378,7 +378,7 @@
         "name": "Whareroa",
         "units": [
             {
-                "name": "Fonterra Dairy - Whareroa",
+                "name": "Whareroa",
                 "unitCode": "WAA0",
                 "node": "HWA1102 WAA0",
                 "capacity": 68,
@@ -399,7 +399,7 @@
         "name": "Glenbrook",
         "units": [
             {
-                "name": "Glenbrook Steel",
+                "name": "Glenbrook",
                 "unitCode": "GLN0",
                 "node": "GLN0332 GLN0",
                 "capacity": 68,
@@ -441,7 +441,7 @@
         "name": "Huntly",
         "units": [
             {
-                "name": "Huntly 5",
+                "name": "Huntly Unit 5",
                 "unitCode": "HLY5",
                 "node": "HLY2201 HLY5",
                 "capacity": 403,
@@ -449,7 +449,7 @@
                 "fuelCode": "GAS"
             },
             {
-                "name": "Huntly 6",
+                "name": "Huntly Unit 6",
                 "unitCode": "HLY6",
                 "node": "HLY2201 HLY6",
                 "capacity": 50.8,
@@ -536,7 +536,7 @@
         "name": "Kaimai",
         "units": [
             {
-                "name": "Kaimai 5",
+                "name": "Kaimai",
                 "unitCode": "KMI0",
                 "node": "TGA0331 KMI0",
                 "capacity": 42.1,
@@ -1224,7 +1224,7 @@
         "name": "Te Mihi",
         "units": [
             {
-                "name": "Te Mihi 1",
+                "name": "Te Mihi Unit 1",
                 "unitCode": "THI1",
                 "node": "THI2201 THI1",
                 "capacity": 83,
@@ -1232,7 +1232,7 @@
                 "fuelCode": "GEO"
             },
             {
-                "name": "Te Mihi 2",
+                "name": "Te Mihi Unit 2",
                 "unitCode": "THI2",
                 "node": "THI2201 THI2",
                 "capacity": 83,
@@ -1592,7 +1592,7 @@
         "name": "Rangitaiki",
         "units": [
             {
-                "name": "Edgecumbe Solar Farm",
+                "name": "Rangitaiki",
                 "unitCode": "RGT0",
                 "node": "EDG0331 RGT0",
                 "capacity": 23.7,
@@ -1676,7 +1676,7 @@
         "name": "Rotohiko",
         "units": [
             {
-                "name": "Rotohiko BESS",
+                "name": "Rotohiko",
                 "unitCode": "RHO0",
                 "node": "HLY0331 RHO0",
                 "capacity": 35,
@@ -1684,7 +1684,7 @@
                 "fuelCode": "BESS"
             },
             {
-                "name": "Rotohiko BESS",
+                "name": "Rotohiko",
                 "unitCode": "RHO99",
                 "node": "HLY0331 RHO99",
                 "capacity": -35,
@@ -1705,7 +1705,7 @@
         "name": "Kohirā",
         "units": [
             {
-                "name": "Kohirā Solar Farm",
+                "name": "Kohirā",
                 "unitCode": "KSF0",
                 "node": "KOE1101 KSF0",
                 "capacity": 23.7,
