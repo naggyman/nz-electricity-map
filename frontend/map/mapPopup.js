@@ -115,7 +115,6 @@ function populateGeneratorUnitList(generatorData) {
     let totalCapacity = 0;
     let totalOutage = 0;
     let html = '';
-    let showCapacity = true;
 
     generatorData.units.sort((a, b) => a.unitCode.localeCompare(b.unitCode)).forEach((unit) => {
         if (unit.generation === undefined || unit.generation === null) {
@@ -123,9 +122,7 @@ function populateGeneratorUnitList(generatorData) {
         }
 
         totalGeneration += unit.generation;
-        if (chargingBattery(unit)){ //if we didn't check this, generators with both charging and discharging units would show as 0MW capacity (as they'd cancel eachother out).
-            showCapacity = false;
-        } else {
+        if (!chargingBattery(unit)){ //if we didn't check this, generators with both charging and discharging units would show as 0MW capacity (as they'd cancel eachother out).
             totalCapacity += unit.capacity; 
         }
 
