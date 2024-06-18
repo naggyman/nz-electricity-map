@@ -46,10 +46,6 @@ function populateGenerationData(generatorData) {
     return populateGenerationUnit(generatorData.units[0], false);
 }
 
-function unitHasAnOutageEndDate(unit){
-    return "until" in unit.outage[unit.outage.length - 1]
-}
-
 function populateGenerationUnit(unit, showName = true) {
     let outageLoss = calculateOutageLoss(unit.outage);
     let unitCapacity = unit.capacity;
@@ -119,6 +115,7 @@ function populateGeneratorUnitList(generatorData) {
     let totalCapacity = 0;
     let totalOutage = 0;
     let html = '';
+    let showCapacity = true;
 
     generatorData.units.sort((a, b) => a.unitCode.localeCompare(b.unitCode)).forEach((unit) => {
         if (unit.generation === undefined || unit.generation === null) {
@@ -126,14 +123,21 @@ function populateGeneratorUnitList(generatorData) {
         }
 
         totalGeneration += unit.generation;
-        if (!chargingBattery(unit)) totalCapacity += unit.capacity; //if we didn't do this, units with both charging and discharging would show as 0MW capacity.
+        if (chargingBattery(unit)){ //if we didn't check this, generators with both charging and discharging units would show as 0MW capacity (as they'd cancel eachother out).
+            showCapacity = false;
+        } else {
+            totalCapacity += unit.capacity; 
+        }
 
         totalOutage += calculateOutageLoss(unit.outage);
         html += populateGenerationUnit(unit);
     })
 
-    html += `<br><b>Total:</b> ${roundMw(totalGeneration)}MW /  ${(totalOutage != 0) ? `<s>${roundMw(totalCapacity)}MW</s> ${roundMw(totalCapacity - totalOutage)}MW <span class="badge text-bg-danger">${totalOutage}MW Outage</span>` : `${roundMw(totalCapacity - totalOutage)}MW`}</br>`
-    html += populatePercentage(Math.round(totalGeneration / (totalCapacity - totalOutage) * 100), true);
+    let outageText = (totalOutage != 0) ? `<s>${roundMw(totalCapacity)} MW</s> ${roundMw(totalCapacity - totalOutage)} MW <span class="badge text-bg-danger">${totalOutage}MW Outage</span>` 
+    : `${roundMw(totalCapacity)} MW`;
+
+    html += `<br><b>Total:</b> ${roundMw(totalGeneration)} MW <br><b>Capacity:</b> ${outageText}</br>`
+    html += populatePercentage(Math.round(Math.abs(totalGeneration) / (totalCapacity - totalOutage) * 100), true);
 
     return html;
 }
