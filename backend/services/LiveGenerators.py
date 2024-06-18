@@ -94,7 +94,7 @@ class LiveGenerators:
                 totalGeneration[unit['fuelCode']] += unit['generation']
             
             for fuel in totalGeneration:
-                if totalGeneration[fuel] > 0:
+                if totalGeneration[fuel] != 0:
                     existingSummary[lastUpdated].append({
                         "site": generator['site'],
                         "fuel": fuel,
