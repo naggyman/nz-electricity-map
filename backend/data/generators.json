@@ -1679,7 +1679,7 @@
                 "name": "Rotohiko",
                 "unitCode": "RHO0",
                 "node": "HLY0331 RHO0",
-                "capacity": 35,
+                "capacity": 33.2,
                 "fuel": "Battery (Discharging)",
                 "fuelCode": "BESS"
             },
@@ -1687,7 +1687,7 @@
                 "name": "Rotohiko",
                 "unitCode": "RHO99",
                 "node": "HLY0331 RHO99",
-                "capacity": -35,
+                "capacity": -33.2,
                 "fuel": "Battery (Charging)",
                 "fuelCode": "BESS-C"
             }
