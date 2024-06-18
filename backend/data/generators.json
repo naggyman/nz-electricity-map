@@ -1729,7 +1729,7 @@
                 "name": "SolarZero - South Island",
                 "unitCode": "SZR0",
                 "node": "STK0331 SZR0",
-                "capacity": 6,
+                "capacity": 0,
                 "fuel": "Battery (Discharging)",
                 "fuelCode": "BESS"
             },
@@ -1737,9 +1737,9 @@
                 "name": "SolarZero - North Island",
                 "unitCode": "SZR0",
                 "node": "TAK0331 SZR0",
-                "capacity": 24,
+                "capacity": 0,
                 "fuel": "Battery (Discharging)",
-                "fuelCode": "BESS-C"
+                "fuelCode": "BESS"
             }
         ],
         "location": {
