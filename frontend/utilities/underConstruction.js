@@ -18,7 +18,7 @@ export const underConstruction = [
         "substation": "Bream Bay",
         "fuel": "Battery",
         "operator": "Meridian Energy",
-        "capacity": "100 MW / 200MWh",
+        "capacity": "100 MW / 200 MWh",
         "opening": "Late 2024",
         "location": {
             "lat": -35.847508029631044,
@@ -31,7 +31,7 @@ export const underConstruction = [
         "substation": "Waiotahi",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
-        "capacity": "30MWp",
+        "capacity": "30 MWp",
         "opening": "Late 2024",
         "location": {
             "lat": -38.02688240581342,
@@ -57,7 +57,7 @@ export const underConstruction = [
         "substation": "Ashburton",
         "fuel": "Solar",
         "operator": "Genesis Energy/FRV Australia",
-        "capacity": "63MWp / 47MWAC",
+        "capacity": "62.6 MWp / 47.2 MW AC",
         "opening": "Late 2024",
         "location": {
             "lat": -43.730843339796294,
