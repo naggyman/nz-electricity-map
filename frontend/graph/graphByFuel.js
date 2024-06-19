@@ -27,6 +27,12 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
     filteredGeneratorList.forEach(generator => {
         generator.units.forEach(unit => {
             const fuelKey = Object.keys(FUELS_KEY).at(Object.values(FUELS_KEY).indexOf(unit.fuel));
+            
+            if(fuelKey === "BESS" && !allFuels.includes("BESS-C")){
+                allFuels.push("BESS-C");
+                outputGenerationByFuel["BESS-C"] = [];
+            }
+
             if (!allFuels.includes(fuelKey)) {
                 allFuels.push(fuelKey);
                 outputGenerationByFuel[fuelKey] = [];
@@ -54,6 +60,11 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
             }
 
             genData.forEach(generationDataPoint => {
+                if(generationDataPoint.fuel === "BESS" && generationDataPoint.gen < 0){
+                    // negative generation from a battery is charging
+                    generationDataPoint.fuel = "BESS-C";
+                }
+
                 // append it - to the relevant fuel
                 thisTradingPeriodSummaryByFuel[generationDataPoint.fuel] = (thisTradingPeriodSummaryByFuel[generationDataPoint.fuel] || 0) + generationDataPoint.gen;
             });

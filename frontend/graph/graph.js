@@ -177,7 +177,6 @@ function setGeneratorDropdown(liveGenData, zoneToFilterTo = [], islandToFilterTo
 
     //populate generator dropdown
     sortedGenerationData.forEach(generator => {
-        if (generator.site === "SZR") return;
         var thisUnitFuels = [];
 
         generator.units.forEach(unit => {
