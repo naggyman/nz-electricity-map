@@ -87,7 +87,7 @@ function populateGenerationUnit(unit, showName = true) {
     let capacityText = `${roundMw(totalCapacityIncludingOutage)}MW`;
 
     if(hasOutage){
-        let outageEndDate = new Date(unit.outage[unit.outage.length - 1].until);
+        let outageEndDate = new Date(unit.outage.sort((a,b) => new Date(a.until) - new Date(b.until))[0].until);
         let formattedOutageEndDate = outageEndDate.toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" });
 
         let today = new Date();
