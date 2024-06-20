@@ -1,4 +1,4 @@
-import { RENEWABLE_FUELS, displayMegawattsOrGigawatts, FUELS_KEY } from '../utilities/units.js';
+import { RENEWABLE_FUELS, displayMegawattsOrGigawatts, FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
 import { getColourForFuel } from '../utilities/colours.js';
 
 // defines the order that the fuels will be displayed in the chart
@@ -136,6 +136,10 @@ function getHighchartDatapointForFuel(fuel, fuels, fuelFilter){
 }
 
 function isGeneratorInFilter(generator, siteFilter, islandFilter, zoneFilter){
+    if(SKIP_LIST.includes(generator.site)){
+        return false;
+    }
+
     if(siteFilter.length > 0 && !siteFilter.includes(generator.site)){
         return false;
     }

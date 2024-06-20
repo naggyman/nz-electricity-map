@@ -1,4 +1,4 @@
-import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY } from '../utilities/units.js';
+import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 
 const waitakiGeneratorSiteCodes = ["TKA", "TKB", "OHA", "OHB", "OHC", "BEN", "AVI", "WTK"];
@@ -58,6 +58,8 @@ async function getStats() {
     lastUpdated = generationData.lastUpdate;
 
     generationData.generators.forEach(generator => {
+        if (SKIP_LIST.includes(generator.site)) return;
+
         var totalGeneration = 0;
         var totalCapacity = 0;
 

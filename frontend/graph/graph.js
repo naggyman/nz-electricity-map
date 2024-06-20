@@ -1,7 +1,7 @@
 
 import { getRelativeTimeseriesData } from './graphData.js';
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
-import { FUELS_KEY } from '../utilities/units.js';
+import { FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
 
@@ -177,6 +177,10 @@ function setGeneratorDropdown(liveGenData, zoneToFilterTo = [], islandToFilterTo
 
     //populate generator dropdown
     sortedGenerationData.forEach(generator => {
+        if (SKIP_LIST.includes(generator.site)) {
+            return;
+        }
+
         var thisUnitFuels = [];
 
         generator.units.forEach(unit => {

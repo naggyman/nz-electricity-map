@@ -2,6 +2,7 @@ import { detemineMapColour } from "../utilities/colours.js";
 import { populateGeneratorPopup, populateSubstationPopup } from "./mapPopup.js";
 import { underConstruction } from "../utilities/underConstruction.js";
 import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.js";
+import { SKIP_LIST } from "../utilities/units.js";
 
 const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
 
@@ -161,7 +162,7 @@ function updateGenerationMap(generationData, generationLayer) {
             return;
         }
 
-        if(generator.site === "SZR") return; //SolarZero is distributed across the country, so it's hard to show on a map
+        if(SKIP_LIST.includes(generator.site)) return;
 
         var markerColour = detemineMapColour(generator.units[0]);
         var generatorHtml = populateGeneratorPopup(generator, formattedLastUpdated);

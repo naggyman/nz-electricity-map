@@ -18,6 +18,11 @@ export const FUELS_KEY = {
     "DIE": "Diesel"
 }
 
+// units to not show in the UI
+export const SKIP_LIST = [
+    'SZR' // SolarZero is modelled in a funky way in the data I have. For now, I am removing it.
+];
+
 export function getCurrentTimeInNZ(){
     return new Date(new Date().toLocaleString("en-US", { timeZone: "Pacific/Auckland" }));
 }
