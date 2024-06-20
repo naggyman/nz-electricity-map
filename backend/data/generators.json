@@ -1424,7 +1424,7 @@
                 "name": "Wairākei",
                 "unitCode": "WRK0",
                 "node": "WRK2201 WRK0",
-                "capacity": 132,
+                "capacity": 133,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
