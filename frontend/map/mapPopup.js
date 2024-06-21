@@ -87,7 +87,8 @@ function populateGenerationUnit(unit, showName = true) {
     let capacityText = `${roundMw(totalCapacityIncludingOutage)}MW`;
 
     if(hasOutage){
-        let outageEndDate = new Date(unit.outage.sort((a,b) => new Date(a.until) - new Date(b.until))[0].until);
+        let outages = filterOutages(unit.outage).sort((a,b) => new Date(a.until) - new Date(b.until));
+        let outageEndDate = new Date(outages[0].until);
         let formattedOutageEndDate = outageEndDate.toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" });
 
         let today = new Date();
@@ -111,11 +112,14 @@ function populateGenerationUnit(unit, showName = true) {
 }
 
 function calculateOutageLoss(outages) {
-    var filteredOutages = outages.filter((outage) => {
+    return filterOutages(outages).reduce((total, outage) => total + outage.mwLost, 0);
+}
+
+function filterOutages(outages){
+    return outages.filter((outage) => {
         var current = new Date(outage.from) < new Date() && new Date(outage.until) > new Date();
         return current;
     })
-    return filteredOutages.reduce((total, outage) => total + outage.mwLost, 0);
 }
 
 function populateGeneratorUnitList(generatorData) {
