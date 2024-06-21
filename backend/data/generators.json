@@ -154,7 +154,7 @@
                 "name": "Arapuni",
                 "unitCode": "ARI0",
                 "node": "ARI1101 ARI0",
-                "capacity": 84,
+                "capacity": 90,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             },
@@ -162,7 +162,7 @@
                 "name": "Arapuni",
                 "unitCode": "ARI0",
                 "node": "ARI1102 ARI0",
-                "capacity": 107,
+                "capacity": 106,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -602,7 +602,7 @@
                 "name": "Karāpiro",
                 "unitCode": "KPO0",
                 "node": "KPO1101 KPO0",
-                "capacity": 101.5,
+                "capacity": 101,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
