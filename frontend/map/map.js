@@ -79,6 +79,7 @@ function setupMap() {
 
 function addUnderConstructionSites(layer){
     underConstruction.forEach((site) => {
+        if(site.location === undefined || site.location === null || site.location.lat === undefined) return;
         L.circleMarker([site.location.lat, site.location.long], {
             color: '#000000',
             radius: 4,
@@ -86,7 +87,14 @@ function addUnderConstructionSites(layer){
             fill: true,
             fillOpacity: 0.9,
             fillColor: detemineMapColour(site)
-        }).bindPopup(`<h5>${site.name}</h5><i><b>Under Construction</b></i><br>${site.fuel} - ${site.operator}<br>${site.capacity} </br>Expected opening: ${site.opening}`, { maxWidth: 800 }).addTo(layer)
+        }).bindPopup(
+                `<h5>${site.name}</h5>` +
+                `<i><b>Under Construction</b></i>` + 
+                `<br>${site.fuel} - ${site.operator}<br>` + 
+                `<b>Capacity: </b>${site.capacity} </br>` +
+                `<b>Expected opening: </b>${site.opening}`,
+            { maxWidth: 800 })
+        .addTo(layer)
     });
 
 }

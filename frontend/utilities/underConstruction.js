@@ -63,5 +63,29 @@ export const underConstruction = [
             "lat": -43.730843339796294,
             "long": 171.78955859810299
         }
+    },
+    {
+        "name": "Ngā Tamariki Unit 5",
+        "site": "NTM",
+        "fuel": "Geothermal",
+        "operator": "Mercury",
+        "capacity": "46 MW",
+        "opening": "Late 2025",
+    },
+    {
+        "name": "Kaiwera Downs Stage 2",
+        "site": "KWD",
+        "fuel": "Wind",
+        "operator": "Mercury",
+        "capacity": "155 MW",
+        "opening": "Late 2026",
+    },
+    {
+        "name": "Te Huka Unit 3",
+        "site": "TAA",
+        "fuel": "Geothermal",
+        "operator": "Contact",
+        "capacity": "51.4 MW",
+        "opening": "Late 2024",
     }
 ]
