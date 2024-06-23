@@ -163,6 +163,7 @@ let chargingBattery = (unit) => unit.fuel === "Battery (Charging)";
 export function populateSubstationPopup(substationData) {
     let html = `
         <h5>${substationData.description}</h5>
+        <span class="badge text-bg-primary">${substationData.siteId}</span>
         <div style="padding-bottom: 0px;"><b>Load:</b> ${substationData.totalLoadMW} MW</div>
     `
 
