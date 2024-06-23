@@ -211,6 +211,8 @@ async function getSubstationData(substationLayer) {
 }
 
 function updateSubstationMap(substationData, substationLayer) {
+    let lastUpdated = new Date(substationData.lastUpdated).toLocaleDateString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" })
+
     substationLayer.clearLayers();
     substationLayer.setZIndex(2);
 
@@ -219,7 +221,7 @@ function updateSubstationMap(substationData, substationLayer) {
             return;
           }
         
-        var substationHtml = populateSubstationPopup(substation);
+        var substationHtml = populateSubstationPopup(substation, lastUpdated);
 
         L.circleMarker([substation.lat, substation.long], {
             color: '#ffffff',

@@ -160,37 +160,123 @@ function populateGeneratorUnitList(generatorData) {
 
 let chargingBattery = (unit) => unit.fuel === "Battery (Charging)";
 
-export function populateSubstationPopup(substationData) {
-    let html = `
-        <h5>${substationData.description}</h5>
-        <span class="badge text-bg-primary">${substationData.siteId}</span>
-        <div style="padding-bottom: 0px;"><b>Load:</b> ${substationData.totalLoadMW} MW</div>
-    `
-
-    if (substationData.totalGenerationCapacityMW > 0) {
-        html += `<div style="padding-bottom: 0px;"><b>Generation:</b> ${substationData.totalGenerationMW} MW / ${substationData.totalGenerationCapacityMW} MW</div>`
-
-        if (substationData.netImportMW > 0) {
-            html += `<div style="padding-bottom: 0px;"><b>Net Import:</b> ${substationData.netImportMW} MW</div>`
-        } else {
-            html += `<div style="padding-bottom: 0px;"><b>Net Export:</b> ${0 - substationData.netImportMW} MW</div>`
-        }
-    }
-
-    html += '<br>';
+function getSubstationBusbarRows(substationData){
+    let html = '';
 
     Object.keys(substationData.busbars).forEach((busbar) => {
         const details = substationData.busbars[busbar];
 
-        html += `<div style="padding-bottom: 0px;"><b>${busbar}:</b> Load: ${details.totalLoadMW} MW ($${details.priceDollarsPerMegawattHour}/MWh)</div>`
-
-        details.connections.forEach(connection => {
-            if (connection.generatorInfo.plantName != undefined) {
-                html += `<div style="padding-bottom: 0px;">-- Generation: ${connection.generationMW}MW / ${connection.generatorInfo.nameplateCapacityMW}MW (${connection.generatorInfo.plantName} - ${connection.generatorInfo.fuel})</div>`
-            }
-        })
-
+        html += `<tr>
+            <td>${busbar}</td>
+            <td>${roundMw(details.totalLoadMW)} MW</td>
+            <td>$${details.priceDollarsPerMegawattHour}/MWh</td>
+        </tr>`
     })
+    return html;
+}
+
+function getSubstationGenerationRows(substationData){
+    let html = '';
+
+    Object.keys(substationData.busbars).forEach((busbar) => {
+        substationData.busbars[busbar].connections.forEach(connection => {
+            if (connection.generatorInfo.plantName != undefined) {
+                let percentage = Math.round(connection.generationMW / connection.generatorInfo.nameplateCapacityMW * 100);
+                let percentageDiv = `<div style="margin-left: 4px;">${percentage}% </div>`
+
+                html += `<tr>
+                    <td>${connection.generatorInfo.plantName}</td>
+                    <td>${connection.generatorInfo.fuel}</td>
+                    <td>${roundMw(connection.generationMW)} MW</td>
+                    <td>${connection.generatorInfo.nameplateCapacityMW} MW</td>
+                    <td>
+                         <div class="progress" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-success" style="width: ${percentage}%">
+                                ${(percentage >= 40) ? percentageDiv : ''}
+                            </div>
+                            ${(percentage < 40 && percentage > 0) ? percentageDiv : ''}
+                        </div>
+                    </td>
+                </tr>`
+            }
+    })});
+
+    return html;
+}
+
+export function populateSubstationPopup(substationData, lastUpdated) {
+    let html = `
+        <div style="min-width: 500px;">
+        <div>
+            <h5>${substationData.description}</h5>
+            
+        </div>
+        <span class="badge text-bg-primary">${substationData.siteId}</span>
+        <br>
+        <br>
+    `
+
+    html += `
+        <h6>Load</h6>
+        <table style="width:100%" class="table table-sm table-striped">
+            <tr>
+                <th style="width:30%">Busbar</th>
+                <th style="width:40%">Load</th>
+                <th style="width:30%">Price</th>
+            </tr>
+            ${getSubstationBusbarRows(substationData)}
+            <tr>
+                <th>Total</td>
+                <th>${roundMw(substationData.totalLoadMW)} MW</td>
+                <th></td>
+            </tr>
+        </table>`;
+
+    if(substationData.totalGenerationCapacityMW > 0){
+        html += `
+            <h6>Generation</h6>
+            <table style="width:100%" class="table table-sm table-striped">
+                <tr>
+                    <th style="width:25%">Generator</th>
+                    <th style="width:25%">Fuel</th>
+                    <th style="width:15%">Generation</th>
+                    <th style="width:15%">Capacity</th>
+                    <th style="width:20%">%</th>
+                </tr>
+                ${getSubstationGenerationRows(substationData)}
+                <tr>
+                    <th>Total</td>
+                    <th></td>
+                    <th>${roundMw(substationData.totalGenerationMW)} MW</td>
+                    <th>${substationData.totalGenerationCapacityMW} MW</td>
+                    <th>${Math.round(substationData.totalGenerationMW / substationData.totalGenerationCapacityMW * 100)}%</td>
+                </tr>
+            </table>`;
+        
+        html += `
+        <h6>Summary</h6>
+        <table style="width:100%" class="table table-sm table-striped">
+            <tr>
+                <th style="width:30%">Type</th>
+                <th style="width:40%">Amount</th>
+            </tr>
+            <tr>
+                <td>Generation</td>
+                <td>${roundMw(substationData.totalGenerationMW)} MW</td>
+            </tr>
+            <tr>
+                <td>Load</td>
+                <td>${roundMw(substationData.totalLoadMW)} MW</td>
+            </tr>
+            <tr>
+                <th>Net ${(substationData.netImportMW < 0) ? 'Export' : 'Import'}</td>
+                <th>${Math.abs(roundMw(substationData.netImportMW))} MW</td>
+            </tr>
+        </table>`
+    }
+
+    html += `<i> Last Updated: ${lastUpdated}</i></div>`;
+    
 
     return html;
 }
