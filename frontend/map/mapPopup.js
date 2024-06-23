@@ -36,7 +36,7 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
         ${generatorData.operator} <span class="badge text-bg-primary">${generatorData.site}</span><br><br>
         ${populateGenerationData(generatorData)}
         <i> Last Updated: ${lastUpdated}</i>
-        <br><a href="index.html?site=${generatorData.site}&timeframe=-3h&redirect=true">View Generation Chart</a>
+        <br><a href="index.html?site=${generatorData.site}&timeframe=-0d&redirect=true">View Generation Chart</a>
             `;
 
     if(generatorData.units.some((unit) => unit.outage.length > 0)){
