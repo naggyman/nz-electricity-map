@@ -894,7 +894,15 @@
         "name": "Ngāwhā",
         "units": [
             {
-                "name": "Ngāwhā B",
+                "name": "Ngāwha Station 1 & 2",
+                "unitCode": "NGA0",
+                "node": "KOE1101 NGA0",
+                "capacity": 25.4,
+                "fuel": "Geothermal",
+                "fuelCode": "GEO"
+            },
+            {
+                "name": "Ngāwhā Station 3",
                 "unitCode": "NGB0",
                 "node": "KOE1101 NGB0",
                 "capacity": 31,

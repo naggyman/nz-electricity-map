@@ -1,5 +1,9 @@
 import requests
 import os
+import json
+
+# This is the api powering the guages on the top of https://ngawhageneration.co.nz/
+ngawhaGenerationApiUrl = 'https://ngawhageneration.co.nz/api/ngawha/gauge'
 
 # Uses the EMI Real Time Dispatch API
 # Documentation Available here: https://emi.developer.azure-api.net/api-details#api=5f98fa890cf73b31bad09e10&operation=5f98fa8b243aa88e0dbe9741
@@ -15,9 +19,13 @@ class RealTimeDispatch:
 
         if response.status_code != 200:
             raise Exception('Failed to get Real Time Dispatch data')
-
+        
         self.response = response.json()
-    
+        self.addNgawhaStationOneAndTwo()
+
+        with open('output/realtimedispatch.json', 'w') as file:
+            file.write(json.dumps(self.response, indent=1))
+
     def get(self, node):
         return next((x for x in self.response if x['PointOfConnectionCode'] == node), None)
     
@@ -32,3 +40,30 @@ class RealTimeDispatch:
     
     def unclaimedSubstation(self):
         return [x for x in self.response if not x.get('claimedSubstation', False)]
+    
+    # Ngāwhā Station 1 and 2 are not included in the Real Time Dispatch API, so we need to calculate their generation
+    # We can do that by calling an API provided by Top Energy, which provides the total amount of generation across all Ngāwhā stations
+    # We can then calculate the generation of Station 1 and 2 by subtracting the generation of Station 3, which is on the Real Time API
+    def addNgawhaStationOneAndTwo(self):
+        ngawhaResponse = requests.get(ngawhaGenerationApiUrl)
+
+        # Fail Open
+        if ngawhaResponse.status_code == 200:
+            ngawhaResponseJson = ngawhaResponse.json()
+
+            oec4 = self.get('KOE1101 NGB0')
+
+            if oec4 is None:
+                return
+            
+            oec4Generation = oec4['SPDGenerationMegawatt']
+            
+            totalNgawhaGeneration = float(ngawhaResponseJson['gen'])
+            oec1and2Generation = totalNgawhaGeneration - oec4Generation
+
+            self.response.append({
+                "PointOfConnectionCode": "KOE1101 NGA0",
+                "SPDLoadMegawatt": 0.0,
+                "SPDGenerationMegawatt": oec1and2Generation,
+                }
+            )
