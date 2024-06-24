@@ -1089,7 +1089,7 @@
                 "name": "Stratford Peaker 1",
                 "unitCode": "SFD21",
                 "node": "SFD2201 SFD21",
-                "capacity": 100,
+                "capacity": 105,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             },
