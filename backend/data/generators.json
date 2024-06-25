@@ -460,7 +460,7 @@
                 "name": "Huntly Rankine 1",
                 "unitCode": "HLY1",
                 "node": "HLY2201 HLY1",
-                "capacity": 250,
+                "capacity": 240,
                 "fuel": "Coal/Gas",
                 "fuelCode": "CLG"
             },
@@ -468,7 +468,7 @@
                 "name": "Huntly Rankine 2",
                 "unitCode": "HLY2",
                 "node": "HLY2201 HLY2",
-                "capacity": 250,
+                "capacity": 240,
                 "fuel": "Coal/Gas",
                 "fuelCode": "CLG"
             },
