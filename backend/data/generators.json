@@ -476,7 +476,7 @@
                 "name": "Huntly Rankine 4",
                 "unitCode": "HLY4",
                 "node": "HLY2201 HLY4",
-                "capacity": 250,
+                "capacity": 240,
                 "fuel": "Coal/Gas",
                 "fuelCode": "CLG"
             }
