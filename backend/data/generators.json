@@ -91,7 +91,7 @@
                 "name": "Ōhau A",
                 "unitCode": "OHA0",
                 "node": "OHA2201 OHA0",
-                "capacity": 264,
+                "capacity": 254,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -225,7 +225,7 @@
                 "name": "Benmore",
                 "unitCode": "BEN0",
                 "node": "BEN2202 BEN0",
-                "capacity": 552,
+                "capacity": 570,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
