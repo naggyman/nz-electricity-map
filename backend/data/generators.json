@@ -444,7 +444,7 @@
                 "name": "Huntly Unit 5",
                 "unitCode": "HLY5",
                 "node": "HLY2201 HLY5",
-                "capacity": 403,
+                "capacity": 385,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             },
@@ -452,7 +452,7 @@
                 "name": "Huntly Unit 6",
                 "unitCode": "HLY6",
                 "node": "HLY2201 HLY6",
-                "capacity": 50.8,
+                "capacity": 46,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             },
