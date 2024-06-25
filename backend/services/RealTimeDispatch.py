@@ -61,6 +61,9 @@ class RealTimeDispatch:
             totalNgawhaGeneration = float(ngawhaResponseJson['gen'])
             oec1and2Generation = totalNgawhaGeneration - oec4Generation
 
+            if oec1and2Generation > 30:
+                return
+
             self.response.append({
                 "PointOfConnectionCode": "KOE1101 NGA0",
                 "SPDLoadMegawatt": 0.0,
