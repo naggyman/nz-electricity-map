@@ -261,13 +261,13 @@
     },
     {
         "site": "ONU",
-        "name": "Onepu",
+        "name": "Kawerau CoGen",
         "units": [
             {
-                "name": "Carter Holt Harvey Energy Ltd CoGen",
+                "name": "Kawerau CoGen",
                 "unitCode": "ONU0",
                 "node": "KAW0112 ONU0",
-                "capacity": 53,
+                "capacity": 60,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -278,7 +278,7 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Norske Skog Tasman Ltd"
+        "operator": "Norske Skog Tasman"
     },
     {
         "site": "CYD",
@@ -623,7 +623,7 @@
                 "name": "Te Ahi O Maui",
                 "unitCode": "TAM0",
                 "node": "KAW0111 TAM0",
-                "capacity": 26,
+                "capacity": 27,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
