@@ -44,7 +44,8 @@ class LiveGenerators:
             generator = self.generatorDescriptions.get(outageTo)
 
             if generator is None:
-                print('Generator not found for Outage - ' + outageTo + ' ' + str(outage['mwattLost']) + ' (' + outage['outageBlock'] + ') - Skipping')
+                mwLost = str(outage['mwattLost']) if 'mwattLost' in outage else 'Unknown'
+                print('Generator not found for Outage - ' + outageTo + ' ' + mwLost + ' (' + outage['outageBlock'] + ') - Skipping')
                 continue
 
             if(len(generator['units']) == 1):
