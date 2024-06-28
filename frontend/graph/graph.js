@@ -26,8 +26,6 @@ addButton('24h-button', '-24h');
 addButton('3d-button', '-3d');
 addButton('7d-button', '-7d');
 
-console.log(buttons)
-
 function addButton(id, timeframeValue) {
     let button = document.getElementById(id);
     buttons.push(button);

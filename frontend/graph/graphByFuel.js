@@ -17,6 +17,7 @@ const keyOrder = [
 export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [], islandFilter = [], zoneFilter = [], fuelFilter = []){
     var tradingPeriodTimestamps = Object.keys(data);
     var outputGenerationByFuel = {};
+    var capacityByTimestamp = [];
     
     var filteredGeneratorList = liveGenData.generators.filter(generator => {
         return isGeneratorInFilter(generator, siteFilter, islandFilter, zoneFilter);
@@ -41,6 +42,8 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
     });
 
     tradingPeriodTimestamps.forEach(tradingPeriodTimestamp => {
+        var thisTimestampCapacity = 0;
+
         var gens = Object.keys(data[tradingPeriodTimestamp]);
         if(gens.length === 0){ //do generation data for this trading period - leave a gap in the graph
             allFuels.forEach(fuel => {
@@ -53,6 +56,28 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
         var thisTradingPeriodSummaryByFuel = {};
 
         filteredGeneratorList.forEach(generator => {
+            generator.units.forEach(unit => {
+                if(unit.installedCapacity){
+                    thisTimestampCapacity += unit.installedCapacity;
+                } else {
+                    thisTimestampCapacity += (unit.capacity >= 0) ? unit.capacity : 0;
+                }
+
+                
+                if (unit.outage.length > 0){
+                    unit.outage.forEach(outage => {
+                        var now = new Date(tradingPeriodTimestamp + "+12:00")
+                        
+                        var outageStarted = new Date(outage.from) <= now;
+                        var outageEnded = new Date(outage.to) <= now;
+
+                        if(outageStarted && !outageEnded){
+                            thisTimestampCapacity -= outage.mwLost;
+                        }
+                    });
+                }
+            });
+
             // find the data from this trading period for this generator
             var genData = generationData.filter(gen => gen.site === generator.site);
             if(genData.length == 0){
@@ -74,16 +99,31 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
         allFuels.forEach(fuel => {
             outputGenerationByFuel[fuel].push(thisTradingPeriodSummaryByFuel[fuel] || 0);
         });
+
+        capacityByTimestamp.push(thisTimestampCapacity);
     });
 
-    return orderedFuelList(outputGenerationByFuel)
+    let highchartSeries = orderedFuelList(outputGenerationByFuel)
         .map(fuel => getHighchartDatapointForFuel(fuel, outputGenerationByFuel, fuelFilter));
+
+    if(siteFilter.length > 0){
+        highchartSeries.push({
+            name: 'Capacity',
+            type: 'line',
+            data: capacityByTimestamp,
+            visible: true,
+            color: '#000000'
+        });
+    }
+    
+    return highchartSeries;
 }
 
 export function getTooltipForFuelFilteredGraph(){
     let header = `<b>${this.x}</b><br>`;
     var renewableGeneration = 0;
     var totalGeneration = 0;
+    var totalCapacity = 0;
 
     let body = "";
 
@@ -91,10 +131,19 @@ export function getTooltipForFuelFilteredGraph(){
         if(RENEWABLE_FUELS.includes(point.series.name)){
             renewableGeneration += point.y;
         }
-        totalGeneration += point.y;
-    })
+
+        if(point.series.name === "Capacity"){
+            totalCapacity = point.y;
+        } else {
+            totalGeneration += point.y;
+        }
+    });
 
     this.points.forEach(point => {
+        if (point.series.name === "Capacity"){
+            return;
+        }
+
         if(point.y == 0){
             body += `
                 <span style="color: ${point.color}">\u25CF</span> 
@@ -102,18 +151,20 @@ export function getTooltipForFuelFilteredGraph(){
                 <br>`;
         } else {
             const generationSum = point.y;
-            const percentage = (totalGeneration != 0) ? Math.round(generationSum / totalGeneration * 100) : 0;
+            console.log(this.points.length)
+            const percentage = (totalGeneration != 0 && this.points.length > 2) ? `(${Math.round(generationSum / totalGeneration * 100)}%)` : '';
 
             body += `
                 <span style="color: ${point.color}">\u25CF</span> 
-                ${point.series.name}: <b>${displayMegawattsOrGigawatts(generationSum)}</b> (${percentage}%)
+                ${point.series.name}: <b>${displayMegawattsOrGigawatts(generationSum)}</b> ${percentage}
                 <br>`;
         }
     })
 
     const renewablePercentage = (totalGeneration != 0) ? Math.round(renewableGeneration / totalGeneration * 100) : 0;
     
-    let footer = `<br>Total Generation: <b>${displayMegawattsOrGigawatts(totalGeneration)}</b><br>`;
+    let totalCapacityText = (totalCapacity > 0) ? ` / <b>${displayMegawattsOrGigawatts(totalCapacity)}</b> (${Math.round(totalGeneration / totalCapacity * 100)}%)` : "";
+    let footer = `<br>Total Generation: <b>${displayMegawattsOrGigawatts(totalGeneration)}</b>${totalCapacityText}<br>`;
     footer += `Renewable: <b>${renewablePercentage}%</b><br>`;
 
     return header + body + footer;
