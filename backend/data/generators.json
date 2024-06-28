@@ -512,13 +512,13 @@
     },
     {
         "site": "KUM",
-        "name": "Dillmans",
+        "name": "Kumara",
         "units": [
             {
                 "name": "Dillmans",
                 "unitCode": "KUM0",
                 "node": "KUM0661 KUM0",
-                "capacity": 10.5,
+                "capacity": 6,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
