@@ -897,7 +897,7 @@
                 "name": "Ngāwha Station 1 & 2",
                 "unitCode": "NGA0",
                 "node": "KOE1101 NGA0",
-                "capacity": 27,
+                "capacity": 27.5,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             },
