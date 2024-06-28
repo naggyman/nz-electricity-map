@@ -48,6 +48,7 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
         if(gens.length === 0){ //do generation data for this trading period - leave a gap in the graph
             allFuels.forEach(fuel => {
                 outputGenerationByFuel[fuel].push(null);
+                capacityByTimestamp.push(null);
             });
             return;
         }
@@ -69,7 +70,7 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
                         var now = new Date(tradingPeriodTimestamp + "+12:00")
                         
                         var outageStarted = new Date(outage.from) <= now;
-                        var outageEnded = new Date(outage.to) <= now;
+                        var outageEnded = new Date(outage.until) <= now;
 
                         if(outageStarted && !outageEnded){
                             thisTimestampCapacity -= outage.mwLost;
