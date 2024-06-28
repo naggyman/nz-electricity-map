@@ -101,7 +101,7 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
             outputGenerationByFuel[fuel].push(thisTradingPeriodSummaryByFuel[fuel] || 0);
         });
 
-        capacityByTimestamp.push(thisTimestampCapacity);
+        capacityByTimestamp.push((thisTimestampCapacity >= 0) ? thisTimestampCapacity : 0);
     });
 
     let highchartSeries = orderedFuelList(outputGenerationByFuel)
