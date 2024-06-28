@@ -70,7 +70,7 @@
                 "name": "Ōhakuri",
                 "unitCode": "OHK0",
                 "node": "OHK2201 OHK0",
-                "capacity": 112,
+                "capacity": 106,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -750,7 +750,7 @@
                 "name": "Maraetai",
                 "unitCode": "MTI0",
                 "node": "MTI2201 MTI0",
-                "capacity": 360,
+                "capacity": 351,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -834,7 +834,7 @@
                 "name": "Mokai",
                 "unitCode": "MOK0",
                 "node": "WKM2201 MOK0",
-                "capacity": 112,
+                "capacity": 115,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
