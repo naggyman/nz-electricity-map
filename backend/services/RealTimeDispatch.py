@@ -52,13 +52,16 @@ class RealTimeDispatch:
             ngawhaResponseJson = ngawhaResponse.json()
 
             oec4 = self.get('KOE1101 NGB0')
+            kaikoheDemand = self.get('KOE1101')
 
-            if oec4 is None:
+            if oec4 is None or kaikoheDemand is None:
                 return
             
             oec4Generation = oec4['SPDGenerationMegawatt']
             
             totalNgawhaGeneration = float(ngawhaResponseJson['gen'])
+            totalTopEnergyConsumption = float(ngawhaResponseJson['ten-load'])
+
             oec1and2Generation = totalNgawhaGeneration - oec4Generation
 
             if oec1and2Generation > 30:
@@ -68,5 +71,15 @@ class RealTimeDispatch:
                 "PointOfConnectionCode": "KOE1101 NGA0",
                 "SPDLoadMegawatt": 0.0,
                 "SPDGenerationMegawatt": oec1and2Generation,
+                }
+            )
+
+            missingConsumption = totalTopEnergyConsumption - kaikoheDemand['SPDLoadMegawatt']
+
+            self.response.append({
+                "PointOfConnectionCode": "KOE1102",
+                "SPDLoadMegawatt": missingConsumption,
+                "SPDGenerationMegawatt": 0.0,
+                "DollarsPerMegawattHour": kaikoheDemand['DollarsPerMegawattHour']
                 }
             )
