@@ -644,7 +644,7 @@
                 "name": "Kawerau",
                 "unitCode": "KAG0",
                 "node": "KAW1101 KAG0",
-                "capacity": 106,
+                "capacity": 108,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
