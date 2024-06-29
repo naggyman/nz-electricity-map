@@ -1,8 +1,5 @@
 import { underConstruction } from '../utilities/underConstruction.js';
-
-function roundMw(value) {
-    return Math.round(value * 100) / 100;
-}
+import { displayMegawattsOrGigawatts } from '../utilities/units.js';
 
 function populatePercentage(percentage, green) {
     let html = '';
@@ -91,7 +88,7 @@ function populateGenerationUnit(unit, showName = true) {
         totalCapacityIncludingOutage = unitCapacity;
     }
 
-    let capacityText = `${roundMw(totalCapacityIncludingOutage)}MW`;
+    let capacityText = `${displayMegawattsOrGigawatts(totalCapacityIncludingOutage)}`;
 
     if(hasOutage){
         let outages = filterOutages(unit.outage).sort((a,b) => new Date(a.until) - new Date(b.until));
@@ -105,7 +102,7 @@ function populateGenerationUnit(unit, showName = true) {
         }
 
         capacityText = 
-            `<s>${roundMw(unitCapacity)}MW</s> ${capacityText} ` + 
+            `<s>${displayMegawattsOrGigawatts(unitCapacity)}</s> ${capacityText} ` + 
             `<span class="badge text-bg-danger">${outageLoss}MW Outage until ${formattedOutageEndDate}</span>`;
     }
 
@@ -113,7 +110,7 @@ function populateGenerationUnit(unit, showName = true) {
 
     return `
         <div style="padding-bottom: 5px;">
-            ${name} ${unit.fuel} - Generation: ${roundMw(unit.generation)}MW /  ${capacityText}<br>
+            ${name} ${unit.fuel} - Generation: ${displayMegawattsOrGigawatts(unit.generation)} /  ${capacityText}<br>
             ${populatePercentage(Math.round(unit.generation / totalCapacityIncludingOutage * 100))}
         </div>`
 }
@@ -149,10 +146,10 @@ function populateGeneratorUnitList(generatorData) {
         html += populateGenerationUnit(unit);
     })
 
-    let outageText = (totalOutage != 0) ? `<s>${roundMw(totalCapacity)} MW</s> ${roundMw(totalCapacity - totalOutage)} MW <span class="badge text-bg-danger">${totalOutage}MW Outage</span>` 
-    : `${roundMw(totalCapacity)} MW`;
+    let outageText = (totalOutage != 0) ? `<s>${displayMegawattsOrGigawatts(totalCapacity)}</s> ${displayMegawattsOrGigawatts(totalCapacity - totalOutage)} <span class="badge text-bg-danger">${totalOutage}MW Outage</span>` 
+    : `${displayMegawattsOrGigawatts(totalCapacity)}`;
 
-    html += `<br><b>Total:</b> ${roundMw(totalGeneration)} MW <br><b>Capacity:</b> ${outageText}</br>`
+    html += `<br><b>Total:</b> ${displayMegawattsOrGigawatts(totalGeneration)} <br><b>Capacity:</b> ${outageText}</br>`
     html += populatePercentage(Math.round(Math.abs(totalGeneration) / (totalCapacity - totalOutage) * 100), true);
 
     return html;
@@ -168,7 +165,7 @@ function getSubstationBusbarRows(substationData){
 
         html += `<tr>
             <td>${busbar}</td>
-            <td>${roundMw(details.totalLoadMW)} MW</td>
+            <td>${displayMegawattsOrGigawatts(details.totalLoadMW)}</td>
             <td>$${details.priceDollarsPerMegawattHour}/MWh</td>
         </tr>`
     })
@@ -187,8 +184,8 @@ function getSubstationGenerationRows(substationData){
                 html += `<tr>
                     <td>${connection.generatorInfo.plantName}</td>
                     <td>${connection.generatorInfo.fuel}</td>
-                    <td>${roundMw(connection.generationMW)} MW</td>
-                    <td>${connection.generatorInfo.nameplateCapacityMW} MW</td>
+                    <td>${displayMegawattsOrGigawatts(connection.generationMW)}</td>
+                    <td>${displayMegawattsOrGigawatts(connection.generatorInfo.nameplateCapacityMW)}</td>
                     <td>
                          <div class="progress" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar bg-success" style="width: ${percentage}%">
@@ -227,7 +224,7 @@ export function populateSubstationPopup(substationData, lastUpdated) {
             ${getSubstationBusbarRows(substationData)}
             <tr>
                 <th>Total</td>
-                <th>${roundMw(substationData.totalLoadMW)} MW</td>
+                <th>${displayMegawattsOrGigawatts(substationData.totalLoadMW)}</td>
                 <th></td>
             </tr>
         </table>`;
@@ -247,8 +244,8 @@ export function populateSubstationPopup(substationData, lastUpdated) {
                 <tr>
                     <th>Total</td>
                     <th></td>
-                    <th>${roundMw(substationData.totalGenerationMW)} MW</td>
-                    <th>${substationData.totalGenerationCapacityMW} MW</td>
+                    <th>${displayMegawattsOrGigawatts(substationData.totalGenerationMW)}</td>
+                    <th>${displayMegawattsOrGigawatts(substationData.totalGenerationCapacityMW)}</td>
                     <th>${Math.round(substationData.totalGenerationMW / substationData.totalGenerationCapacityMW * 100)}%</td>
                 </tr>
             </table>`;
@@ -262,15 +259,15 @@ export function populateSubstationPopup(substationData, lastUpdated) {
             </tr>
             <tr>
                 <td>Generation</td>
-                <td>${roundMw(substationData.totalGenerationMW)} MW</td>
+                <td>${displayMegawattsOrGigawatts(substationData.totalGenerationMW)}</td>
             </tr>
             <tr>
                 <td>Load</td>
-                <td>${roundMw(substationData.totalLoadMW)} MW</td>
+                <td>${displayMegawattsOrGigawatts(substationData.totalLoadMW)}</td>
             </tr>
             <tr>
                 <th>Net ${(substationData.netImportMW < 0) ? 'Export' : 'Import'}</td>
-                <th>${Math.abs(roundMw(substationData.netImportMW))} MW</td>
+                <th>${Math.abs(substationData.netImportMW)} MW</td>
             </tr>
         </table>`
     }

@@ -152,7 +152,6 @@ export function getTooltipForFuelFilteredGraph(){
                 <br>`;
         } else {
             const generationSum = point.y;
-            console.log(this.points.length)
             const percentage = (totalGeneration != 0 && this.points.length > 2) ? `(${Math.round(generationSum / totalGeneration * 100)}%)` : '';
 
             body += `
