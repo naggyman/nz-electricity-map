@@ -267,7 +267,7 @@
                 "name": "Kawerau CoGen",
                 "unitCode": "ONU0",
                 "node": "KAW0112 ONU0",
-                "capacity": 60,
+                "capacity": 43,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -623,7 +623,7 @@
                 "name": "Te Ahi O Maui",
                 "unitCode": "TAM0",
                 "node": "KAW0111 TAM0",
-                "capacity": 27,
+                "capacity": 22,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -855,7 +855,7 @@
                 "name": "Ngā Awa Pūrua",
                 "unitCode": "NAP0",
                 "node": "NAP2201 NAP0",
-                "capacity": 147,
+                "capacity": 149,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -1005,7 +1005,7 @@
                 "name": "Poihipi Road",
                 "unitCode": "PPI0",
                 "node": "PPI2201 PPI0",
-                "capacity": 50,
+                "capacity": 40,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
