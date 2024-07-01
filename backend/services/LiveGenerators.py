@@ -38,8 +38,7 @@ class LiveGenerators:
 
 
         # Outages
-        outages = Outages()
-        for outage in outages.outages:
+        for outage in self.outages.outages:
             outageTo = outage['outageBlock'][:3]
             generator = self.generatorDescriptions.get(outageTo)
 

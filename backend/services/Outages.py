@@ -10,8 +10,6 @@ class Outages:
         toDate = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
         apiQuery = pocpApiUrl + '&dateOption=absolute&outageAtFrom=' + fromDate + 'T00%3A00%3A00.000Z&outageAtTo=' + toDate + 'T00%3A00%3A00.000Z'
 
-        #print(apiQuery)
-
         response = requests.get(apiQuery)
 
         if response.status_code == 200:

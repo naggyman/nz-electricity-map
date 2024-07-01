@@ -1624,7 +1624,7 @@
                 "name": "Harapaki",
                 "unitCode": "HRP0",
                 "node": "HRP2201 HRP0",
-                "capacity": 176,
+                "capacity": 176.3,
                 "fuel": "Wind",
                 "fuelCode": "WIN"
             }
