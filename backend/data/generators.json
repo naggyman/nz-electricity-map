@@ -39,7 +39,7 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Southern Generation Partnership / Pioneer Energy"
+        "operator": "Pioneer Energy Renewables"
     },
     {
         "site": "OKI",
@@ -1666,7 +1666,7 @@
                 "name": "Tauhara",
                 "unitCode": "TAB0",
                 "node": "TAB2201 TAB0",
-                "capacity": 158,
+                "capacity": 177,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
