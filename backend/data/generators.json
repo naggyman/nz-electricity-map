@@ -834,7 +834,7 @@
                 "name": "Mokai",
                 "unitCode": "MOK0",
                 "node": "WKM2201 MOK0",
-                "capacity": 112,
+                "capacity": 116,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
