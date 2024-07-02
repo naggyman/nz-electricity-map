@@ -644,7 +644,7 @@
                 "name": "Kawerau",
                 "unitCode": "KAG0",
                 "node": "KAW1101 KAG0",
-                "capacity": 108,
+                "capacity": 109,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -1432,7 +1432,7 @@
                 "name": "Wairākei",
                 "unitCode": "WRK0",
                 "node": "WRK2201 WRK0",
-                "capacity": 166,
+                "capacity": 167,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
