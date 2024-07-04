@@ -267,7 +267,7 @@ export function populateSubstationPopup(substationData, lastUpdated) {
             </tr>
             <tr>
                 <th>Net ${(substationData.netImportMW < 0) ? 'Export' : 'Import'}</td>
-                <th>${Math.abs(substationData.netImportMW)} MW</td>
+                <th>${displayMegawattsOrGigawatts(Math.abs(substationData.netImportMW))}</td>
             </tr>
         </table>`
     }
