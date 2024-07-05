@@ -750,7 +750,7 @@
                 "name": "Maraetai",
                 "unitCode": "MTI0",
                 "node": "MTI2201 MTI0",
-                "capacity": 351,
+                "capacity": 360,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -1327,7 +1327,7 @@
                 "name": "Tuai",
                 "unitCode": "TUI0",
                 "node": "TUI1101 TUI0",
-                "capacity": 60,
+                "capacity": 62,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
