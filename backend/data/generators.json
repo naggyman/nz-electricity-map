@@ -243,7 +243,7 @@
         "name": "Branch River",
         "units": [
             {
-                "name": "Branch River",
+                "name": "Wairau & Argyle",
                 "unitCode": "BRR0",
                 "node": "ARG1101 BRR0",
                 "capacity": 11,
@@ -381,7 +381,7 @@
                 "name": "Whareroa",
                 "unitCode": "WAA0",
                 "node": "HWA1102 WAA0",
-                "capacity": 68,
+                "capacity": 55,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             }
@@ -581,7 +581,7 @@
                 "name": "Kapuni",
                 "unitCode": "KPI1",
                 "node": "KPA1101 KPI1",
-                "capacity": 25,
+                "capacity": 20,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             }
