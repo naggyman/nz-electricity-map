@@ -30,7 +30,11 @@ export function getColourForFuel(fuel) {
         return '#76721E'
     } else if (fuel === 'CLG') {
         return 'rgb(139, 87, 42)'
-    } else {
+    } else if (fuel === 'GAS') {
         return 'rgb(253, 180, 98)'
+    } else if (fuel === 'DIE') {
+        return 'rgb(135, 72, 0)'
+    } else {
+        return 'rgb(0, 0, 0)'
     }
 }
