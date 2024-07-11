@@ -5,8 +5,8 @@ export const underConstruction = [
         "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Far North Solar Farm",
-        "capacity": "22 MWp",
-        "opening": "Unknown",
+        "capacity": "22 MWp / 20 MW AC",
+        "opening": "Early 2025",
         "location": {
             "lat": -34.81847954912686,
             "long": 173.1106851473731
@@ -62,6 +62,19 @@ export const underConstruction = [
         "location": {
             "lat": -43.730843339796294,
             "long": 171.78955859810299
+        }
+    },
+    {
+        "name": "Glenbrook",
+        "site": "",
+        "substation": "Glenbrook",
+        "fuel": "Battery",
+        "operator": "Contact Energy",
+        "capacity": "100 MW / 200 MWh",
+        "opening": "March 2026",
+        "location": {
+            "lat": -37.20055447360045,
+            "long": 174.73164242576024
         }
     },
     {

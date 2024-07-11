@@ -1047,7 +1047,7 @@
                 "name": "Rotokawa",
                 "unitCode": "RKA0",
                 "node": "WRK0331 RKA0",
-                "capacity": 27,
+                "capacity": 28,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -1432,7 +1432,7 @@
                 "name": "Wairākei",
                 "unitCode": "WRK0",
                 "node": "WRK2201 WRK0",
-                "capacity": 167,
+                "capacity": 168,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
