@@ -1243,7 +1243,7 @@
                 "name": "Te Mihi Unit 2",
                 "unitCode": "THI2",
                 "node": "THI2201 THI2",
-                "capacity": 83,
+                "capacity": 85,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -1411,7 +1411,7 @@
                 "name": "Te Huka Units 1 & 2",
                 "unitCode": "TAA0",
                 "node": "WRK0331 TAA0",
-                "capacity": 28,
+                "capacity": 29,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
