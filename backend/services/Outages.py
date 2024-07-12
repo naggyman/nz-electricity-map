@@ -2,7 +2,7 @@ import requests
 import datetime
 
 # Retrieved from Transpower POCP: https://customerportal.transpower.co.nz/pocp/outages
-pocpApiUrl = 'https://api.transpower.co.nz/v2/so/api/pocp/guest/outages?category=GENERATION&page=0&planningStatus=CONFIRMED&planningStatus=COMPLETED&size=1000&sort=outageBlock%2Casc'
+pocpApiUrl = 'https://api.transpower.co.nz/v2/so/api/pocp/guest/outages?category=EMBEDDED_GENERATION&category=GENERATION&page=0&planningStatus=CONFIRMED&planningStatus=COMPLETED&size=1000&sort=outageBlock%2Casc'
 
 class Outages:
     def __init__(self) -> None:
