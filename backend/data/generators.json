@@ -1727,7 +1727,8 @@
         },
         "gridZone": "UNI",
         "island": "NI",
-        "operator": "Lodestone Energy"
+        "operator": "Lodestone Energy",
+        "alias": "KTS"
     },
     {
         "site": "SZR",
