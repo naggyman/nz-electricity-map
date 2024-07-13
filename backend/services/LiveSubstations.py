@@ -2,6 +2,8 @@ from services.RealTimeDispatch import RealTimeDispatch
 from services.GeneratorDescriptions import GeneratorDescriptions
 from services.SubstationDescriptions import SubstationDescriptions
 
+skipList = ["BOT2201", "BOT2202", "NGA1101"]
+
 class LiveSubstations:
     def __init__(self, realTimeDispatch: RealTimeDispatch, generatorDescriptions: GeneratorDescriptions, substationDescriptions: SubstationDescriptions) -> None:
         self.realTimeDispatch = realTimeDispatch
@@ -97,6 +99,8 @@ class LiveSubstations:
             output['sites'].append(substation)
 
         for node in self.realTimeDispatch.unclaimedSubstation():
+            if(node['PointOfConnectionCode'] in skipList and node['SPDLoadMegawatt'] == 0 and node['SPDGenerationMegawatt'] == 0):
+                continue
             print('No Substation Information for PointOfConnectionCode - ' + node['PointOfConnectionCode'] + ' ' + str(node['SPDLoadMegawatt']) + 'MW ' + str(node['SPDGenerationMegawatt']) + 'MW')
 
         return output

@@ -402,7 +402,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Todd Energy / Fonterra"
+        "operator": "Todd Energy",
+        "secondaryOperator": "Fonterra"
     },
     {
         "site": "GLN",
@@ -423,7 +424,8 @@
         },
         "gridZone": "UNI",
         "island": "NI",
-        "operator": "New Zealand Steel / Alinta Energy"
+        "operator": "New Zealand Steel",
+        "secondaryOperator": "Alinta Energy"
     },
     {
         "site": "HBK",
@@ -1739,7 +1741,7 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "WEL Networks"
+        "operator": "NewPower Energy"
     },
     {
         "site": "KSF",

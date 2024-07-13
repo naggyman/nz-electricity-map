@@ -1,4 +1,4 @@
-FROM python:3.8.2-slim
+FROM python:3.12.3-slim
 
 COPY backend/requirements.txt requirements.txt
 

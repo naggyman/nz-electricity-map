@@ -2,6 +2,8 @@ from services.GeneratorDescriptions import GeneratorDescriptions
 from services.RealTimeDispatch import RealTimeDispatch
 from services.Outages import Outages
 
+outageSkipList = ["ABY_STN", "BRB_STN", "BLN_STN", "DOB_STN", "HKK_STN", "CST_STN", "HUI_STN", "TRC_Stn"]
+
 class LiveGenerators:
     def __init__(self, generatorDescriptions: GeneratorDescriptions, realTimeDispatch: RealTimeDispatch, outages: Outages):
         self.generatorDescriptions = generatorDescriptions
@@ -34,17 +36,20 @@ class LiveGenerators:
         
         for node in self.realTimeDispatch.unclaimedGeneration():
             if len(node['PointOfConnectionCode'][7:]) > 0:
-                print('Unclaimed node - ' + node['PointOfConnectionCode'])
+                print('Unclaimed node in RealTimeDispatch - ' + node['PointOfConnectionCode'])
 
 
         # Outages
+        outagesNotAttributedToAKnownGenerator = []
         for outage in self.outages.outages:
+            if outage['outageBlock'] in outageSkipList:
+                continue
+
             outageTo = outage['outageBlock'][:3]
-            generator = self.generatorDescriptions.get(outageTo)
+            generator = self.generatorDescriptions.getBySiteCodeAndOperator(outageTo, outage['orgId'])
 
             if generator is None:
-                mwLost = str(outage['mwattLost']) if 'mwattLost' in outage else 'Unknown'
-                print('Generator not found for Outage - ' + outageTo + ' ' + mwLost + ' (' + outage['outageBlock'] + ') - Skipping')
+                outagesNotAttributedToAKnownGenerator.append(outage['outageBlock'])
                 continue
 
             if(len(generator['units']) == 1):
@@ -63,6 +68,9 @@ class LiveGenerators:
                 if not found:
                     # the 'outage block' is using a different scheme than the 'unit code'. Let's give up being too accurate and just add the outage to the first unit
                     generator['units'][0]['outage'].append(self.createOutageOutput(outage))
+
+        if len(outagesNotAttributedToAKnownGenerator) > 0:
+            print('Outages not attributed to a known generator: ' + str(outagesNotAttributedToAKnownGenerator))
             
         for generator in self.generatorDescriptions.descriptions:
             output['generators'].append(generator)
@@ -79,7 +87,7 @@ class LiveGenerators:
         }
     
     def getIntervalGenerationSummary(self, existingSummary):
-        live = self.getLiveGeneratorOutput()
+        live = self.getLiveGeneratorOutput() #todo not do this twice
         lastUpdated = live['lastUpdate']
 
         if lastUpdated in existingSummary:
