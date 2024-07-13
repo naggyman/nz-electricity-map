@@ -30,7 +30,7 @@ function populatePercentage(percentage, green) {
 export function populateGeneratorPopup(generatorData, lastUpdated) {
     let popup = `
         <h5>${generatorData.name}</h5>
-        ${generatorData.operator} <span class="badge text-bg-primary">${generatorData.site}</span><br><br>
+        ${generatorData.operator} ${(generatorData.secondaryOperator) ? `<br> ${generatorData.secondaryOperator}` : ''} <span class="badge text-bg-primary">${generatorData.site}</span><br><br>
         ${populateGenerationData(generatorData)}
         <i> Last Updated: ${lastUpdated}</i>
         <br><a href="index.html?site=${generatorData.site}&timeframe=-0d&redirect=true">View Generation Chart</a>

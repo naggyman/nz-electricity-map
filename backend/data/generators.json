@@ -18,7 +18,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "ANI",
@@ -81,7 +82,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "OHA",
@@ -102,7 +104,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "OHB",
@@ -123,7 +126,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "OHC",
@@ -144,7 +148,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "ARI",
@@ -173,7 +178,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "ARA",
@@ -194,7 +200,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "AVI",
@@ -215,7 +222,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "BEN",
@@ -236,7 +244,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "BRR",
@@ -299,7 +308,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Contact Energy"
+        "operator": "Contact Energy",
+        "scheme": "Clutha River Hydro Scheme"
     },
     {
         "site": "COB",
@@ -508,7 +518,7 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Nova Energy"
+        "operator": "Todd Energy"
     },
     {
         "site": "KUM",
@@ -571,7 +581,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Lake Waikaremoana Hydro Scheme"
     },
     {
         "site": "KPI",
@@ -613,7 +624,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "TAM",
@@ -740,7 +752,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "King Country Energy / Manawa Energy"
+        "operator": "Manawa Energy",
+        "secondaryOperator": "King Country Energy"
     },
     {
         "site": "MTI",
@@ -761,7 +774,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "MAT",
@@ -803,7 +817,7 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Nova Energy"
+        "operator": "Todd Energy"
     },
     {
         "site": "MCK",
@@ -824,7 +838,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Wellington Wind"
     },
     {
         "site": "MOK",
@@ -845,7 +860,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Tuaropaki Power Company / Mercury"
+        "operator": "Mercury",
+        "secondaryOperator": "Tuaropaki Power Company"
     },
     {
         "site": "NAP",
@@ -866,7 +882,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Tauhara North No.2 Trust / Mercury"
+        "operator": "Mercury",
+        "secondaryOperator": "Tauhara North No. 2 Trust"
     },
     {
         "site": "NTM",
@@ -995,7 +1012,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Lake Waikaremoana Hydro Scheme"
     },
     {
         "site": "PPI",
@@ -1037,7 +1055,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Tongariro Power Scheme"
     },
     {
         "site": "RKA",
@@ -1058,7 +1077,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Tauhara North No.2 Trust / Mercury"
+        "operator": "Mercury",
+        "secondaryOperator": "Tauhara North No.2 Trust"
     },
     {
         "site": "ROX",
@@ -1087,7 +1107,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Contact Energy"
+        "operator": "Contact Energy",
+        "scheme": "Clutha River Hydro Scheme"
     },
     {
         "site": "SFD",
@@ -1146,7 +1167,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "TKB",
@@ -1167,7 +1189,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "TWF",
@@ -1204,7 +1227,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Manawatū Wind"
     },
     {
         "site": "TAP",
@@ -1225,7 +1249,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Manawatū Wind"
     },
     {
         "site": "THI",
@@ -1275,7 +1300,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "New Zealand Windfarms"
+        "operator": "New Zealand Windfarms",
+        "scheme": "Manawatū Wind"
     },
     {
         "site": "TUK",
@@ -1317,7 +1343,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Tongariro Power Scheme"
     },
     {
         "site": "TUI",
@@ -1338,7 +1365,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Genesis Energy"
+        "operator": "Genesis Energy",
+        "scheme": "Lake Waikaremoana Hydro Scheme"
     },
     {
         "site": "TUR",
@@ -1359,7 +1387,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Manawatū Wind"
     },
     {
         "site": "WPA",
@@ -1380,7 +1409,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "WPP",
@@ -1464,7 +1494,8 @@
         },
         "gridZone": "LSI",
         "island": "SI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Waitaki Hydro Scheme"
     },
     {
         "site": "WWD",
@@ -1493,7 +1524,8 @@
         },
         "gridZone": "LNI",
         "island": "NI",
-        "operator": "Meridian Energy"
+        "operator": "Meridian Energy",
+        "scheme": "Wellington Wind"
     },
     {
         "site": "WKM",
@@ -1514,7 +1546,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Mercury"
+        "operator": "Mercury",
+        "scheme": "Waikato River Hydro Scheme"
     },
     {
         "site": "WHE",
