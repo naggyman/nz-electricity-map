@@ -71,7 +71,9 @@ class LiveGenerators:
     
     def createOutageOutput(self, outage):
         return {
+            'block': outage['outageBlock'][4:].upper(),
             'mwLost': outage['mwattLost'],
+            'mwRemain': outage['mwattRemaining'] if 'mwattRemaining' in outage else None,
             'from': outage['timeStart'],
             'until': outage['timeEnd']
         }
