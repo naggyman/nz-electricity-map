@@ -31,7 +31,7 @@ export const underConstruction = [
         "substation": "Waiotahi",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
-        "capacity": "30 MWp",
+        "capacity": "42 MWp / 38 MW ac",
         "opening": "Late 2024",
         "location": {
             "lat": -38.02688240581342,
