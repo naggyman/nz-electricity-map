@@ -89,13 +89,13 @@ function addUnderConstructionSites(layer){
             fillColor: detemineMapColour(site)
         }).bindPopup(
                 `<h5>${site.name}</h5>` +
-                `<i><b>Under Construction</b></i>` + 
+                `<i><b>${site.status}</b></i>` + 
                 `<br>${site.fuel} - ${site.operator}<br>` +
                 `<b> Capacity: </b></br>` +
                 newBuildGenerationCapacityString(site) +
                 `<br>` + 
                 (site.yearlyGenerationGWh ? `<b>Yearly Generation: </b>${site.yearlyGenerationGWh} GWh</br>` : '') +
-                `<b>Expected opening: </b>${site.opening}`,
+                `<b>Expected commissioning by: </b>${(site.openBy) ? new Date(site.openBy).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long' }) : 'Unknown'}`,
             { maxWidth: 800 })
         .addTo(layer)
     });

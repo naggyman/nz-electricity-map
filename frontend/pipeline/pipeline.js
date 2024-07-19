@@ -1,0 +1,160 @@
+import { underConstruction } from "../utilities/underConstruction.js";
+
+var table = document.getElementById('generation-pipeline-table');
+
+function populatePipelineTable(){
+    table.innerHTML = "";
+    
+    var sortKey = window.location.search.split('sort=')[1] || 'opening';
+    
+    var row = table.insertRow();
+    row.style.fontWeight = "bold";
+    row.className = "table-primary";
+
+    addCell(row, titleString("Name", sortKey == 'name'));
+    addCell(row, titleString("Operator", sortKey == 'operator'));
+    addCell(row, titleString("Type", sortKey == 'type'));
+    addCell(row, titleString("Status", sortKey == 'status'));
+    addCell(row, titleString("Potential Comissioning", sortKey == 'opening'));
+    addCell(row, titleString("Nameplate Capacity", sortKey == 'capacity'));
+    addCell(row, titleString("", false));
+    addCell(row, titleString("Annual Generation", sortKey == 'annualGeneration'));
+    addCell(row, titleString("More Info", false));
+    
+    let totalAnnualGeneration = 0;
+    let totalNameplateCapacity = 0;
+
+    let thisYearNewGenerationGWh = 0;
+    let thisYearNameplateCapacity = 0;
+    sortList(underConstruction, sortKey).forEach(site => {
+        addRow(site);
+        totalAnnualGeneration += site.yearlyGenerationGWh || 0;
+        totalNameplateCapacity += site.capacityMW || site.predictedCapacityMW || 0;
+
+        if(site.openBy && new Date(site.openBy).getFullYear() == new Date().getFullYear()){
+            thisYearNewGenerationGWh += site.yearlyGenerationGWh || 0;
+            thisYearNameplateCapacity += site.capacityMW || site.predictedCapacityMW || 0;
+        }
+    });
+    
+    var totalRow = table.insertRow();
+    totalRow.style.fontWeight = "bold";
+    totalRow.className = "table-info";
+    
+    addCell(totalRow, "Total");
+    addCell(totalRow, "");
+    addCell(totalRow, "");
+    addCell(totalRow, "");
+    addCell(totalRow, "");
+    addCell(totalRow, totalNameplateCapacity.toFixed(1) + " MW");
+    addCell(totalRow, "");
+    addCell(totalRow, totalAnnualGeneration + " GWh");
+    addCell(totalRow, "");
+
+    var thisYearRow = table.insertRow();
+    addCell(thisYearRow, `Total in ${new Date().getFullYear()}`);
+    addCell(thisYearRow, "");
+    addCell(thisYearRow, "");
+    addCell(thisYearRow, "");
+    addCell(thisYearRow, "");
+    addCell(thisYearRow, thisYearNameplateCapacity.toFixed(1) + " MW");
+    addCell(thisYearRow, "");
+    addCell(thisYearRow, thisYearNewGenerationGWh + " GWh");
+    addCell(thisYearRow, "");
+}
+
+
+function titleString(string, isCurrentFilter){
+    if(isCurrentFilter){
+        return `${string} ↓`;
+    } else {
+        return `${string}`;
+    }
+}
+
+function addRow(site){
+    var row = table.insertRow();
+    addCell(row, site.name + ((site.locationDescription != undefined) ? ` (${site.locationDescription})` : ""));
+    addCell(row, site.operator);
+    addCell(row, site.fuel);
+    addCell(row, site.status);
+    addCell(row, formatDate(site.openBy));
+    addCell(row, (site.capacityMW || site.predictedCapacityMW || '?') + " MW");
+    addCell(row, formatAdditionalCapacityInformation(site));
+    
+    if(site.yearlyGenerationGWh === undefined){
+        addCell(row, "");
+    } else {
+        addCell(row, site.yearlyGenerationGWh + " GWh");
+    }
+
+    row.insertCell().innerHTML = `<a href=${site.link} target='_blank'>↗</a>`
+}
+
+function addCell(row, text){
+    row.insertCell().appendChild(document.createTextNode(text));
+}
+
+function formatDate(date){
+    if(date === undefined){
+        return "";
+    }
+
+    return new Date(date).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long' });
+}
+
+function formatAdditionalCapacityInformation(site){
+    if(site.capacityMWh){
+        return site.capacityMWh + " MWh";
+    }
+
+    if(site.capacityMWp){
+        return site.capacityMWp + " MWp";
+    }
+
+    return "";
+}
+
+function sortList(list, sortKey){
+    switch (sortKey) {
+        case 'name': return list.sort((a, b) => a.name.localeCompare(b.name))
+        case 'annualGeneration': return list.sort(sortAnnualGenerationItems)
+        case 'type': return list.sort((a, b) => a.fuel.localeCompare(b.fuel))
+        case 'capacity': return list.sort(sortCapacity)
+        case 'opening': return list.sort(sortOpening)
+        case 'status': return list.sort((a, b) => a.status.localeCompare(b.status))
+        default: return list
+    }
+}
+
+function sortCapacity(a, b){
+    if(a.capacityMW === undefined){
+        return 1
+    } else if(b.capacityMW === undefined){
+        return -1
+    }
+
+    return b.capacityMW - a.capacityMW
+}
+
+function sortOpening(a, b){
+    if(a.openBy === undefined){
+        return 1
+    } else if(b.openBy === undefined){
+        return -1
+    }
+
+    return new Date(a.openBy) - new Date(b.openBy)
+}
+
+function sortAnnualGenerationItems(a, b){
+    if(a.yearlyGenerationGWh === undefined){
+        return 1
+    } else if(b.yearlyGenerationGWh === undefined){
+        return -1
+    }
+
+    return b.yearlyGenerationGWh - a.yearlyGenerationGWh
+}
+
+populatePipelineTable();
