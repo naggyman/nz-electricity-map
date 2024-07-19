@@ -5,7 +5,8 @@ export const underConstruction = [
         "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Far North Solar Farm",
-        "capacity": "22 MWp / 20 MW AC",
+        "capacityMW": 20,
+        "capacityMWp": 22,
         "opening": "Early 2025",
         "location": {
             "lat": -34.81847954912686,
@@ -18,7 +19,8 @@ export const underConstruction = [
         "substation": "Bream Bay",
         "fuel": "Battery",
         "operator": "Meridian Energy",
-        "capacity": "100 MW / 200 MWh",
+        "capacityMW": 100,
+        "capacityMWh": 200,
         "opening": "Late 2024",
         "location": {
             "lat": -35.847508029631044,
@@ -31,7 +33,9 @@ export const underConstruction = [
         "substation": "Waiotahi",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
-        "capacity": "42 MWp / 38 MW ac",
+        "capacityMW": 38,
+        "capacityMWp": 42,
+        "yearlyGenerationGWh": 69,
         "opening": "Late 2024",
         "location": {
             "lat": -38.02688240581342,
@@ -44,7 +48,8 @@ export const underConstruction = [
         "substation": "Maungaturoto",
         "fuel": "Solar",
         "operator": "Northpower",
-        "capacity": "16.7 MWp",
+        "capacityMWp": 16.7,
+        "yearlyGenerationGWh": 28,
         "opening": "Late 2024",
         "location": {
             "lat": -36.11523760044438,
@@ -57,7 +62,9 @@ export const underConstruction = [
         "substation": "Ashburton",
         "fuel": "Solar",
         "operator": "Genesis Energy/FRV Australia",
-        "capacity": "62.6 MWp / 47.2 MW AC",
+        "capacityMWp": 62.6,
+        "capacityMW": 47.2,
+        "yearlyGenerationGWh": 97,
         "opening": "Late 2024",
         "location": {
             "lat": -43.730843339796294,
@@ -70,7 +77,8 @@ export const underConstruction = [
         "substation": "Glenbrook",
         "fuel": "Battery",
         "operator": "Contact Energy",
-        "capacity": "100 MW / 200 MWh",
+        "capacityMW": 100,
+        "capacityMWh": 200,
         "opening": "March 2026",
         "location": {
             "lat": -37.20055447360045,
@@ -82,7 +90,8 @@ export const underConstruction = [
         "site": "NTM",
         "fuel": "Geothermal",
         "operator": "Mercury",
-        "capacity": "46 MW",
+        "capacityMW": 46,
+        "yearlyGenerationGWh": 390,
         "opening": "Late 2025",
     },
     {
@@ -90,7 +99,8 @@ export const underConstruction = [
         "site": "KWD",
         "fuel": "Wind",
         "operator": "Mercury",
-        "capacity": "155 MW",
+        "capacityMW": 155,
+        "yearlyGenerationGWh": 525,
         "opening": "Late 2026",
     },
     {
@@ -98,7 +108,8 @@ export const underConstruction = [
         "site": "TAA",
         "fuel": "Geothermal",
         "operator": "Contact",
-        "capacity": "51.4 MW",
+        "capacityMW": 51.4,
+        "yearlyGenerationGWh": 430,
         "opening": "Late 2024",
     }
 ]

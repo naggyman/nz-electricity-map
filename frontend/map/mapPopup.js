@@ -1,6 +1,26 @@
 import { underConstruction } from '../utilities/underConstruction.js';
 import { displayMegawattsOrGigawatts } from '../utilities/units.js';
 
+export function newBuildGenerationCapacityString(newBuild){
+    var output = '';
+
+    if(newBuild.capacityMW){
+        output += `${newBuild.capacityMW} MW`;
+    }
+
+    if(newBuild.capacityMWp){
+        output != '' ? output += ' / ' : '';
+        output += `${newBuild.capacityMWp} MWp`;
+    }
+
+    if(newBuild.capacityMWh){
+        output != '' ? output += ' / ' : '';
+        output += `${newBuild.capacityMWh} MWh`;
+    }
+
+    return output;
+}
+
 function populatePercentage(percentage, green) {
     let html = '';
     if (isNaN(percentage)) {
@@ -44,7 +64,7 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
 
     let underConstructionData = underConstruction.find((uc) => uc.site === generatorData.site);
     if(underConstructionData){
-        popup += `<br><br><i><b>Under Construction</b></i><br>${underConstructionData.name}<br><b>Capacity: </b>${underConstructionData.capacity}<br><b>Opening: </b>${underConstructionData.opening}`
+        popup += `<br><br><i><b>Under Construction</b></i><br>${underConstructionData.name}<br><b>Capacity: </b>${newBuildGenerationCapacityString(underConstructionData)}<br>${(underConstructionData.yearlyGenerationGWh ? `<b>Yearly Generation: </b>${underConstructionData.yearlyGenerationGWh} GWh</br>` : '')}<b>Opening: </b>${underConstructionData.opening}`
     }
     
     return popup;

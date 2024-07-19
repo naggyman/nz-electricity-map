@@ -1,5 +1,5 @@
 import { detemineMapColour } from "../utilities/colours.js";
-import { populateGeneratorPopup, populateSubstationPopup } from "./mapPopup.js";
+import { populateGeneratorPopup, populateSubstationPopup, newBuildGenerationCapacityString } from "./mapPopup.js";
 import { underConstruction } from "../utilities/underConstruction.js";
 import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.js";
 import { SKIP_LIST } from "../utilities/units.js";
@@ -90,8 +90,11 @@ function addUnderConstructionSites(layer){
         }).bindPopup(
                 `<h5>${site.name}</h5>` +
                 `<i><b>Under Construction</b></i>` + 
-                `<br>${site.fuel} - ${site.operator}<br>` + 
-                `<b>Capacity: </b>${site.capacity} </br>` +
+                `<br>${site.fuel} - ${site.operator}<br>` +
+                `<b> Capacity: </b></br>` +
+                newBuildGenerationCapacityString(site) +
+                `<br>` + 
+                (site.yearlyGenerationGWh ? `<b>Yearly Generation: </b>${site.yearlyGenerationGWh} GWh</br>` : '') +
                 `<b>Expected opening: </b>${site.opening}`,
             { maxWidth: 800 })
         .addTo(layer)
