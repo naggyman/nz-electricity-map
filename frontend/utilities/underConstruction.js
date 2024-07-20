@@ -91,7 +91,7 @@ export const underConstruction = [
         "site": "",
         "substation": "Glenbrook",
         "fuel": "Battery",
-        "operator": "Contact Energy",
+        "operator": "Contact",
         "status": "Committed",
         "capacityMW": 100,
         "capacityMWh": 200,
@@ -227,5 +227,5 @@ export const underConstruction = [
             "long": 176.45131322681257
         },
         "link": "https://www.waikatotimes.co.nz/nz-news/350327125/nzs-largest-solar-farm-gets-go-ahead"
-    },
+    }
 ]

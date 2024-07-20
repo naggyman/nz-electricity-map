@@ -11,15 +11,15 @@ function populatePipelineTable(){
     row.style.fontWeight = "bold";
     row.className = "table-primary";
 
-    addCell(row, titleString("Name", sortKey == 'name'));
-    addCell(row, titleString("Operator", sortKey == 'operator'));
-    addCell(row, titleString("Type", sortKey == 'type'));
-    addCell(row, titleString("Status", sortKey == 'status'));
-    addCell(row, titleString("Potential Comissioning", sortKey == 'opening'));
-    addCell(row, titleString("Nameplate Capacity", sortKey == 'capacity'));
-    addCell(row, titleString("", false));
-    addCell(row, titleString("Annual Generation", sortKey == 'annualGeneration'));
-    addCell(row, titleString("More Info", false));
+    addTitleCell(row, sortKey, "Name", "name");
+    addTitleCell(row, sortKey, "Operator", "operator");
+    addTitleCell(row, sortKey, "Type", "type");
+    addTitleCell(row, sortKey, "Status", "status");
+    addTitleCell(row, sortKey, "Potential Comissioning", "opening");
+    addTitleCell(row, sortKey, "Nameplate Capacity", "nameplate");
+    addCell(row, "");
+    addTitleCell(row, sortKey, "Annual Generation", "annualGeneration");
+    addCell(row, "More Info");
     
     let totalAnnualGeneration = 0;
     let totalNameplateCapacity = 0;
@@ -63,12 +63,13 @@ function populatePipelineTable(){
     addCell(thisYearRow, "");
 }
 
-
-function titleString(string, isCurrentFilter){
-    if(isCurrentFilter){
-        return `${string} ↓`;
+function addTitleCell(row, sortKey, name, key){
+    var cell = row.insertCell();
+    
+    if(sortKey == key){
+        cell.innerHTML = `<a href="?sort=${key}" class="link-primary">${name} ↓</a>`;;
     } else {
-        return `${string}`;
+        cell.innerHTML = `<a href="?sort=${key}" class="link-primary">${name}</a>`;;
     }
 }
 
@@ -120,6 +121,7 @@ function sortList(list, sortKey){
         case 'name': return list.sort((a, b) => a.name.localeCompare(b.name))
         case 'annualGeneration': return list.sort(sortAnnualGenerationItems)
         case 'type': return list.sort((a, b) => a.fuel.localeCompare(b.fuel))
+        case 'operator': return list.sort((a, b) => a.operator.localeCompare(b.operator))
         case 'capacity': return list.sort(sortCapacity)
         case 'opening': return list.sort(sortOpening)
         case 'status': return list.sort((a, b) => a.status.localeCompare(b.status))
