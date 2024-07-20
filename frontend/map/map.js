@@ -90,7 +90,7 @@ function addUnderConstructionSites(layer){
         }).bindPopup(
                 `<h5>${site.name}</h5>` +
                 `${site.fuel} - ${site.operator}<br>` +
-                `<b>${site.status}</b>` + 
+                `<b>${site.status}</b><br>` + 
                 `<b> Capacity: </b>` +
                 newBuildGenerationCapacityString(site) +
                 `<br>` + 
