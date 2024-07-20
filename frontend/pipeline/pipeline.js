@@ -75,7 +75,12 @@ function addTitleCell(row, sortKey, name, key){
 
 function addRow(site){
     var row = table.insertRow();
-    addCell(row, site.name + ((site.locationDescription != undefined) ? ` (${site.locationDescription})` : ""));
+
+    if(site.status == "Under Construction"){
+        row.className = "table-success";
+    }
+    
+    row.insertCell().innerHTML = `<b>${site.name}</b>${(site.locationDescription != undefined) ? ` ${site.locationDescription}` : ""}`
     addCell(row, site.operator);
     addCell(row, site.fuel);
     addCell(row, site.status);

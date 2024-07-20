@@ -18,7 +18,6 @@ export const underConstruction = [
     },
     {
         "name": "Ruakākā",
-        "locationDescription": "Marsden Point",
         "site": "RUB",
         "substation": "Bream Bay",
         "fuel": "Battery",
@@ -35,7 +34,6 @@ export const underConstruction = [
     },
     {
         "name": "Te Herenga o Te Rā",
-        "locationDescription": "Waiotahe",
         "site": "HTR",
         "substation": "Waiotahi",
         "fuel": "Solar",
@@ -53,7 +51,6 @@ export const underConstruction = [
     },
     {
         "name": "Te Puna Mauri ō Omaru",
-        "locationDescription": "Ruawai",
         "site": "RWI",
         "substation": "Maungaturoto",
         "fuel": "Solar",
@@ -91,7 +88,7 @@ export const underConstruction = [
         "site": "",
         "substation": "Glenbrook",
         "fuel": "Battery",
-        "operator": "Contact",
+        "operator": "Contact Energy",
         "status": "Committed",
         "capacityMW": 100,
         "capacityMWh": 200,
@@ -103,7 +100,8 @@ export const underConstruction = [
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/30/contact-to-develop-a-gridscale-100-mw-battery-in-auckland"
     },
     {
-        "name": "Ngā Tamariki Unit 5",
+        "name": "Ngā Tamariki",
+        "locationDescription": "Unit 5",
         "site": "NTM",
         "fuel": "Geothermal",
         "operator": "Mercury",
@@ -114,7 +112,8 @@ export const underConstruction = [
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/geothermal/nga-tamariki-expansion"
     },
     {
-        "name": "Kaiwera Downs Stage 2",
+        "name": "Kaiwera Downs",
+        "locationDescription": "Stage 2",
         "site": "KWD",
         "fuel": "Wind",
         "operator": "Mercury",
@@ -125,10 +124,11 @@ export const underConstruction = [
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/wind-generation/kaiwera-downs-wind-farm"
     },
     {
-        "name": "Te Huka Unit 3",
+        "name": "Te Huka",
+        "locationDescription": "Unit 3",
         "site": "TAA",
         "fuel": "Geothermal",
-        "operator": "Contact",
+        "operator": "Contact Energy",
         "status": "Under Construction",
         "capacityMW": 51.4,
         "yearlyGenerationGWh": 430,
@@ -137,7 +137,6 @@ export const underConstruction = [
     },
     {
         "name": "Twin Rivers",
-        "locationDescription": "Kaitaia",
         "site": "TRS",
         "substation": "Kaikohe",
         "fuel": "Solar",
@@ -153,7 +152,8 @@ export const underConstruction = [
         "link": "https://ranuigen.co.nz/projects/"
     },
     {
-        "name": "Karāpiro Unit 2 Upgrade",
+        "name": "Karāpiro",
+        "locationDescription": "Unit 2 Upgrade",
         "site": "KPO",
         "fuel": "Hydro",
         "operator": "Mercury",
@@ -164,7 +164,8 @@ export const underConstruction = [
         "link": "https://www.mercury.co.nz/karapiro-dam"
     },
     {
-        "name": "Karāpiro Unit 3 Upgrade",
+        "name": "Karāpiro",
+        "locationDescription": "Unit 3 Upgrade",
         "site": "KPO",
         "fuel": "Hydro",
         "operator": "Mercury",
@@ -175,46 +176,51 @@ export const underConstruction = [
         "link": "https://www.mercury.co.nz/karapiro-dam"
     },
     {
-        "name": "Roxburgh Turbine 1 Upgrade",
+        "name": "Roxburgh",
+        "locationDescription": "Turbine 1 Upgrade",
         "site": "ROX",
         "fuel": "Hydro",
-        "operator": "Contact",
+        "operator": "Contact Energy",
         "status": "Under Construction",
         "yearlyGenerationGWh": 11,
         "openBy": "2024-10-30",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
-        "name": "Roxburgh Turbine 2 Upgrade",
+        "name": "Roxburgh",
+        "locationDescription": "Turbine 2 Upgrade",
         "site": "ROX",
         "fuel": "Hydro",
-        "operator": "Contact",
+        "operator": "Contact Energy",
         "status": "Committed",
         "yearlyGenerationGWh": 11,
         "openBy": "2025-05-02",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
-        "name": "Roxburgh Turbine 3 Upgrade",
+        "name": "Roxburgh",
+        "locationDescription": "Turbine 3 Upgrade",
         "site": "ROX",
         "fuel": "Hydro",
-        "operator": "Contact",
+        "operator": "Contact Energy",
         "status": "Committed",
         "yearlyGenerationGWh": 11,
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
-        "name": "Roxburgh Turbine 4 Upgrade",
+        "name": "Roxburgh",
+        "locationDescription": "Turbine 4 Upgrade",
         "site": "ROX",
         "fuel": "Hydro",
-        "operator": "Contact",
+        "operator": "Contact Energy",
         "status": "Committed",
         "yearlyGenerationGWh": 11,
         "openBy": "2025-10-24",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
-        "name": "Te Rāhui Stage 1",
+        "name": "Te Rāhui",
+        "locationDescription": "Stage 1",
         "site": "TRU",
         "substation": "",
         "fuel": "Solar",

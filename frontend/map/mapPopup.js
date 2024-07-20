@@ -64,8 +64,8 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
 
     let underConstructionData = underConstruction.find((uc) => uc.site === generatorData.site);
     if(underConstructionData){
-        popup += `<br><br><i><b>Under Construction</b></i><br>` + 
-            `${underConstructionData.name}<br>` + 
+        popup += `<br><br>`+
+            `<b>Under Construction:</b> ${(underConstructionData.locationDescription != undefined) ? ` ${underConstructionData.locationDescription}` : ""}<br>` + 
             `<b>Capacity: </b>${newBuildGenerationCapacityString(underConstructionData)}<br>` + 
             (underConstructionData.yearlyGenerationGWh ? `<b>Yearly Generation: </b>${underConstructionData.yearlyGenerationGWh} GWh</br>` : '') + 
             `<b>Expected commissioning by: </b>${(underConstructionData.openBy) ? new Date(underConstructionData.openBy).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long' }) : ''}`
