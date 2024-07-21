@@ -2,7 +2,7 @@
 import { getRelativeTimeseriesData } from './graphData.js';
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
 import { FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
-import { getLiveGenerationData } from '../utilities/api.js';
+import { getLiveGenerationData, getTimeseriesGenerationData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
 
 const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
@@ -225,8 +225,15 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const zoneToFilterTo = (new URLSearchParams(window.location.search)).get("zone")?.split(',') || [];
     const fuelsToFilterTo = (new URLSearchParams(window.location.search)).get("fuel")?.split(',') || [];
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
+    const date = (new URLSearchParams(window.location.search)).get("date");
 
-    let data = await getRelativeTimeseriesData(timeframe);
+    let data = {};
+    if(date){
+        data = await getTimeseriesGenerationData(new Date(date));
+    } else {
+        data = await getRelativeTimeseriesData(timeframe);
+    }
+
     const liveGenData = await getLiveGenerationData();
 
     statusSpan.innerHTML = "Updating graph...";
