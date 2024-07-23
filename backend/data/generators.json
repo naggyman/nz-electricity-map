@@ -50,7 +50,7 @@
                 "name": "Ōhaaki",
                 "unitCode": "OKI0",
                 "node": "OKI2201 OKI0",
-                "capacity": 39,
+                "capacity": 40,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -297,7 +297,7 @@
                 "name": "Clyde",
                 "unitCode": "CYD0",
                 "node": "CYD2201 CYD0",
-                "capacity": 432,
+                "capacity": 464,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -340,7 +340,7 @@
                 "name": "Coleridge",
                 "unitCode": "COL0",
                 "node": "COL0661 COL0",
-                "capacity": 39.5,
+                "capacity": 39,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -391,7 +391,7 @@
                 "name": "Whareroa",
                 "unitCode": "WAA0",
                 "node": "HWA1102 WAA0",
-                "capacity": 55,
+                "capacity": 50,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             }
@@ -1019,10 +1019,10 @@
     },
     {
         "site": "PPI",
-        "name": "Poihipi Road",
+        "name": "Poihipi",
         "units": [
             {
-                "name": "Poihipi Road",
+                "name": "Poihipi",
                 "unitCode": "PPI0",
                 "node": "PPI2201 PPI0",
                 "capacity": 40,
@@ -1046,7 +1046,7 @@
                 "name": "Rangipō",
                 "unitCode": "RPO0",
                 "node": "RPO2201 RPO0",
-                "capacity": 120,
+                "capacity": 140,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
@@ -1313,7 +1313,7 @@
                 "name": "Te Uku",
                 "unitCode": "TUK0",
                 "node": "TWH0331 TUK0",
-                "capacity": 64.4,
+                "capacity": 66,
                 "fuel": "Wind",
                 "fuelCode": "WIN"
             }
