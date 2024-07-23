@@ -242,6 +242,7 @@ export const underConstruction = [
         "operator": "NewPower Energy",
         "status": "Committed",
         "capacityMW": 22.4,
+        "capacityMWp": 33,
         "openBy": "2025-03-31",
         "location": {
             "lat": -37.44080411617218,
