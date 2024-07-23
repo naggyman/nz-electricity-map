@@ -233,5 +233,20 @@ export const underConstruction = [
             "long": 176.45131322681257
         },
         "link": "https://www.waikatotimes.co.nz/nz-news/350327125/nzs-largest-solar-farm-gets-go-ahead"
+    },
+    {
+        "name": "Taiohi",
+        "site": "",
+        "substation": "",
+        "fuel": "Solar",
+        "operator": "NewPower Energy",
+        "status": "Committed",
+        "capacityMW": 22.4,
+        "openBy": "2025-03-31",
+        "location": {
+            "lat": -37.44080411617218,
+            "long": 175.13234517360215
+        },
+        "link": "https://www.linkedin.com/posts/infratec_nz_a-bit-of-grey-weather-in-the-waikato-didn-activity-7221341384148992000-XnVG?utm_source=share&utm_medium=member_desktop"
     }
 ]
