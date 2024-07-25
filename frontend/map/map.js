@@ -89,8 +89,10 @@ function addUnderConstructionSites(layer){
             fillColor: detemineMapColour(site)
         }).bindPopup(
                 `<h5>${site.name}</h5>` +
-                `${site.fuel} - ${site.operator}<br>` +
-                `<b>${site.status}</b><br>` + 
+                ((site.locationDescription) ? `<b>${site.locationDescription}</b><br>` : '' ) +
+                `<b>Type: </b>${site.fuel}<br>` + 
+                `<b>Status: </b>${site.status}<br>` + 
+                `<b>Operator: </b>${site.operator}<br>` +
                 `<b> Capacity: </b>` +
                 newBuildGenerationCapacityString(site) +
                 `<br>` + 
