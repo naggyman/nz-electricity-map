@@ -62,6 +62,8 @@ class GeneratorDescriptions:
                 return "New Zealand Windfarms"
             case '974531a4-e2e5-49ce-8681-292d353265c8':
                 return "NewPower Energy"
+            case '47a91736-3771-418a-98a7-a7051e026d8d':
+                return "Eastland Generation Ltd"
             case default:
                 return None
             
