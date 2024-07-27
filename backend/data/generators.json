@@ -1507,7 +1507,7 @@
                 "name": "West Wind 1",
                 "unitCode": "WWD0",
                 "node": "WWD1102 WWD0",
-                "capacity": 142.6,
+                "capacity": 142,
                 "fuel": "Wind",
                 "fuelCode": "WIN"
             },
