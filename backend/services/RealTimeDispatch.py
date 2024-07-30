@@ -14,7 +14,11 @@ apiKey = os.environ['EMI_API_KEY']
 class RealTimeDispatch:
     response = {}
 
-    def __init__(self) -> None:
+    def __init__(self, existingResponse = []) -> None:
+        if(len(existingResponse) > 0):
+            self.response = existingResponse
+            return
+
         response = requests.get(emiApiUrl, headers={'Ocp-Apim-Subscription-Key': apiKey})
 
         if response.status_code != 200:
