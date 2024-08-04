@@ -296,4 +296,20 @@ export const underConstruction = [
         },
         "link": "https://bopbusinessnews.co.nz/news/new-edgecumbe-solar-farm-underway/"
     },
+    {
+        "name": "TOPP2",
+        "site": "",
+        "substation": "Kawerau",
+        "fuel": "Geothermal",
+        "operator": "Eastland Generation",
+        "status": "Under Construction",
+        "capacityMW": 49,
+        "yearlyGenerationGWh": 407, //estimate assuming 95% capacity factor
+        "openBy": "2025-12-31",
+        "location": {
+            "lat": -38.07497069187655,
+            "long": 176.69972269607476
+        },
+        "link": "https://eastlandgeneration.nz/renewable-generation/geothermal/"
+    },
 ]
