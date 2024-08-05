@@ -16,7 +16,7 @@ function populatePipelineTable(){
     addTitleCell(row, sortKey, "Type", "type");
     addTitleCell(row, sortKey, "Status", "status");
     addTitleCell(row, sortKey, "Potential Comissioning", "opening");
-    addTitleCell(row, sortKey, "Nameplate Capacity", "nameplate");
+    addTitleCell(row, sortKey, "Nameplate Capacity (AC)", "nameplate");
     addCell(row, "");
     addTitleCell(row, sortKey, "Annual Generation", "annualGeneration");
     addCell(row, "More Info");
@@ -101,8 +101,10 @@ function addRow(site){
     addCell(row, (site.capacityMW || site.predictedCapacityMW || '?') + " MW");
     addCell(row, formatAdditionalCapacityInformation(site));
     
-    if(site.yearlyGenerationGWh === undefined){
-        addCell(row, "");
+    if (site.fuel === "Battery") {
+        addCell(row, "N/A");
+    } else if(site.yearlyGenerationGWh === undefined){
+        addCell(row, "? GWh");
     } else {
         addCell(row, site.yearlyGenerationGWh + " GWh");
     }
@@ -140,7 +142,7 @@ function sortList(list, sortKey){
         case 'annualGeneration': return list.sort(sortAnnualGenerationItems)
         case 'type': return list.sort((a, b) => a.fuel.localeCompare(b.fuel))
         case 'operator': return list.sort((a, b) => a.operator.localeCompare(b.operator))
-        case 'capacity': return list.sort(sortCapacity)
+        case 'nameplate': return list.sort(sortCapacity)
         case 'opening': return list.sort(sortOpening)
         case 'status': return list.sort((a, b) => a.status.localeCompare(b.status))
         default: return list
