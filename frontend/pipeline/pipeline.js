@@ -24,16 +24,27 @@ function populatePipelineTable(){
     let totalAnnualGeneration = 0;
     let totalNameplateCapacity = 0;
 
-    let thisYearNewGenerationGWh = 0;
-    let thisYearNameplateCapacity = 0;
+    let newGenerationGWhByYear = {};
+    let nameplateCapacityByYear = {};
+
     sortList(underConstruction, sortKey).forEach(site => {
         addRow(site);
         totalAnnualGeneration += site.yearlyGenerationGWh || 0;
         totalNameplateCapacity += site.capacityMW || site.predictedCapacityMW || 0;
 
-        if(site.openBy && new Date(site.openBy).getFullYear() == new Date().getFullYear()){
-            thisYearNewGenerationGWh += site.yearlyGenerationGWh || 0;
-            thisYearNameplateCapacity += site.capacityMW || site.predictedCapacityMW || 0;
+        if(site.openBy){
+            let year = new Date(site.openBy).getFullYear();
+            if(newGenerationGWhByYear[year] === undefined){
+                newGenerationGWhByYear[year] = 0;
+            }
+
+            newGenerationGWhByYear[year] += site.yearlyGenerationGWh || 0;
+
+            if(nameplateCapacityByYear[year] === undefined){
+                nameplateCapacityByYear[year] = 0;
+            }
+
+            nameplateCapacityByYear[year] += site.capacityMW || site.predictedCapacityMW || 0;
         }
     });
     
@@ -51,16 +62,18 @@ function populatePipelineTable(){
     addCell(totalRow, totalAnnualGeneration + " GWh");
     addCell(totalRow, "");
 
-    var thisYearRow = table.insertRow();
-    addCell(thisYearRow, `Total in ${new Date().getFullYear()}`);
-    addCell(thisYearRow, "");
-    addCell(thisYearRow, "");
-    addCell(thisYearRow, "");
-    addCell(thisYearRow, "");
-    addCell(thisYearRow, thisYearNameplateCapacity.toFixed(1) + " MW");
-    addCell(thisYearRow, "");
-    addCell(thisYearRow, thisYearNewGenerationGWh + " GWh");
-    addCell(thisYearRow, "");
+    Object.keys(newGenerationGWhByYear).forEach(year => {
+        var yearRow = table.insertRow();
+        addCell(yearRow, `Total in ${year}`);
+        addCell(yearRow, "");
+        addCell(yearRow, "");
+        addCell(yearRow, "");
+        addCell(yearRow, "");
+        addCell(yearRow, nameplateCapacityByYear[year].toFixed(1) + " MW");
+        addCell(yearRow, "");
+        addCell(yearRow, newGenerationGWhByYear[year] + " GWh");
+        addCell(yearRow, "");
+    });
 }
 
 function addTitleCell(row, sortKey, name, key){
