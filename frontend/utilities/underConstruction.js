@@ -313,4 +313,20 @@ export const underConstruction = [
         },
         "link": "https://eastlandgeneration.nz/renewable-generation/geothermal/"
     },
+    {
+        "name": "Maungaturoto",
+        "site": "",
+        "substation": "Maungaturoto",
+        "fuel": "Solar",
+        "operator": "NewPower Energy",
+        "status": "Committed",
+        "capacityMWp": 21,
+        "yearlyGenerationGWh": 30,
+        "openBy": "2025-06-31",
+        "location": {
+            "lat": -36.08995575600482,
+            "long": 174.34730610408738
+        },
+        "link": "https://www.al.nz/17821-2/"
+    },
 ]
