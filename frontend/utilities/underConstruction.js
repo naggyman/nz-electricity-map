@@ -146,10 +146,10 @@ export const underConstruction = [
         "capacityMW": 24,
         "yearlyGenerationGWh": 42,
         "location": {
-            "lat": -35.1145,
-            "long": 173.3304
+            "lat": -35.13850578292899,
+            "long": 173.35440957656024
         },
-        "link": "https://ranuigen.co.nz/projects/"
+        "link": "https://ranuigen.co.nz/twinrivers/"
     },
     {
         "name": "Karāpiro",
