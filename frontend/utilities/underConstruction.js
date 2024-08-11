@@ -259,7 +259,6 @@ export const underConstruction = [
         "operator": "Lodestone Energy",
         "status": "Committed",
         "capacityMWp": 52,
-        "openBy": "",
         "location": {
             "lat": -35.92376187513902,
             "long": 173.84303589372522
@@ -273,14 +272,14 @@ export const underConstruction = [
         "fuel": "Solar",
         "operator": "Lodestone Energy",
         "status": "Committed",
-        "capacityMWp": 32.2,
-        "openBy": "",
-        "yearlyGenerationGWh": 54,
+        "capacityMWp": 32,
+        "openBy": "2025-12-31",
+        "yearlyGenerationGWh": 49,
         "location": {
             "lat": -36.851852353029905,
             "long": 175.66313578186515
         },
-        "link": "https://lodestoneenergy.co.nz/"
+        "link": "https://lodestoneenergy.co.nz/whitianga-solar-farm/"
     },
     {
         "name": "Omeheu",
