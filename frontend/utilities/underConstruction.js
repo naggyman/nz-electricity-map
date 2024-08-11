@@ -259,7 +259,7 @@ export const underConstruction = [
         "operator": "Lodestone Energy",
         "status": "Committed",
         "capacityMWp": 52,
-        "openBy": "2025-12-31",
+        "openBy": "",
         "location": {
             "lat": -35.92376187513902,
             "long": 173.84303589372522
@@ -274,7 +274,7 @@ export const underConstruction = [
         "operator": "Lodestone Energy",
         "status": "Committed",
         "capacityMWp": 32.2,
-        "openBy": "2025-12-31",
+        "openBy": "",
         "yearlyGenerationGWh": 54,
         "location": {
             "lat": -36.851852353029905,
@@ -318,7 +318,7 @@ export const underConstruction = [
         "site": "",
         "substation": "Maungaturoto",
         "fuel": "Solar",
-        "operator": "NewPower Energy",
+        "operator": "Solar Bay",
         "status": "Committed",
         "capacityMWp": 21,
         "yearlyGenerationGWh": 30,
