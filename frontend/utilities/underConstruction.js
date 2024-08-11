@@ -132,7 +132,7 @@ export const underConstruction = [
         "status": "Under Construction",
         "capacityMW": 51.4,
         "yearlyGenerationGWh": 430,
-        "openBy": "2024-12-31",
+        "openBy": "2024-09-30",
         "link": "https://contact.co.nz/aboutus/our-story/our-projects/tehuka"
     },
     {
@@ -321,7 +321,7 @@ export const underConstruction = [
         "status": "Committed",
         "capacityMWp": 21,
         "yearlyGenerationGWh": 30,
-        "openBy": "2025-06-31",
+        "openBy": "2025-06-30",
         "location": {
             "lat": -36.08995575600482,
             "long": 174.34730610408738
