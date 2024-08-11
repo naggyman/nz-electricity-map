@@ -2,7 +2,7 @@ import { detemineMapColour } from "../utilities/colours.js";
 import { populateGeneratorPopup, populateSubstationPopup, newBuildGenerationCapacityString } from "./mapPopup.js";
 import { underConstruction } from "../utilities/underConstruction.js";
 import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.js";
-import { SKIP_LIST } from "../utilities/units.js";
+import { SKIP_LIST, formatFuel } from "../utilities/units.js";
 
 const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
 
@@ -90,7 +90,7 @@ function addUnderConstructionSites(layer){
         }).bindPopup(
                 `<h5>${site.name}</h5>` +
                 ((site.locationDescription) ? `<b>${site.locationDescription}</b><br>` : '' ) +
-                `<b>Type: </b>${site.fuel}<br>` + 
+                `<b>Type: </b>${formatFuel(site.fuel)}<br>` + 
                 `<b>Status: </b>${site.status}<br>` + 
                 `<b>Operator: </b>${site.operator}<br>` +
                 `<b> Capacity: </b>` +

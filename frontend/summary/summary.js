@@ -1,4 +1,4 @@
-import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
+import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY, SKIP_LIST, formatFuel } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 
 const waitakiGeneratorSiteCodes = ["TKA", "TKB", "OHA", "OHB", "OHC", "BEN", "AVI", "WTK"];
@@ -124,7 +124,7 @@ async function getStats() {
     Object.keys(niGenerationByFuel).sort((a, b) => niGenerationByFuel[b] - niGenerationByFuel[a]).forEach(fuel => {
         var newRow = niGenByFuelTable.insertRow();
 
-        newRow.insertCell().appendChild(document.createTextNode(fuel));
+        newRow.insertCell().appendChild(document.createTextNode(formatFuel(fuel)));
         newRow.insertCell().appendChild(document.createTextNode(displayMegawattsOrGigawatts(niGenerationByFuel[fuel])));
         newRow.insertCell().appendChild(document.createTextNode(displayMegawattsOrGigawatts(niCapacityByFuel[fuel])));
         newRow.insertCell().appendChild(document.createTextNode(Math.round(niGenerationByFuel[fuel] / islandGeneration.NI * 100) + "%"));
@@ -135,7 +135,7 @@ async function getStats() {
     Object.keys(siGenerationByFuel).sort((a, b) => siGenerationByFuel[b] - siGenerationByFuel[a]).forEach(fuel => {
         var newRow = siGenByFuelTable.insertRow();
 
-        newRow.insertCell().appendChild(document.createTextNode(fuel));
+        newRow.insertCell().appendChild(document.createTextNode(formatFuel(fuel)));
         newRow.insertCell().appendChild(document.createTextNode(displayMegawattsOrGigawatts(siGenerationByFuel[fuel])));
         newRow.insertCell().appendChild(document.createTextNode(displayMegawattsOrGigawatts(siCapacityByFuel[fuel])));
         newRow.insertCell().appendChild(document.createTextNode(Math.round(siGenerationByFuel[fuel] / islandGeneration.SI * 100) + "%"));
@@ -145,7 +145,7 @@ async function getStats() {
     nzGenByFuelTable.innerHTML = "";
     Object.keys(nzGenerationByFuel).sort((a, b) => nzGenerationByFuel[b] - nzGenerationByFuel[a]).forEach(fuel => {
         if (fuel === "Battery (Charging)") { return; }
-        addGenerationRow(nzGenByFuelTable, fuel, nzGenerationByFuel[fuel], nzCapacityByFuel[fuel], nzGeneration);
+        addGenerationRow(nzGenByFuelTable, formatFuel(fuel), nzGenerationByFuel[fuel], nzCapacityByFuel[fuel], nzGeneration);
     });
 
     addGenerationRow(nzGenByFuelTable, "Total Generation", nzGeneration, nzCapacity, nzGeneration, true);
@@ -163,7 +163,7 @@ async function getStats() {
     addGenerationRow(nzGenByFuelTable, "Renewables", renewableGeneration, renewableCapacity, nzGeneration);
 
     // Battery (charging) row
-    addGenerationRow(nzGenByFuelTable, FUELS_KEY["BESS-C"], nzGenerationByFuel[FUELS_KEY["BESS-C"]], nzCapacityByFuel[FUELS_KEY["BESS-C"]], nzGeneration);
+    addGenerationRow(nzGenByFuelTable, formatFuel(FUELS_KEY["BESS-C"]), nzGenerationByFuel[FUELS_KEY["BESS-C"]], nzCapacityByFuel[FUELS_KEY["BESS-C"]], nzGeneration);
 }
 
 function setForFuel(fuel, summaryGeneration, summaryCapacity, unitGeneration, unitCapacity) {

@@ -1,5 +1,5 @@
 import { underConstruction } from '../utilities/underConstruction.js';
-import { displayMegawattsOrGigawatts } from '../utilities/units.js';
+import { displayMegawattsOrGigawatts, formatFuel } from '../utilities/units.js';
 
 export function newBuildGenerationCapacityString(newBuild){
     var output = '';
@@ -134,7 +134,7 @@ function populateGenerationUnit(unit, showName = true) {
 
     return `
         <div style="padding-bottom: 5px;">
-            ${name} ${unit.fuel} - Generation: ${displayMegawattsOrGigawatts(unit.generation)} /  ${capacityText}<br>
+            ${name} ${formatFuel(unit.fuel)} - Generation: ${displayMegawattsOrGigawatts(unit.generation)} /  ${capacityText}<br>
             ${populatePercentage(Math.round(unit.generation / totalCapacityIncludingOutage * 100))}
         </div>`
 }
@@ -207,7 +207,7 @@ function getSubstationGenerationRows(substationData){
 
                 html += `<tr>
                     <td>${connection.generatorInfo.plantName}</td>
-                    <td>${connection.generatorInfo.fuel}</td>
+                    <td>${formatFuel(connection.generatorInfo.fuel)}</td>
                     <td>${displayMegawattsOrGigawatts(connection.generationMW)}</td>
                     <td>${displayMegawattsOrGigawatts(connection.generatorInfo.nameplateCapacityMW)}</td>
                     <td>

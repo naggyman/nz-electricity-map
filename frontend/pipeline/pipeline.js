@@ -1,4 +1,5 @@
 import { underConstruction } from "../utilities/underConstruction.js";
+import { formatFuel } from "../utilities/units.js";
 
 var table = document.getElementById('generation-pipeline-table');
 
@@ -95,7 +96,7 @@ function addRow(site){
     
     row.insertCell().innerHTML = `<b>${site.name}</b>${(site.locationDescription != undefined) ? ` ${site.locationDescription}` : ""}`
     addCell(row, site.operator);
-    addCell(row, site.fuel);
+    addCell(row, formatFuel(site.fuel));
     addCell(row, site.status);
     addCell(row, formatDate(site.openBy));
     addCell(row, (site.capacityMW || site.predictedCapacityMW || '?') + " MW");

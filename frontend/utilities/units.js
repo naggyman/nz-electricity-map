@@ -41,3 +41,23 @@ export function getDateRelativeToNowInNZ(daysAgo = 0, hoursAgo = 0){
     const adjustedByDaysAgo = new Date(currentTimeInNZ.setDate(currentTimeInNZ.getDate() - daysAgo));
     return new Date(adjustedByDaysAgo.setHours(currentTimeInNZ.getHours() - hoursAgo));
 }
+
+export function formatFuel(fuel){
+    var emoji = "";
+
+    switch(fuel){
+        case "Solar": emoji = "☀️"; break;
+        case "Hydro": emoji = "🌊"; break;
+        case "Battery": 
+        case "Battery (Charging)":
+            emoji = "🔋"; break;
+        case "Battery (Discharging)": emoji = "🪫"; break
+        case "Geothermal": emoji = "🌋"; break;
+        case "Wind": emoji = "💨"; break;
+        case "Gas": emoji = "🔥"; break;
+        case "Coal/Gas": emoji = "🏭"; break;
+        case "Diesel": emoji = "🛢️"; break;
+    }
+
+    return `${emoji} ${fuel}`;
+}
