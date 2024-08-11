@@ -84,7 +84,7 @@ export const underConstruction = [
         "link": "https://www.genesisenergy.co.nz/about/generation/lauriston-solar-farm"
     },
     {
-        "name": "Glenbrook",
+        "name": "Glenbrook-Ohurua",
         "site": "",
         "substation": "Glenbrook",
         "fuel": "Battery",
