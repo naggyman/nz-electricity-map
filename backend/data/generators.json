@@ -1638,7 +1638,7 @@
                 "name": "Rangitaiki",
                 "unitCode": "RGT0",
                 "node": "EDG0331 RGT0",
-                "capacity": 23,
+                "capacity": 23.7,
                 "fuel": "Solar",
                 "fuelCode": "SOL"
             }
