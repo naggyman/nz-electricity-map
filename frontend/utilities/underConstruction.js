@@ -328,4 +328,20 @@ export const underConstruction = [
         },
         "link": "https://www.al.nz/17821-2/"
     },
+    {
+        "name": "Kōwhai Park",
+        "site": "",
+        "substation": "Islington",
+        "fuel": "Solar",
+        "operator": "Contact Energy / Lightsource bp",
+        "status": "Committed",
+        "capacityMWp": 168,
+        "yearlyGenerationGWh": 275,
+        "openBy": "2026-05-31",
+        "location": {
+            "lat": -43.49277380784132, //todo - refine this down further
+            "long": 172.50953626586775
+        },
+        "link": "https://www.christchurchairport.co.nz/about-us/sustainability/kowhai-park/"
+    },
 ]
