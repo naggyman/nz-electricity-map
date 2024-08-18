@@ -4,6 +4,8 @@ import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './grap
 import { FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
 import { getLiveGenerationData, getTimeseriesGenerationData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
+//import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
+import { createHighchart } from './graphChart.js';
 
 const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
@@ -347,117 +349,37 @@ async function getTradingPeriodStats(forceUpdate = false) {
         }
     });
 
-    let subtitleText = getSubtitleText(tradingPeriodTimestamps[0], mostRecentTradingPeriodTimestamp);
+    /*var firstTradingPeriodDate = new Date(tradingPeriodTimestamps[0].split("T")[0]);
+    console.log(firstTradingPeriodDate);
+    console.log(tradingPeriodTimestamps[0].split("T")[0])
+    var sunrise = new Date(getSunrise(-41.2924, 174.7787, firstTradingPeriodDate) - 24 * 60 * 60 * 1000);
+    var sunset = getSunset(-41.2924, 174.7787, firstTradingPeriodDate);
+    console.log("Sunrise: " + sunrise);
+    console.log("Sunset: " + sunset);*/
+
+    let subtitle = getSubtitleText(tradingPeriodTimestamps[0], mostRecentTradingPeriodTimestamp);
     let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
 
-    Highcharts.chart('generation-chart', {
-        chart: {
-            type: 'area',
-            zoomType: 'x',
-
-            events: {
-                redraw: function (event) {
-                    // if the user has manually hidden a series, update the URL query parameter to reflect this
-                    let visibleSeriesCommaSeparatedString = "";
-                    const series = this.userOptions.series;
-                    series.forEach((series, index) => {
-
-                        if (series.visible !== false) {
-                            visibleSeriesCommaSeparatedString += (visibleSeriesCommaSeparatedString.length > 0) ? "," : "";
-                            visibleSeriesCommaSeparatedString += Object.keys(FUELS_KEY).at(Object.values(FUELS_KEY).indexOf(series.name));
-                        }
-
-                    });
-                    setQueryParam("fuel", visibleSeriesCommaSeparatedString);
-                }
-            }
-        },
-
-        title: {
-            text: `NZ Electricity Generation ${(filterDescription !== "") ? " - " + filterDescription : ""}`,
-            align: 'center'
-        },
-
-        subtitle: {
-            text: subtitleText,
-            align: 'center'
-        },
-
-        tooltip: {
-            shared: true,
-            crosshairs: true,
-            useHtml: true,
-            formatter: getTooltipForFuelFilteredGraph
-        },
-
-        credits: {
-            enabled: false
-        },
-
-        yAxis: {
-            title: {
-                text: 'Generation (MW)'
-            },
-            startOnTick: false,
-            endOnTick: false,
-        },
-
-        xAxis: {
-            categories: xAxisLabels,
-            plotLines: plotLines
-        },
-
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: true
-                },
-                pointStart: 0,
-                marker: {
-                    enabled: false
-                },
-                animation: false
-            },
-            area: {
-                stacking: 'normal'
-            }
-        },
-
-        series: seriesData,
-
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 900
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        verticalAlign: 'bottom',
-                    }
-                }
-            },
-            {
-                condition: {
-                    maxWidth: 400
-                },
-                chartOptions: {
-                    legend: {
-                        enabled: false
-                    }
-                }
-            }]
-        }
-    });
+    let title = `NZ Electricity Generation ${(filterDescription !== "") ? " - " + filterDescription : ""}`;
+    createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, getTooltipForFuelFilteredGraph, onRedraw);
 
     updateInProgress = false;
     statusSpan.innerHTML = lastUpdatedString;
+}
+
+function onRedraw(event){
+    // if the user has manually hidden a series, update the URL query parameter to reflect this
+    let visibleSeriesCommaSeparatedString = "";
+    const series = this.userOptions.series;
+    series.forEach((series, index) => {
+
+        if (series.visible !== false) {
+            visibleSeriesCommaSeparatedString += (visibleSeriesCommaSeparatedString.length > 0) ? "," : "";
+            visibleSeriesCommaSeparatedString += Object.keys(FUELS_KEY).at(Object.values(FUELS_KEY).indexOf(series.name));
+        }
+
+    });
+    setQueryParam("fuel", visibleSeriesCommaSeparatedString);
 }
 
 getTradingPeriodStats();
