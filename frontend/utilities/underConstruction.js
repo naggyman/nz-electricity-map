@@ -89,7 +89,7 @@ export const underConstruction = [
         "substation": "Glenbrook",
         "fuel": "Battery",
         "operator": "Contact Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMW": 100,
         "capacityMWh": 200,
         "openBy": "2026-03-31",
