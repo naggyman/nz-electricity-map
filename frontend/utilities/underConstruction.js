@@ -141,8 +141,8 @@ export const underConstruction = [
         "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Rānui Generation",
-        "status": "Committed",
-        "capacityMWp": 30,
+        "status": "Under Construction",
+        "capacityMWp": 31,
         "capacityMW": 24,
         "yearlyGenerationGWh": 42,
         "location": {
