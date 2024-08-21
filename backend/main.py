@@ -22,7 +22,9 @@ def __init__():
 
     createGeneratorOutputFile(liveGenerators)
     create5MinuteIntervalFile(liveGenerators, realTimeDispatch)
+    create5MinutePriceFile(realTimeDispatch)
     createSubstationOutputFile(liveSubstations)
+
 
 def create5MinuteIntervalFile(liveGenerators: LiveGenerators, realTimeDispatch: RealTimeDispatch):
     lastUpdated = realTimeDispatch.lastUpdated()
@@ -36,6 +38,28 @@ def create5MinuteIntervalFile(liveGenerators: LiveGenerators, realTimeDispatch: 
 
     with open(dailyFile, 'w') as file:
         file.write(json.dumps(liveGenerators.getIntervalGenerationSummary(existingData), indent=1))
+
+def create5MinutePriceFile(realTimeDispatch: RealTimeDispatch):
+    lastUpdated = realTimeDispatch.lastUpdated()
+
+    existingData = {}
+    dailyFile = pathPrefix + '5min/' + lastUpdated.split('T')[0] + '.price.json'
+    print(dailyFile)
+
+    if path.isfile(dailyFile) is True:
+        with open(dailyFile) as fp:
+            existingData = json.load(fp)
+
+    if lastUpdated in existingData:
+        return
+    
+    existingData[lastUpdated] = {
+        'OTA2201': realTimeDispatch.get('OTA2201')['DollarsPerMegawattHour'],
+        'BEN2201': realTimeDispatch.get('BEN2201')['DollarsPerMegawattHour']
+    }
+
+    with open(dailyFile, 'w') as file:
+        file.write(json.dumps(existingData, indent=1))
 
 def createGeneratorOutputFile(liveGenerators: LiveGenerators):
     with open(generatorOutput, 'w') as file:
