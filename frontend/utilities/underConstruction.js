@@ -346,4 +346,16 @@ export const underConstruction = [
         },
         "link": "https://www.christchurchairport.co.nz/about-us/sustainability/kowhai-park/"
     },
+    {
+        "name": "Huntly",
+        "locationDescription": "BESS Stage 1",
+        "site": "HLY",
+        "fuel": "Battery",
+        "operator": "Genesis Energy",
+        "status": "Committed",
+        "capacityMW": 100,
+        "capacityMWh": 200,
+        "openBy": "2026-09-30",
+        "link": "https://api.nzx.com/public/announcement/436601/attachment/425263/436601-425263.pdf"
+    },
 ]
