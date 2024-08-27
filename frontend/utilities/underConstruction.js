@@ -335,7 +335,7 @@ export const underConstruction = [
         "substation": "Norwood",
         "fuel": "Solar",
         "operator": "Contact Energy / Lightsource bp",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMW": 150,
         "capacityMWp": 168,
         "yearlyGenerationGWh": 275,
