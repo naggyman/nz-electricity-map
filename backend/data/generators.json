@@ -1446,6 +1446,14 @@
                 "capacity": 29,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
+            },
+            {
+                "name": "Te Huka Unit 3",
+                "unitCode": "TAC0",
+                "node": "TAB0331 TAC0",
+                "capacity": 51.4,
+                "fuel": "Geothermal",
+                "fuelCode": "GEO"
             }
         ],
         "location": {
