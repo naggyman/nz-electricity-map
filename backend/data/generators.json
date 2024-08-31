@@ -276,7 +276,7 @@
                 "name": "Kawerau CoGen",
                 "unitCode": "ONU0",
                 "node": "KAW0112 ONU0",
-                "capacity": 43,
+                "capacity": 49,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
