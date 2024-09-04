@@ -153,18 +153,6 @@ export const underConstruction = [
     },
     {
         "name": "Karāpiro",
-        "locationDescription": "Unit 2 Upgrade",
-        "site": "KPO",
-        "fuel": "Hydro",
-        "operator": "Mercury",
-        "status": "Under Construction",
-        "capacityMW": 5.5,
-        "yearlyGenerationGWh": 10.7,
-        "openBy": "2024-08-27",
-        "link": "https://www.mercury.co.nz/karapiro-dam"
-    },
-    {
-        "name": "Karāpiro",
         "locationDescription": "Unit 3 Upgrade",
         "site": "KPO",
         "fuel": "Hydro",
