@@ -36,39 +36,6 @@ regionSelectDropdown.addEventListener('change', () => onRegionDropdownSelect(reg
 powerStationFilterDropdown.addEventListener('change', () => onGeneratorDropdownSelect(powerStationFilterDropdown));
 clearButton.addEventListener('click', () => onClearButtonSelect());
 
-let buttons = [];
-
-addButton('1h-button', '-1h');
-addButton('3h-button', '-3h');
-addButton('1d-button', '-0d');
-addButton('24h-button', '-24h');
-addButton('3d-button', '-3d');
-addButton('7d-button', '-7d');
-
-function addButton(id, timeframeValue) {
-    let button = document.getElementById(id);
-    buttons.push(button);
-    button.addEventListener('click', (event) => onDateButtonPressed(timeframeValue, event));
-
-    if (((new URLSearchParams(window.location.search)).get("timeframe") || "-0d") === timeframeValue) {
-        button.classList.remove("btn-secondary");
-        button.classList.add("btn-primary");
-    }
-}
-
-function onDateButtonPressed(timeframe, button) {
-    setQueryParam("timeframe", timeframe);
-    getTradingPeriodStats(true);
-
-    buttons.forEach((button) => {
-        button.classList.remove("btn-primary");
-        button.classList.add("btn-secondary");
-    });
-
-    button.target.classList.remove("btn-secondary");
-    button.target.classList.add("btn-primary");
-}
-
 function isMidnight(time) {
     return time.split("T")[1] === "00:00:00";
 }
@@ -156,14 +123,8 @@ function setQueryParam(param, value) {
 }
 
 function onClearButtonSelect() {
-    setQueryParam("timeframe", "");
-    setQueryParam("site", "");
-    setQueryParam("island", "");
-    setQueryParam("zone", "");
-    setQueryParam("fuel", "");
-    setQueryParam("redirect", "");
-    onDateButtonPressed("-0d", { target: document.getElementById("1d-button") });
-    getTradingPeriodStats(true);
+    window.location.search = "";
+    timeframeSelector.update();
 }
 
 function getSubtitleText(oldestTimestamp, newestTimestamp) {

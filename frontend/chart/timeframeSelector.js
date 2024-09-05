@@ -57,7 +57,7 @@ export class TimeFrameSelector {
         element.appendChild(button);
     }
 
-    update(type, value) {
+    update(type = RELATIVE_SELECTOR, value = chartConfig.defaultTimeframe) {
         if(type === RELATIVE_SELECTOR) {
             this.setRelativeTimeframe(value);
         }
