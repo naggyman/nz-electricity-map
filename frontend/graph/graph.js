@@ -4,8 +4,25 @@ import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './grap
 import { FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
 import { getLiveGenerationData, getTimeseriesGenerationData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
-//import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
 import { createHighchart } from './graphChart.js';
+import { TimeFrameSelector } from '../chart/timeframeSelector.js';
+
+
+const TIMEFRAME_QUERY_PARAM = "timeframe";
+const DATE_QUERY_PARAM = "date";
+
+var queryParams = new URLSearchParams(window.location.search)
+var timeframeSelection = queryParams.get(TIMEFRAME_QUERY_PARAM)
+var dateSelection = queryParams.get(DATE_QUERY_PARAM);
+
+const timeframeSelector = new TimeFrameSelector(timeframeSelection, dateSelection);
+
+timeframeSelector.subscribe(updateQueryParams)
+
+function updateQueryParams(){
+    setQueryParam("timeframe", timeframeSelector.relativeTimeframe);
+    getTradingPeriodStats(true)
+}
 
 const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
 const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
