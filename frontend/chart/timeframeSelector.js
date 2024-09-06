@@ -53,7 +53,7 @@ export class TimeFrameSelector {
         let textBox = document.createElement("span");
         textBox.id = "date"
         textBox.classList.add("input-group-text");
-        textBox.innerHTML = this.absoluteTimeframe;
+        textBox.innerHTML = new Date(this.absoluteTimeframe).toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" });
         
         element.appendChild(textBox)
 
