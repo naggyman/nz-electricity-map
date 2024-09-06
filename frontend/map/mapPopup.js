@@ -187,10 +187,13 @@ function getSubstationBusbarRows(substationData){
     Object.keys(substationData.busbars).forEach((busbar) => {
         const details = substationData.busbars[busbar];
 
+        var demandHistoryLink = `<td><a href="https://www.emi.ea.govt.nz/Wholesale/Reports/W_GD_C?RegionType=POC&_rsdr=D1&seriesFilter=${details.connections[0].identifier}&_si=v|3" target="_blank">Demand history</a></td>`;
+
         html += `<tr>
             <td>${busbar}</td>
             <td>${displayMegawattsOrGigawatts(details.totalLoadMW)}</td>
             <td>$${details.priceDollarsPerMegawattHour}/MWh</td>
+            ${(details.totalLoadMW > 0) ? demandHistoryLink : '<td></td>'}
         </tr>`
     })
     return html;
@@ -242,13 +245,15 @@ export function populateSubstationPopup(substationData, lastUpdated) {
         <table style="width:100%" class="table table-sm table-striped">
             <tr>
                 <th style="width:30%">Busbar</th>
-                <th style="width:40%">Load</th>
-                <th style="width:30%">Price</th>
+                <th style="width:30%">Load</th>
+                <th style="width:20%">Price</th>
+                <th></th>
             </tr>
             ${getSubstationBusbarRows(substationData)}
             <tr>
                 <th>Total</td>
                 <th>${displayMegawattsOrGigawatts(substationData.totalLoadMW)}</td>
+                <th></td>
                 <th></td>
             </tr>
         </table>`;
@@ -297,7 +302,6 @@ export function populateSubstationPopup(substationData, lastUpdated) {
     }
 
     html += `<i> Last Updated: ${lastUpdated}</i></div>`;
-    
 
     return html;
 }

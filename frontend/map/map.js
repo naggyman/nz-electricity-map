@@ -11,7 +11,7 @@ setupMap();
 function setupMap() {
     const basemapSelection = getQueryParam("basemap") || 'osm';
     const generatorSelection = getQueryParam("generators") || '1';
-    const substationSelection = getQueryParam("substations") || '0';
+    const substationSelection = getQueryParam("substations") || '1';
 
     const startPos = [
         getQueryParam("lat") || -40.5, 
@@ -50,16 +50,16 @@ function setupMap() {
         osm.addTo(map);
     }
 
-    if (generatorSelection === '1') {
-        map.addLayer(generatorMarkers);
-    }
-
     if (substationSelection === '1') {
         map.addLayer(substationLayer);
     }
 
     map.addLayer(underConstructionLayer);
     addUnderConstructionSites(underConstructionLayer);
+
+    if (generatorSelection === '1') {
+        map.addLayer(generatorMarkers);
+    }
 
     map.setView(startPos, startZoom);
 
