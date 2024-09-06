@@ -1,7 +1,10 @@
 import { chartConfig } from "./chartConfig.js";
+import { formatDate, getCurrentTimeInNZ } from "../utilities/units.js";
 
 const RELATIVE_SELECTOR = "relative";
 const ABSOLUTE_SELECTOR = "absolute";
+
+const MIN_DATE = '2020-09-11'; //earliest I have historical data for currently
 
 export class TimeFrameSelector {
     constructor(timeframeSelection, dateSelection) {
@@ -33,8 +36,10 @@ export class TimeFrameSelector {
     render() {
         let element = document.getElementById("timeframe-selector");
         element.innerHTML = "";
-        if(this.selectionType === "relative") {
+        if(this.selectionType === RELATIVE_SELECTOR) {
             this.renderRelativeTimeframeSelector(element);
+        } else if (this.selectionType === ABSOLUTE_SELECTOR) {
+            this.renderDatePicker(element);
         }
     }
 
@@ -42,6 +47,27 @@ export class TimeFrameSelector {
         chartConfig.relativeTimeframeOptions.forEach((option) => {
             this.addButton(element, option.label, RELATIVE_SELECTOR, option.value, this.relativeTimeframe === option.value);
         });
+    }
+
+    renderDatePicker(element){
+        let textBox = document.createElement("span");
+        textBox.id = "date"
+        textBox.classList.add("input-group-text");
+        textBox.innerHTML = this.absoluteTimeframe;
+        
+        element.appendChild(textBox)
+
+        new Datepicker('#date', {
+            onChange: ((date) => this.datePickerChanged(date, this)),
+            min: (() => new Date(MIN_DATE))(),
+            max: (() => getCurrentTimeInNZ())(),
+            openOn: (() => new Date(this.absoluteTimeframe))()
+        })
+    }
+
+    datePickerChanged(date){
+        if(date === undefined) return;
+        this.update(ABSOLUTE_SELECTOR, formatDate(date));
     }
 
     addButton(element, label, type, value, selected) {
@@ -62,6 +88,11 @@ export class TimeFrameSelector {
         if(type === RELATIVE_SELECTOR) {
             this.setRelativeTimeframe(value);
         }
+
+        if(type === ABSOLUTE_SELECTOR) {
+            this.setAbsoluteDate(value);
+        }
+
         this.render();
         this.notify();
     }
@@ -69,5 +100,10 @@ export class TimeFrameSelector {
     setRelativeTimeframe(timeframe) {
         this.selectionType = RELATIVE_SELECTOR;
         this.relativeTimeframe = timeframe;
+    }
+
+    setAbsoluteDate(date) {
+        this.selectionType = ABSOLUTE_SELECTOR;
+        this.absoluteTimeframe = date;
     }
 }

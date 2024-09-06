@@ -20,7 +20,14 @@ const timeframeSelector = new TimeFrameSelector(timeframeSelection, dateSelectio
 timeframeSelector.subscribe(updateQueryParams)
 
 function updateQueryParams(){
-    setQueryParam("timeframe", timeframeSelector.relativeTimeframe);
+    if(timeframeSelector.selectionType == "relative"){
+        setQueryParam("timeframe", timeframeSelector.relativeTimeframe);
+        setQueryParam("date", "");
+    } else if(timeframeSelector.selectionType == "absolute") {
+        setQueryParam("timeframe", "");
+        setQueryParam("date", timeframeSelector.absoluteTimeframe);
+    }
+    
     getTradingPeriodStats(true)
 }
 

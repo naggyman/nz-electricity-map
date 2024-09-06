@@ -42,6 +42,10 @@ export function getDateRelativeToNowInNZ(daysAgo = 0, hoursAgo = 0){
     return new Date(adjustedByDaysAgo.setHours(currentTimeInNZ.getHours() - hoursAgo));
 }
 
+export function formatDate(date){
+    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+}
+
 export function formatFuel(fuel){
     var emoji = "";
 
