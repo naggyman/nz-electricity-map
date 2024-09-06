@@ -117,11 +117,10 @@ export class TimeFrameSelector {
 
     addButton(element, label, type, value, selected) {
         let button = document.createElement("button");
-        button.classList.add("btn");
-        button.classList.add(selected ? "btn-primary" : "btn-secondary");
+        button.classList.add("btn", selected ? "btn-primary" : "btn-secondary");
         button.innerText = label;
         button.type = "button";
-        button.style = "font-size: 0.875rem; padding: 0.25rem 0.5rem;"
+        button.style = "padding: 0.4rem 0.5rem;"
         button.addEventListener("click", () => {
             this.update(type, value);
         });
