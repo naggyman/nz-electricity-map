@@ -50,6 +50,20 @@ export class TimeFrameSelector {
     }
 
     renderDatePicker(element){
+        //////////
+        /// Previous Button
+        //////////
+        let previous = document.createElement("button");
+        previous.classList.add("btn", "btn-secondary");
+        previous.innerText = "<-";
+        previous.type = "button";
+        previous.addEventListener("click", () => this.changeDate(-1));
+
+        element.appendChild(previous)
+
+        //////////
+        /// Text Box
+        //////////
         let textBox = document.createElement("span");
         textBox.id = "date"
         textBox.classList.add("input-group-text");
@@ -57,12 +71,43 @@ export class TimeFrameSelector {
         
         element.appendChild(textBox)
 
+
+        //////////
+        /// Next Button
+        //////////
+        let next = document.createElement("button");
+        next.classList.add("btn", "btn-secondary");
+        next.innerText = "->";
+        next.type = "button";
+        next.addEventListener("click", () => this.changeDate(+1));
+
+        element.appendChild(next)
+
+        //////////
+        /// Datepicker Itself
+        //////////
         new Datepicker('#date', {
             onChange: ((date) => this.datePickerChanged(date, this)),
             min: (() => new Date(MIN_DATE))(),
             max: (() => getCurrentTimeInNZ())(),
             openOn: (() => new Date(this.absoluteTimeframe))()
         })
+    }
+
+    changeDate(modifier){
+        let currentSelectedDate = new Date(this.absoluteTimeframe);
+        let modifiedDate = new Date(currentSelectedDate.getTime());
+        modifiedDate.setDate(currentSelectedDate.getDate() + modifier);
+
+        if(modifiedDate.getTime() > getCurrentTimeInNZ().getTime()){
+            return;
+        }
+
+        if(modifiedDate.getTime() < new Date(MIN_DATE).getTime()){
+            return;
+        }
+
+        this.update(ABSOLUTE_SELECTOR, formatDate(modifiedDate));
     }
 
     datePickerChanged(date){
