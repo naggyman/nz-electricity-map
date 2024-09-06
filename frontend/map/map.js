@@ -5,6 +5,8 @@ import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.j
 import { SKIP_LIST, formatFuel } from "../utilities/units.js";
 
 const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
+const LOWER_PANE = 'lower';
+const UPPER_PANE = 'upper';
 
 setupMap();
 
@@ -43,6 +45,13 @@ function setupMap() {
     }
 
     const map = L.map('map');
+
+    /// Panes are used to ensure Generator Markers are always on top
+    map.createPane(LOWER_PANE);
+    map.getPane(LOWER_PANE).style.zIndex = 600;
+    
+    map.createPane(UPPER_PANE);
+    map.getPane(UPPER_PANE).style.zIndex = 650;    
     
     if(basemapSelection === 'linz'){
         linz.addTo(map);
@@ -69,10 +78,10 @@ function setupMap() {
     map.on('overlayremove', (event) => onOverlayRemove(map, event));
 
     L.control.layers(baseMaps, overlays).addTo(map);
-
+    
     getSubstationData(substationLayer);
     window.setInterval(() => getSubstationData(substationLayer), 60000);
-
+    
     getGenerationData(generatorMarkers);
     window.setInterval(() => getGenerationData(generatorMarkers), 60000);
 }
@@ -86,7 +95,8 @@ function addUnderConstructionSites(layer){
             weight: 0.4,
             fill: true,
             fillOpacity: 0.9,
-            fillColor: detemineMapColour(site)
+            fillColor: detemineMapColour(site),
+            pane: LOWER_PANE
         }).bindPopup(
                 `<h5>${site.name}</h5>` +
                 ((site.locationDescription) ? `<b>${site.locationDescription}</b><br>` : '' ) +
@@ -164,7 +174,6 @@ function getQueryParam(param){
 
 function updateGenerationMap(generationData, generationLayer) {
     generationLayer.clearLayers();
-    generationLayer.setZIndex(1);
 
     var lastUpdatedDate = new Date(generationData.lastUpdate);
 
@@ -186,7 +195,8 @@ function updateGenerationMap(generationData, generationLayer) {
             weight: 0.4,
             fill: true,
             fillOpacity: 0.9,
-            fillColor: markerColour
+            fillColor: markerColour,
+            pane: UPPER_PANE
         }).bindPopup(generatorHtml, { maxWidth: 1200 }).addTo(generationLayer)
     });
 }
@@ -219,7 +229,6 @@ function updateSubstationMap(substationData, substationLayer) {
     let lastUpdated = new Date(substationData.lastUpdated).toLocaleDateString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" })
 
     substationLayer.clearLayers();
-    substationLayer.setZIndex(2);
 
     substationData.sites.forEach((substation) => {
         if(substation.type !== 'ACSTN'  && substation.totalLoadMW == 0){
@@ -234,7 +243,8 @@ function updateSubstationMap(substationData, substationLayer) {
             weight: 1,
             fill: true,
             fillOpacity: 1,
-            fillColor: '#000000'
+            fillColor: '#000000',
+            pane: LOWER_PANE
         }).bindPopup(substationHtml, { maxWidth: 800 }).addTo(substationLayer)
     });
 }
