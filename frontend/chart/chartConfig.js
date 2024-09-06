@@ -4,7 +4,6 @@ export const chartConfig = {
         { value: "-3h", label: "3h" },
         { value: "-0d", label: "Today" },
         { value: "-24h", label: "24h" },
-        { value: "-1d", label: "1d" },
         { value: "-3d", label: "3d" },
         { value: "-7d", label: "7d" }
     ],
