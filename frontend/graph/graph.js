@@ -6,6 +6,7 @@ import { getLiveGenerationData, getTimeseriesGenerationData } from '../utilities
 import { getCurrentTimeInNZ } from '../utilities/units.js';
 import { createHighchart } from './graphChart.js';
 import { TimeFrameSelector } from '../chart/timeframeSelector.js';
+import { decomissioned } from '../utilities/decomissioned.js';
 
 
 const TIMEFRAME_QUERY_PARAM = "timeframe";
@@ -343,6 +344,11 @@ async function getTradingPeriodStats(forceUpdate = false) {
     console.log("Sunset: " + sunset);*/
 
     let subtitle = getSubtitleText(tradingPeriodTimestamps[0], mostRecentTradingPeriodTimestamp);
+
+    console.log(liveGenData.generators)
+    console.log(decomissioned[0])
+    liveGenData.generators.push(decomissioned[0])
+
     let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
 
     let title = `NZ Electricity Generation ${(filterDescription !== "") ? " - " + filterDescription : ""}`;
