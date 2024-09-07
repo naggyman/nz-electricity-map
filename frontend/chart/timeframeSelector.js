@@ -55,9 +55,7 @@ export class TimeFrameSelector {
         previous.innerText = "<-";
         previous.type = "button";
         previous.addEventListener("click", () => this.changeDate(-1));
-        previous.disabled = this.selectionType === RELATIVE_SELECTOR;
-
-        // todo - disable button when absoluteTimeframe is 
+        previous.disabled = this.selectionType === RELATIVE_SELECTOR || this.absoluteTimeframe === MIN_DATE;
 
         element.appendChild(previous)
 
@@ -83,9 +81,7 @@ export class TimeFrameSelector {
         next.innerText = "->";
         next.type = "button";
         next.addEventListener("click", () => this.changeDate(+1));
-        next.disabled = this.selectionType === RELATIVE_SELECTOR;
-
-        // todo - disable button when absoluteTimeframe is MIN_DATE
+        next.disabled = this.selectionType === RELATIVE_SELECTOR || this.absoluteTimeframe === formatDate(getCurrentTimeInNZ());
 
         element.appendChild(next)
 
