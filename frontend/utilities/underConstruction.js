@@ -236,6 +236,7 @@ export const underConstruction = [
             "lat": -37.44080411617218,
             "long": 175.13234517360215
         },
+        "openBy": "2025-12-31",
         "link": "https://www.linkedin.com/posts/infratec_nz_a-bit-of-grey-weather-in-the-waikato-didn-activity-7221341384148992000-XnVG?utm_source=share&utm_medium=member_desktop"
     },
     {
