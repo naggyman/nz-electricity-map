@@ -3,10 +3,14 @@ export function displayMegawattsOrGigawatts(input) {
         return input + " MW"
     }
 
+    if (input < 0 && input > -1){
+        return input + " MW"
+    }
+
     var rounded = input.toFixed(1);
 
     if (rounded >= 1000) {
-        return (input / 1000).toFixed(2) + " GW";
+        return (input / 1000).toFixed(3) + " GW";
     }
 
     if((rounded % 1) == 0){
