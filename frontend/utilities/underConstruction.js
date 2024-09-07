@@ -258,7 +258,7 @@ export const underConstruction = [
         "substation": "Kopu",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMWp": 32,
         "openBy": "2025-11-30",
         "yearlyGenerationGWh": 49,
