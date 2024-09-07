@@ -36,11 +36,8 @@ export class TimeFrameSelector {
     render() {
         let element = document.getElementById("timeframe-selector");
         element.innerHTML = "";
-        if(this.selectionType === RELATIVE_SELECTOR) {
-            this.renderRelativeTimeframeSelector(element);
-        } else if (this.selectionType === ABSOLUTE_SELECTOR) {
-            this.renderDatePicker(element);
-        }
+        this.renderRelativeTimeframeSelector(element);
+        this.renderDatePicker(element);
     }
 
     renderRelativeTimeframeSelector(element) {
@@ -58,6 +55,9 @@ export class TimeFrameSelector {
         previous.innerText = "<-";
         previous.type = "button";
         previous.addEventListener("click", () => this.changeDate(-1));
+        previous.disabled = this.selectionType === RELATIVE_SELECTOR;
+
+        // todo - disable button when absoluteTimeframe is 
 
         element.appendChild(previous)
 
@@ -67,7 +67,10 @@ export class TimeFrameSelector {
         let textBox = document.createElement("span");
         textBox.id = "date"
         textBox.classList.add("input-group-text");
-        textBox.innerHTML = new Date(this.absoluteTimeframe).toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" });
+        textBox.innerHTML = (this.absoluteTimeframe !== undefined) ?
+            new Date(this.absoluteTimeframe).toLocaleDateString('en-NZ', { year: "numeric", month: "short", day: "numeric" }) : 
+            "Select date";
+        
         
         element.appendChild(textBox)
 
@@ -80,6 +83,9 @@ export class TimeFrameSelector {
         next.innerText = "->";
         next.type = "button";
         next.addEventListener("click", () => this.changeDate(+1));
+        next.disabled = this.selectionType === RELATIVE_SELECTOR;
+
+        // todo - disable button when absoluteTimeframe is MIN_DATE
 
         element.appendChild(next)
 
@@ -144,10 +150,12 @@ export class TimeFrameSelector {
     setRelativeTimeframe(timeframe) {
         this.selectionType = RELATIVE_SELECTOR;
         this.relativeTimeframe = timeframe;
+        this.absoluteTimeframe = undefined;
     }
 
     setAbsoluteDate(date) {
         this.selectionType = ABSOLUTE_SELECTOR;
+        this.relativeTimeframe = undefined;
         this.absoluteTimeframe = date;
     }
 }
