@@ -4,7 +4,7 @@ import { formatDate, getCurrentTimeInNZ } from "../utilities/units.js";
 const RELATIVE_SELECTOR = "relative";
 const ABSOLUTE_SELECTOR = "absolute";
 
-const MIN_DATE = '2020-09-11'; //earliest I have historical data for currently
+const MIN_DATE = '2020-09-10'; //earliest I have historical data for currently
 
 export class TimeFrameSelector {
     constructor(timeframeSelection, dateSelection) {
@@ -90,7 +90,7 @@ export class TimeFrameSelector {
         //////////
         new Datepicker('#date', {
             onChange: ((date) => this.datePickerChanged(date, this)),
-            min: (() => new Date(MIN_DATE))(),
+            min: (() => new Date(`${MIN_DATE}T00:00:00`))(),
             max: (() => getCurrentTimeInNZ())(),
             openOn: (() => new Date(this.absoluteTimeframe))()
         })
