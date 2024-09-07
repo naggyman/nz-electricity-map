@@ -205,6 +205,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     }
 
     updateInProgress = true;
+    timeframeSelector.toggleBlockSelectionChanges();
     console.debug("Updating trading period stats graph");
 
     statusSpan.innerHTML = "Fetching data...";
@@ -380,6 +381,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, plotBands, getTooltipForFuelFilteredGraph, onRedraw);
 
     updateInProgress = false;
+    timeframeSelector.toggleBlockSelectionChanges();
     statusSpan.innerHTML = lastUpdatedString;
 }
 
