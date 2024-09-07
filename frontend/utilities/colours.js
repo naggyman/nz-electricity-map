@@ -1,3 +1,5 @@
+export const NIGHTTIME_SHADING = '#edeffc';
+
 
 export function detemineMapColour(unit) {
     if (unit.fuel === 'Wind') {

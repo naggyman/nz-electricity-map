@@ -7,7 +7,8 @@ import { getCurrentTimeInNZ } from '../utilities/units.js';
 import { createHighchart } from './graphChart.js';
 import { TimeFrameSelector } from '../chart/timeframeSelector.js';
 import { decomissioned } from '../utilities/decomissioned.js';
-//import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
+import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
+import { NIGHTTIME_SHADING } from '../utilities/colours.js';
 
 
 const TIMEFRAME_QUERY_PARAM = "timeframe";
@@ -310,11 +311,22 @@ async function getTradingPeriodStats(forceUpdate = false) {
     graphLastUpdatedTimestamp = mostRecentTradingPeriodTimestamp;
 
     let plotLines = [];
+    var plotBands = [];
+
     let xAxisLabels = [];
 
+    var firstTradingPeriodDate = new Date(`${tradingPeriodTimestamps[0].split("T")[0]}T00:00:00`);
+    var sunrise = new Date(getSunrise(-41.2924, 174.7787, firstTradingPeriodDate) - 24 * 60 * 60 * 1000);
+    var sunset = getSunset(-41.2924, 174.7787, firstTradingPeriodDate);
+
+    var sunriseFound = false;
+    var sunsetFound = false;
+
     tradingPeriodTimestamps.forEach((time, index) => {
+        var currentTimestamp = new Date(time);
+
         xAxisLabels.push(
-            new Date(time)
+            currentTimestamp
                 .toLocaleTimeString('en-NZ', {
                     hour: "numeric",
                     minute: "numeric"
@@ -327,22 +339,34 @@ async function getTradingPeriodStats(forceUpdate = false) {
                 width: 1,
                 value: index,
                 label: {
-                    text: new Date(time).toLocaleString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric" }),
+                    text: currentTimestamp.toLocaleString('en-NZ', { weekday: "long", year: "numeric", month: "short", day: "numeric" }),
                     align: 'top',
                     x: 10,
                     y: 10
                 }
             });
         }
-    });
 
-    /*var firstTradingPeriodDate = new Date(tradingPeriodTimestamps[0].split("T")[0]);
-    console.log(firstTradingPeriodDate);
-    console.log(tradingPeriodTimestamps[0].split("T")[0])
-    var sunrise = new Date(getSunrise(-41.2924, 174.7787, firstTradingPeriodDate) - 24 * 60 * 60 * 1000);
-    var sunset = getSunset(-41.2924, 174.7787, firstTradingPeriodDate);
-    console.log("Sunrise: " + sunrise);
-    console.log("Sunset: " + sunset);*/
+        if(timeframe == "-0d" && !sunriseFound && (currentTimestamp.getTime() > sunrise.getTime())){
+            sunriseFound = true;
+            plotBands.push({
+                color: NIGHTTIME_SHADING,
+                from: 0,
+                to: index,
+                zIndex: 0
+            })
+        }
+
+        if(timeframe == "-0d" && !sunsetFound && (currentTimestamp.getTime() > sunset.getTime())){
+            sunsetFound = true;
+            plotBands.push({
+                color: NIGHTTIME_SHADING,
+                from: index,
+                to: tradingPeriodTimestamps.length - 1,
+                zIndex: 0
+            })
+        }
+    });
 
     let subtitle = getSubtitleText(tradingPeriodTimestamps[0], mostRecentTradingPeriodTimestamp);
 
@@ -353,7 +377,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
 
     let title = `NZ Electricity Generation ${(filterDescription !== "") ? " - " + filterDescription : ""}`;
-    createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, getTooltipForFuelFilteredGraph, onRedraw);
+    createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, plotBands, getTooltipForFuelFilteredGraph, onRedraw);
 
     updateInProgress = false;
     statusSpan.innerHTML = lastUpdatedString;

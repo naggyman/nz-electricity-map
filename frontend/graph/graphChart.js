@@ -1,4 +1,4 @@
-export function createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, tooltipFormatter, onRedraw) {
+export function createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, plotBands, tooltipFormatter, onRedraw) {
     Highcharts.chart('generation-chart', {
         chart: {
             type: 'area',
@@ -40,7 +40,8 @@ export function createHighchart(title, subtitle, xAxisLabels, seriesData, plotLi
 
         xAxis: {
             categories: xAxisLabels,
-            plotLines: plotLines
+            plotLines: plotLines,
+            plotBands: plotBands
         },
 
         legend: {
