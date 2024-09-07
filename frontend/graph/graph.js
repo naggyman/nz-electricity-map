@@ -7,6 +7,7 @@ import { getCurrentTimeInNZ } from '../utilities/units.js';
 import { createHighchart } from './graphChart.js';
 import { TimeFrameSelector } from '../chart/timeframeSelector.js';
 import { decomissioned } from '../utilities/decomissioned.js';
+//import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
 
 
 const TIMEFRAME_QUERY_PARAM = "timeframe";
@@ -345,9 +346,9 @@ async function getTradingPeriodStats(forceUpdate = false) {
 
     let subtitle = getSubtitleText(tradingPeriodTimestamps[0], mostRecentTradingPeriodTimestamp);
 
-    console.log(liveGenData.generators)
-    console.log(decomissioned[0])
-    liveGenData.generators.push(decomissioned[0])
+    decomissioned.forEach((decomissionedGenerator) => {
+        liveGenData.generators.push(decomissionedGenerator)
+    })
 
     let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
 
