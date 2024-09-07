@@ -305,7 +305,7 @@ export const underConstruction = [
         "substation": "Maungaturoto",
         "fuel": "Solar",
         "operator": "Solar Bay",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMWp": 21,
         "yearlyGenerationGWh": 30,
         "openBy": "2025-06-30",
