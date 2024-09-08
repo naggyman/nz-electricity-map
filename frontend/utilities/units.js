@@ -1,10 +1,6 @@
 export function displayMegawattsOrGigawatts(input) {
-    if (input < 1 && input > 0){
-        return input + " MW"
-    }
-
-    if (input < 0 && input > -1){
-        return input + " MW"
+    if ((input < 1 && input > 0) || (input < 0 && input > -1)){
+        return input.toFixed(3) + " MW"
     }
 
     var rounded = input.toFixed(1);
