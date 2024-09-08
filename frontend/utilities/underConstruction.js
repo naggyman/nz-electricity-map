@@ -132,7 +132,7 @@ export const underConstruction = [
         "status": "Under Construction",
         "capacityMW": 51.4,
         "yearlyGenerationGWh": 430,
-        "openBy": "2024-09-30",
+        "openBy": "2024-10-30",
         "link": "https://contact.co.nz/aboutus/our-story/our-projects/tehuka"
     },
     {
@@ -260,6 +260,7 @@ export const underConstruction = [
         "fuel": "Solar",
         "operator": "Lodestone Energy",
         "status": "Under Construction",
+        "capacityMW": 29,
         "capacityMWp": 32,
         "openBy": "2025-11-30",
         "yearlyGenerationGWh": 49,
