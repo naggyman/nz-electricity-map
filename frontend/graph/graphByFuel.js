@@ -177,8 +177,8 @@ export function getTooltipForFuelFilteredGraph(pricing){
 
     if(Object.keys(window.latestPricingTimeseries).length > 0){
         footer += `Real Time Dispatch Pricing: <br>`
-        footer += `Ōtāhuhu: <b>$${pricingForThisTime['OTA2201']}</b><br>`
-        footer += `Benmore: <b>$${pricingForThisTime['BEN2201']}</b><br>`
+        footer += `Ōtāhuhu: <b>$${pricingForThisTime['OTA2201'].toFixed(2)}</b><br>`
+        footer += `Benmore: <b>$${pricingForThisTime['BEN2201'].toFixed(2)}</b><br>`
     }
 
     return header + body + footer;
