@@ -1,4 +1,4 @@
-import { getTimeseriesGenerationData } from '../utilities/api.js';
+import { getTimeseriesGenerationData, getTimeseriesPriceData } from '../utilities/api.js';
 import { getDateRelativeToNowInNZ, getCurrentTimeInNZ } from '../utilities/units.js';
 
 const MILLISECONDS_IN_DAY = (1000 * 60 * 60 * 24);
@@ -14,6 +14,7 @@ const DAYS_IN_WEEK = 7;
  */
 export async function getRelativeTimeseriesData(timeframe) {
     let data = {};
+    let priceData = {};
 
     let hoursSelected = timeframe.slice(-1) === "h";
     let weeksSelected = timeframe.slice(-1) === "w";
@@ -44,7 +45,9 @@ export async function getRelativeTimeseriesData(timeframe) {
         date = getDateRelativeToNowInNZ(relativeTimeUnit);
 
         let timeseriesData = await getTimeseriesGenerationData(date);
+        let timeseriesPriceData = await getTimeseriesPriceData(date);
         Object.assign(data, timeseriesData);
+        Object.assign(priceData, timeseriesPriceData);
     }
 
     // since we only collect data in chunks of 1 day, we have fetched more data than we need (if we are doing an hourly relative comparison).
@@ -53,7 +56,7 @@ export async function getRelativeTimeseriesData(timeframe) {
         .filter((time) => timeIsBefore(time, startingDate))
         .forEach((time) => delete data[time]);
 
-    return data;
+    return [data, priceData];
 }
 
 function timeIsBefore(time, comparisonTime){

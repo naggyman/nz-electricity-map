@@ -10,7 +10,6 @@ import { decomissioned } from '../utilities/decomissioned.js';
 import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
 import { NIGHTTIME_SHADING } from '../utilities/colours.js';
 
-
 const TIMEFRAME_QUERY_PARAM = "timeframe";
 const DATE_QUERY_PARAM = "date";
 
@@ -218,11 +217,14 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
     const date = (new URLSearchParams(window.location.search)).get("date");
 
+    window.latestPricingTimeseries = {};
     let data = {};
     if(date){
         data = await getTimeseriesGenerationData(new Date(date));
     } else {
-        data = await getRelativeTimeseriesData(timeframe);
+        let output = await getRelativeTimeseriesData(timeframe);
+        data = output[0]
+        window.latestPricingTimeseries = output[1]
     }
 
     const liveGenData = await getLiveGenerationData();

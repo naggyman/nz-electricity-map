@@ -120,13 +120,21 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
     return highchartSeries;
 }
 
-export function getTooltipForFuelFilteredGraph(){
+function getPriceForIndex(pricing, index){
+    if(pricing != {})
+        return pricing[Object.keys(pricing)[index]]
+    return {};
+}
+
+export function getTooltipForFuelFilteredGraph(pricing){
     let header = `<b>${this.x}</b><br>`;
     var renewableGeneration = 0;
     var totalGeneration = 0;
     var totalCapacity = 0;
 
     let body = "";
+
+    let pricingForThisTime = getPriceForIndex(window.latestPricingTimeseries, this.point.index);
 
     this.points.forEach(point => {
         if(RENEWABLE_FUELS.includes(point.series.name)){
@@ -165,7 +173,13 @@ export function getTooltipForFuelFilteredGraph(){
     
     let totalCapacityText = (totalCapacity > 0) ? ` / <b>${displayMegawattsOrGigawatts(totalCapacity)}</b> (${Math.round(totalGeneration / totalCapacity * 100)}%)` : "";
     let footer = `<br>Total Generation: <b>${displayMegawattsOrGigawatts(totalGeneration)}</b>${totalCapacityText}<br>`;
-    footer += `Renewable: <b>${renewablePercentage}%</b><br>`;
+    footer += `Renewable: <b>${renewablePercentage}%</b><br><br>`;
+
+    if(Object.keys(window.latestPricingTimeseries).length > 0){
+        footer += `Real Time Dispatch Pricing: <br>`
+        footer += `Ōtāhuhu: <b>$${pricingForThisTime['OTA2201']}</b><br>`
+        footer += `Benmore: <b>$${pricingForThisTime['BEN2201']}</b><br>`
+    }
 
     return header + body + footer;
 

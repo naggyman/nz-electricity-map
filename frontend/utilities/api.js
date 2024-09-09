@@ -50,6 +50,13 @@ export async function getTimeseriesGenerationData(date){
     return response;
 }
 
+export async function getTimeseriesPriceData(date){
+    var dateStr = formatDate(date);
+    const response = await (fetchJson(`generator-history/5-min/${dateStr}.price.json`))
+
+    return response;
+}
+
 export async function getLiveGenerationData(){
     if (!isProd) {
         return fetchJson('generatorOutput.json');
