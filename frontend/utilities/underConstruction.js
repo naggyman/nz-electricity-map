@@ -254,7 +254,7 @@ export const underConstruction = [
         "link": "https://lodestoneenergy.co.nz/"
     },
     {
-        "name": "Whitianga",
+        "name": "Pāmu Rā Whitianga",
         "site": "WTA",
         "substation": "Kopu",
         "fuel": "Solar",
