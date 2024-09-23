@@ -76,7 +76,7 @@ export const underConstruction = [
         "capacityMWp": 62.6,
         "capacityMW": 47.2,
         "yearlyGenerationGWh": 97,
-        "openBy": "2024-12-31",
+        "openBy": "2024-11-30",
         "location": {
             "lat": -43.730843339796294,
             "long": 171.78955859810299
@@ -254,14 +254,14 @@ export const underConstruction = [
         "link": "https://lodestoneenergy.co.nz/"
     },
     {
-        "name": "Pāmu Rā Whitianga",
+        "name": "Pāmu Rā ki Whitianga",
         "site": "WTA",
         "substation": "Kopu",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
         "status": "Under Construction",
         "capacityMW": 29,
-        "capacityMWp": 32,
+        "capacityMWp": 33,
         "openBy": "2025-11-30",
         "yearlyGenerationGWh": 49,
         "location": {
