@@ -1801,5 +1801,27 @@
         "gridZone": "USI",
         "island": "SI",
         "operator": "SolarZero Ltd"
+    },
+    {
+        "site": "LAU",
+        "name": "Lauriston",
+        "units": [
+            {
+                "name": "Lauriston",
+                "unitCode": "LAU0",
+                "node": "ASB0661 LAU0",
+                "capacity": 47.2,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -43.730843339796294,
+            "long": 171.78955859810299
+        },
+        "gridZone": "USI",
+        "island": "SI",
+        "operator": "Genesis Energy",
+        "secondaryOperator": "FRV Australia"
     }
 ]
