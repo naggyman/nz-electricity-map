@@ -1709,7 +1709,7 @@
                 "name": "Tauhara",
                 "unitCode": "TAB0",
                 "node": "TAB2201 TAB0",
-                "capacity": 169,
+                "capacity": 177,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
