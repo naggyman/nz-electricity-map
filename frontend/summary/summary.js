@@ -1,4 +1,4 @@
-import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY, SKIP_LIST, formatFuel } from '../utilities/units.js';
+import { displayMegawattsOrGigawatts, RENEWABLE_FUELS, FUELS_KEY, SKIP_LIST, formatFuel, getCurrentTimeInNZ } from '../utilities/units.js';
 import { getLiveGenerationData } from '../utilities/api.js';
 
 const waitakiGeneratorSiteCodes = ["TKA", "TKB", "OHA", "OHB", "OHC", "BEN", "AVI", "WTK"];
@@ -44,8 +44,8 @@ async function getStats() {
 
     const generationData = await getLiveGenerationData();
 
-    var now = new Date();
-    var lastUpdatedDate = new Date(generationData.lastUpdate + "+12:00");
+    var now = getCurrentTimeInNZ();
+    var lastUpdatedDate = Date.parse(generationData.lastUpdate);
     var updatedMinutesAgo = Math.round((now - lastUpdatedDate) / 1000 / 60);
     var minutesAgoString = `${updatedMinutesAgo} minutes ago`;
 

@@ -2,7 +2,7 @@ import { detemineMapColour } from "../utilities/colours.js";
 import { populateGeneratorPopup, populateSubstationPopup, newBuildGenerationCapacityString } from "./mapPopup.js";
 import { underConstruction } from "../utilities/underConstruction.js";
 import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.js";
-import { SKIP_LIST, formatFuel } from "../utilities/units.js";
+import { SKIP_LIST, formatFuel, getCurrentTimeInNZ } from "../utilities/units.js";
 
 const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
 const LOWER_PANE = 'lower';
@@ -205,9 +205,9 @@ async function getGenerationData(substationMarkers) {
     setNavStatus(`Loading...`);
 
     const generationData = await getLiveGenerationData();
-    var now = new Date();
+    var now = getCurrentTimeInNZ();
 
-    var lastUpdatedDate = new Date(generationData.lastUpdate + "+12:00");
+    var lastUpdatedDate = Date.parse(generationData.lastUpdate);
     var updatedMinutesAgo = Math.round((now - lastUpdatedDate) / 1000 / 60);
     setNavStatus(`Last Updated: ${updatedMinutesAgo} minutes ago`);
 
