@@ -64,6 +64,10 @@ class GeneratorDescriptions:
                 return "NewPower Energy"
             case '47a91736-3771-418a-98a7-a7051e026d8d':
                 return "Eastland Generation Ltd"
+            case 'e3773753-b431-4ddb-9afb-4b8c9ed65bd1':
+                return "Alinta Energy"
+            case '0b0c2892-64ad-49db-9744-f58518823973':
+                return "Top Energy"
             case default:
                 return None
             

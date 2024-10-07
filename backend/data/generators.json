@@ -913,7 +913,7 @@
         "name": "Ngāwhā",
         "units": [
             {
-                "name": "Ngāwha Station 1 & 2",
+                "name": "Ngāwhā Station 1 & 2",
                 "unitCode": "NGA0",
                 "node": "KOE1101 NGA0",
                 "capacity": 27.5,
@@ -922,9 +922,9 @@
             },
             {
                 "name": "Ngāwhā Station 3",
-                "unitCode": "NGB0",
+                "unitCode": "OEC",
                 "node": "KOE1101 NGB0",
-                "capacity": 31,
+                "capacity": 32,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -935,7 +935,8 @@
         },
         "gridZone": "UNI",
         "island": "NI",
-        "operator": "Top Energy"
+        "operator": "Top Energy",
+        "alias": "OEC"
     },
     {
         "site": "PAE",
