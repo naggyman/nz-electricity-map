@@ -18,7 +18,7 @@ export const underConstruction = [
     },
     {
         "name": "Ruakākā",
-        "site": "RUB",
+        "site": "RUK",
         "substation": "Bream Bay",
         "fuel": "Battery",
         "operator": "Meridian Energy",

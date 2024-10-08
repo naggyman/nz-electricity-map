@@ -1824,5 +1824,34 @@
         "island": "SI",
         "operator": "Genesis Energy",
         "secondaryOperator": "FRV Australia"
+    },
+    {
+        "site": "RUK",
+        "name": "Ruakākā",
+        "units": [
+            {
+                "name": "Ruakākā BESS",
+                "unitCode": "RUK0",
+                "node": "BRB0331 RUK0",
+                "capacity": 100,
+                "fuel": "Battery (Discharging)",
+                "fuelCode": "BESS"
+            },
+            {
+                "name": "Ruakākā BESS",
+                "unitCode": "RUK99",
+                "node": "BRB0331 RUK99",
+                "capacity": -100,
+                "fuel": "Battery (Charging)",
+                "fuelCode": "BESS-C"
+            }
+        ],
+        "location": {
+            "lat": -35.847508029631044,
+            "long": 174.47769233992352
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "Meridian Energy"
     }
 ]
