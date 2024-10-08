@@ -1463,7 +1463,8 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Contact Energy"
+        "operator": "Contact Energy",
+        "alias": "TAC"
     },
     {
         "site": "WRK",
