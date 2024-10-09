@@ -258,7 +258,10 @@ export function populateSubstationPopup(substationData, lastUpdated) {
             </tr>
         </table>`;
 
-    if(substationData.totalGenerationCapacityMW > 0){
+
+    var generationRows = getSubstationGenerationRows(substationData);
+    
+    if(generationRows != ''){
         html += `
             <h6>Generation</h6>
             <table style="width:100%" class="table table-sm table-striped">
@@ -269,13 +272,13 @@ export function populateSubstationPopup(substationData, lastUpdated) {
                     <th style="width:15%">Capacity</th>
                     <th style="width:20%">%</th>
                 </tr>
-                ${getSubstationGenerationRows(substationData)}
+                ${generationRows}
                 <tr>
                     <th>Total</td>
                     <th></td>
                     <th>${displayMegawattsOrGigawatts(substationData.totalGenerationMW)}</td>
                     <th>${displayMegawattsOrGigawatts(substationData.totalGenerationCapacityMW)}</td>
-                    <th>${Math.round(substationData.totalGenerationMW / substationData.totalGenerationCapacityMW * 100)}%</td>
+                    <th>${Math.round(substationData.totalGenerationMW / substationData.totalGenerationCapacityMW * 100) || 0}%</td>
                 </tr>
             </table>`;
         
