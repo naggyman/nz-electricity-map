@@ -52,5 +52,5 @@ class Outages:
             "timeStart": "2024-01-01T00:00:00+13:00",
             "timeEnd": "2024-10-15T23:59:59+13:00",
             "mwattRemaining": 0,
-            "mwattLost": 47.2
+            "mwattLost": 48
             })
