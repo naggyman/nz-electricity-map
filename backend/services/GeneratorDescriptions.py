@@ -68,6 +68,8 @@ class GeneratorDescriptions:
                 return "Alinta Energy"
             case '0b0c2892-64ad-49db-9744-f58518823973':
                 return "Top Energy"
+            case '1404708d-a04a-495c-880a-82a4caf42f52':
+                return "Genesis Energy"
             case default:
                 return None
             

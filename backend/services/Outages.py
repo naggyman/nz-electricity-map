@@ -50,7 +50,7 @@ class Outages:
             "orgId": "2f9771c8-7a0c-4dcd-aa48-252899acb58a",
             "outageBlock": "LAU_0",
             "timeStart": "2024-01-01T00:00:00+13:00",
-            "timeEnd": "2024-12-31T23:59:59+13:00",
+            "timeEnd": "2024-10-15T23:59:59+13:00",
             "mwattRemaining": 0,
             "mwattLost": 47.2
             })
