@@ -56,8 +56,8 @@ export const underConstruction = [
         "fuel": "Solar",
         "operator": "Northpower",
         "status": "Under Construction",
+        "capacityMW": 14,
         "capacityMWp": 16.7,
-        "predictedCapacityMW": 12.5,
         "yearlyGenerationGWh": 28,
         "openBy": "2024-12-31",
         "location": {
