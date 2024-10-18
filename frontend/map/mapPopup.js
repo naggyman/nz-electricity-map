@@ -57,7 +57,7 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
             `;
 
     if(generatorData.units.some((unit) => unit.outage.length > 0)){
-        let pocpPrePopulatedSearch = `https://customerportal.transpower.co.nz/pocp/outages?displayedFilters=%7B%22category%22%3Atrue%2C%22planningStatus%22%3Atrue%7D&filter=%7B%22dateOption%22%3A%22relative%22%2C%22nextUnit%22%3A%22days%22%2C%22nextCount%22%3A1%2C%22category%22%3A%5B%22GENERATION%22%5D%2C%22planningStatus%22%3A%5B%22CONFIRMED%22%5D%2C%22q%22%3A%22${generatorData.site}%22%7D&order=ASC&page=1&perPage=10&sort=timeStart&viewType=list`;
+        let pocpPrePopulatedSearch = `https://customerportal.transpower.co.nz/pocp/outages?displayedFilters=%7B%22category%22%3Atrue%2C%22planningStatus%22%3Atrue%7D&filter=%7B%22dateOption%22%3A%22relative%22%2C%22nextUnit%22%3A%22weeks%22%2C%22nextCount%22%3A4%2C%22planningStatus%22%3A%5B%22CONFIRMED%22%5D%2C%22q%22%3A%22${generatorData.site}%22%2C%22category%22%3A%5B%22GENERATION%22%2C%22EMBEDDED_GENERATION%22%5D%7D&order=ASC&page=1&perPage=10&sort=timeStart&viewType=list`;
 
         popup += `| <a href="${pocpPrePopulatedSearch}" target="_blank">View Outage Info</a>`
     }
