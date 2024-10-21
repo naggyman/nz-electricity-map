@@ -67,7 +67,7 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
                 
                 if (unit.outage.length > 0){
                     unit.outage.forEach(outage => {
-                        var now = new Date(tradingPeriodTimestamp + "+12:00")
+                        var now = new Date(tradingPeriodTimestamp + "+13:00")
                         
                         var outageStarted = new Date(outage.from) <= now;
                         var outageEnded = new Date(outage.until) <= now;
