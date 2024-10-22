@@ -20,6 +20,7 @@ function populatePipelineTable(){
     addTitleCell(row, sortKey, "Nameplate Capacity (AC)", "nameplate");
     addCell(row, "");
     addTitleCell(row, sortKey, "Annual Generation", "annualGeneration");
+    addTitleCell(row, sortKey, "Cost", "cost");
     addCell(row, "More Info");
     
     let totalAnnualGeneration = 0;
@@ -61,6 +62,7 @@ function populatePipelineTable(){
     addCell(totalRow, totalNameplateCapacity.toFixed(1) + " MW");
     addCell(totalRow, "");
     addCell(totalRow, totalAnnualGeneration + " GWh");
+    addCell(totalRow, "");
     addCell(totalRow, "");
 
     Object.keys(newGenerationGWhByYear).forEach(year => {
@@ -109,6 +111,8 @@ function addRow(site){
     } else {
         addCell(row, site.yearlyGenerationGWh + " GWh");
     }
+
+    addCell(row, site.costMillionDollars ? `$${site.costMillionDollars}m` : '');
 
     row.insertCell().innerHTML = `<a href=${site.link} target='_blank'>↗</a>`
 }
