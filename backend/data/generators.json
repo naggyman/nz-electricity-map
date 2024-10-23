@@ -1517,7 +1517,7 @@
                 "name": "West Wind 1",
                 "unitCode": "WWD0",
                 "node": "WWD1102 WWD0",
-                "capacity": 142,
+                "capacity": 71.3,
                 "fuel": "Wind",
                 "fuelCode": "WIN"
             },
@@ -1525,7 +1525,7 @@
                 "name": "West Wind 2",
                 "unitCode": "WWD0",
                 "node": "WWD1103 WWD0",
-                "capacity": 0,
+                "capacity": 71.3,
                 "fuel": "Wind",
                 "fuelCode": "WIN"
             }
