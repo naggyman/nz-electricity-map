@@ -1271,7 +1271,7 @@
                 "name": "Te Mihi Unit 2",
                 "unitCode": "THI2",
                 "node": "THI2201 THI2",
-                "capacity": 85,
+                "capacity": 83,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
