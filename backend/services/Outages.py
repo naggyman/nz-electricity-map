@@ -43,7 +43,7 @@ class Outages:
             "timeStart": "2024-01-01T00:00:00+13:00",
             "timeEnd": "2025-03-31T23:59:59+13:00",
             "mwattRemaining": 0,
-            "mwattLost": -100
+            "mwattLost": 100
             })
 
         self.outages.append({
