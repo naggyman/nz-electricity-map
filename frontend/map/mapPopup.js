@@ -165,7 +165,9 @@ function populateGeneratorUnitList(generatorData) {
             totalCapacity += unit.capacity; 
         }
 
-        totalOutage += calculateOutageLoss(unit.outage);
+        if(unit.fuelCode !== "BESS-C")
+            totalOutage += calculateOutageLoss(unit.outage);
+        
         html += populateGenerationUnit(unit);
     })
 
