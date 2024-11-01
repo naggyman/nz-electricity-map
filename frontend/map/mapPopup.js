@@ -84,9 +84,9 @@ function populateGenerationData(generatorData) {
 
 function populateGenerationUnit(unit, showName = true) {
     let outageLoss = calculateOutageLoss(unit.outage);
-    let unitCapacity = unit.capacity;
+    let unitCapacity = Math.abs(unit.capacity);
 
-    if(outageLoss > Math.abs(unitCapacity)){
+    if(outageLoss > unitCapacity){
         // outage figures can sometimes sum up to more than the capacity of the unit, let's assume that in that situation the unit is just fully in outage.
         console.warn(`Outage loss (${outageLoss}MW) for ${unit.name} is greater than the capacity (${unitCapacity}MW) of the unit, assuming the unit is fully in outage.`);
         outageLoss = unitCapacity;
@@ -101,7 +101,6 @@ function populateGenerationUnit(unit, showName = true) {
         totalCapacityIncludingOutage = unit.installedCapacity - outageLoss;
     }
 
-    //let hasOutage = unit.outage?.length > 0;
     let hasOutage = outageLoss > 0;
 
     if(hasOutage && unit.generation > totalCapacityIncludingOutage){
