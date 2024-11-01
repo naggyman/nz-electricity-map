@@ -111,7 +111,7 @@ function populateGenerationUnit(unit, showName = true) {
         totalCapacityIncludingOutage = unitCapacity;
     }
 
-    let capacityText = `${displayMegawattsOrGigawatts(totalCapacityIncludingOutage)}`;
+    let capacityText = `${displayMegawattsOrGigawatts(unit.capacity)}`;
 
     if(hasOutage){
         let outages = filterOutages(unit.outage).sort((a,b) => new Date(a.until) - new Date(b.until));
@@ -125,7 +125,7 @@ function populateGenerationUnit(unit, showName = true) {
         }
 
         capacityText = 
-            `<s>${displayMegawattsOrGigawatts(unitCapacity)}</s> ${capacityText} ` + 
+            `<s>${displayMegawattsOrGigawatts(unit.capacity)}</s> ${displayMegawattsOrGigawatts(totalCapacityIncludingOutage)} ` + 
             `<span class="badge text-bg-danger">${outageLoss}MW Outage until ${formattedOutageEndDate}</span>`;
     }
 
