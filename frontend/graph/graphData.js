@@ -54,7 +54,10 @@ export async function getRelativeTimeseriesData(timeframe) {
     // therefore we want to remove any data for times before the start time of our filter
     Object.keys(data)
         .filter((time) => timeIsBefore(time, startingDate))
-        .forEach((time) => delete data[time]);
+        .forEach((time) => {
+            delete data[time];
+            delete priceData[time];
+        });
 
     return [data, priceData];
 }
