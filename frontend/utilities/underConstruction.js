@@ -165,7 +165,7 @@ export const underConstruction = [
         "site": "KPO",
         "fuel": "Hydro",
         "operator": "Mercury",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMW": 5.5,
         "yearlyGenerationGWh": 10.7,
         "openBy": "2025-08-27",
