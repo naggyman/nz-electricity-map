@@ -76,6 +76,7 @@ function populatePipelineTable(){
         addCell(yearRow, "");
         addCell(yearRow, newGenerationGWhByYear[year] + " GWh");
         addCell(yearRow, "");
+        addCell(yearRow, "");
     });
 }
 
