@@ -22,6 +22,8 @@ export function newBuildGenerationCapacityString(newBuild){
 }
 
 function populatePercentage(percentage, green) {
+    percentage = Math.abs(percentage)
+
     let html = '';
     if (isNaN(percentage)) {
         percentage = 0;
