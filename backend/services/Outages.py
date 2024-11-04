@@ -45,3 +45,12 @@ class Outages:
             "mwattRemaining": 0,
             "mwattLost": 100
             })
+        
+        self.outages.append({
+            "orgId": "b7d81762-b73e-490d-a2f4-f805ab95d167",
+            "outageBlock": "RWI_0",
+            "timeStart": "2024-01-01T00:00:00+13:00",
+            "timeEnd": "2024-12-31T23:59:59+13:00",
+            "mwattRemaining": 0,
+            "mwattLost": 14
+            })

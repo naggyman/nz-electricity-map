@@ -1854,5 +1854,26 @@
         "gridZone": "UNI",
         "island": "NI",
         "operator": "Meridian Energy"
+    },
+    {
+        "site": "RWI",
+        "name": "Te Puna Mauri ō Omaru",
+        "units": [
+            {
+                "name": "Te Puna Mauri ō Omaru",
+                "unitCode": "RWI0",
+                "node": "MTO0331 RWI0",
+                "capacity": 14,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -36.11523760044438,
+            "long": 174.02666511899804
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "Northpower"
     }
 ]
