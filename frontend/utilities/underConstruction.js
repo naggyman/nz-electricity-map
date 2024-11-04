@@ -43,7 +43,7 @@ export const underConstruction = [
         "capacityMW": 38,
         "capacityMWp": 42,
         "yearlyGenerationGWh": 69,
-        "openBy": "2024-11-30",
+        "openBy": "2024-12-31",
         "location": {
             "lat": -38.02688240581342,
             "long": 177.18354792348188
@@ -139,7 +139,7 @@ export const underConstruction = [
         "costMillionDollars": 300,
         "capacityMW": 51.4,
         "yearlyGenerationGWh": 430,
-        "openBy": "2024-10-30",
+        "openBy": "2024-11-30",
         "link": "https://contact.co.nz/aboutus/our-story/our-projects/tehuka"
     },
     {
@@ -178,7 +178,7 @@ export const underConstruction = [
         "operator": "Contact Energy",
         "status": "Under Construction",
         "yearlyGenerationGWh": 11,
-        "openBy": "2024-10-30",
+        "openBy": "2024-12-17",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
