@@ -3,6 +3,7 @@ import { populateGeneratorPopup, populateSubstationPopup, newBuildGenerationCapa
 import { underConstruction } from "../utilities/underConstruction.js";
 import { getLiveGenerationData, getLiveSubstationData } from "../utilities/api.js";
 import { SKIP_LIST, formatFuel, getCurrentTimeInNZ } from "../utilities/units.js";
+import { distributed } from "../utilities/distributed.js";
 
 const apiKey = 'c01j05pv67hf1tcqnh8xn34jsba'; //for LINZ basemap
 const LOWER_PANE = 'lower';
@@ -14,6 +15,7 @@ function setupMap() {
     const basemapSelection = getQueryParam("basemap") || 'osm';
     const generatorSelection = getQueryParam("generators") || '1';
     const substationSelection = getQueryParam("substations") || '1';
+    const distributedSelection = getQueryParam("distributed") || '0';
 
     const startPos = [
         getQueryParam("lat") || -40.5, 
@@ -37,11 +39,13 @@ function setupMap() {
     const generatorMarkers = L.layerGroup();
     const substationLayer = L.layerGroup();
     const underConstructionLayer = L.layerGroup();
+    const distributedLayer = L.layerGroup();
     
     const overlays = {
         "Power Stations": generatorMarkers,
         "Substations": substationLayer,
-        "Under Construction": underConstructionLayer
+        "Under Construction": underConstructionLayer,
+        "Distributed Generators": distributedLayer
     }
 
     const map = L.map('map', {
@@ -66,8 +70,13 @@ function setupMap() {
         map.addLayer(substationLayer);
     }
 
+    if (distributedSelection === '1') {
+        map.addLayer(distributedLayer);
+    }
+
     map.addLayer(underConstructionLayer);
     addUnderConstructionSites(underConstructionLayer);
+    addDistributedSites(distributedLayer);
 
     if (generatorSelection === '1') {
         map.addLayer(generatorMarkers);
@@ -114,7 +123,26 @@ function addUnderConstructionSites(layer){
             { maxWidth: 800 })
         .addTo(layer)
     });
+}
 
+function addDistributedSites(layer){
+    distributed.forEach((site) => {
+        
+        L.circleMarker([site.location.lat, site.location.long], {
+            color: '#000000',
+            radius: 4,
+            weight: 0.4,
+            fill: true,
+            fillOpacity: 0.9,
+            fillColor: detemineMapColour(site),
+            pane: LOWER_PANE
+        }).bindPopup(
+                `<p>${site.name}</p>` +
+                `<p>${site.fuel}</p>` + 
+                `<p><b>Capacity: </b>${site.capacity}MW`,
+            { maxWidth: 800 })
+        .addTo(layer)
+    })
 }
 
 function onMapMove(map, event){
@@ -194,7 +222,7 @@ function updateGenerationMap(generationData, generationLayer) {
 
         L.circleMarker([generator.location.lat, generator.location.long], {
             color: (generator.units[0].fuel == "Hydro") ? '#ffffff' : '#000000',
-            radius: 5,
+            radius: 6,
             weight: 0.4,
             fill: true,
             fillOpacity: 0.9,
