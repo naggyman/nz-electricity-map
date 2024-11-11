@@ -44,7 +44,10 @@ function setupMap() {
         "Under Construction": underConstructionLayer
     }
 
-    const map = L.map('map');
+    const map = L.map('map', {
+        minZoom: 5,
+        maxZoom: 18
+    });
 
     /// Panes are used to ensure Generator Markers are always on top
     map.createPane(LOWER_PANE);
