@@ -18,14 +18,6 @@ class Outages:
             self.outages = []
 
         # add a fake outage for generators not yet commissioned
-        self.outages.append({
-            "orgId": "6d8eda92-ed4c-4a1d-b816-eb0f9fafba4e",
-            "outageBlock": "TAC_0",
-            "timeStart": "2024-01-01T00:00:00+13:00",
-            "timeEnd": "2024-12-31T23:59:59+13:00",
-            "mwattRemaining": 0,
-            "mwattLost": 51.4
-            })
             
         # Ruakaka BESS
         self.outages.append({

@@ -1451,6 +1451,7 @@
             {
                 "name": "Te Huka Unit 3",
                 "unitCode": "TAC0",
+                "outageBlock": "TAC_1",
                 "node": "TAB0331 TAC0",
                 "capacity": 51.4,
                 "fuel": "Geothermal",

@@ -63,6 +63,11 @@ class LiveGenerators:
                     unitToFind = outageTo + outage['outageBlock'][4:]
 
                     for unit in generator['units']:
+                        if 'outageBlock' in unit:
+                            if unit['outageBlock'] == outage['outageBlock']:
+                                unit['outage'].append(self.createOutageOutput(outage))
+                                found = True
+
                         if unit['unitCode'] == unitToFind:
                             unit['outage'].append(self.createOutageOutput(outage))
                             found = True
@@ -82,6 +87,7 @@ class LiveGenerators:
     def createOutageOutput(self, outage):
         return {
             'block': outage['outageBlock'][4:].upper(),
+            'outageBlock': outage['outageBlock'],
             'mwLost': outage['mwattLost'],
             'mwRemain': outage['mwattRemaining'] if 'mwattRemaining' in outage else None,
             'from': outage['timeStart'],
