@@ -357,4 +357,17 @@ export const underConstruction = [
         "openBy": "2026-09-30",
         "link": "https://api.nzx.com/public/announcement/436601/attachment/425263/436601-425263.pdf"
     },
+    {
+        "name": "Te Mihi",
+        "locationDescription": "Stage 2",
+        "site": "THI",
+        "fuel": "Geothermal",
+        "operator": "Contact Energy",
+        "status": "Comitted",
+        "costMillionDollars": 712,
+        "capacityMW": 101.4,
+        "yearlyGenerationGWh": 830,
+        "openBy": "2027-09-31",
+        "link": "https://api.nzx.com/public/announcement/441782/attachment/431773/441782-431773.pdf"
+    }
 ]
