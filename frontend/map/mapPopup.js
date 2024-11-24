@@ -195,7 +195,7 @@ function getSubstationBusbarRows(substationData){
         html += `<tr>
             <td>${busbar}</td>
             <td>${displayMegawattsOrGigawatts(details.totalLoadMW)}</td>
-            <td>$${details.priceDollarsPerMegawattHour}/MWh</td>
+            <td>$${details.priceDollarsPerMegawattHour.toFixed(2)}/MWh</td>
             ${(details.totalLoadMW > 0) ? demandHistoryLink : '<td></td>'}
         </tr>`
     })
