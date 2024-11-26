@@ -94,6 +94,10 @@ function addRow(site){
     var row = table.insertRow();
 
     if(site.status == "Under Construction"){
+        row.className = "table-warning";
+    }
+
+    if(site.status == "Commissioning"){
         row.className = "table-success";
     }
     
