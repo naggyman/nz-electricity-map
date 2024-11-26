@@ -310,11 +310,11 @@ export const underConstruction = [
         "link": "https://eastlandgeneration.nz/renewable-generation/geothermal/"
     },
     {
-        "name": "Maungaturoto",
+        "name": "Papareireiā",
         "site": "",
         "substation": "Maungaturoto",
         "fuel": "Solar",
-        "operator": "Solar Bay",
+        "operator": "Maungaturoto Solar Farm Ltd",
         "status": "Under Construction",
         "capacityMWp": 21,
         "yearlyGenerationGWh": 30,
