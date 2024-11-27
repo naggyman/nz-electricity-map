@@ -105,7 +105,7 @@ function populateGenerationUnit(unit, showName = true) {
 
     let hasOutage = outageLoss > 0;
 
-    if(hasOutage && unit.generation > totalCapacityIncludingOutage){
+    if(hasOutage && Math.round(unit.generation) > totalCapacityIncludingOutage){
         // sometimes the outage figures make absolutely no sense (e.g 65MW generation, 120MW capacity, 70MW outage)
         // so in those situations we just ignore the outage, since it would result in > 100% generation
         console.warn(`Generation (${unit.generation}MW) for ${unit.name} is greater than the capacity (${totalCapacityIncludingOutage}MW) of the unit, ignoring outage (${outageLoss}MW).`);
