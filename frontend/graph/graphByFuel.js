@@ -175,7 +175,7 @@ export function getTooltipForFuelFilteredGraph(pricing){
     let footer = `<br>Total Generation: <b>${displayMegawattsOrGigawatts(totalGeneration)}</b>${totalCapacityText}<br>`;
     footer += `Renewable: <b>${renewablePercentage}%</b><br><br>`;
 
-    if(Object.keys(window.latestPricingTimeseries).length > 0){
+    if(Object.keys(window.latestPricingTimeseries).length > 0 && pricingForThisTime != undefined){
         footer += `Real Time Dispatch Pricing: <br>`
         footer += `Ōtāhuhu: <b>$${pricingForThisTime['OTA2201'].toFixed(2)}</b><br>`
         footer += `Benmore: <b>$${pricingForThisTime['BEN2201'].toFixed(2)}</b><br>`
