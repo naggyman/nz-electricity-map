@@ -216,15 +216,15 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const fuelsToFilterTo = (new URLSearchParams(window.location.search)).get("fuel")?.split(',') || [];
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
     const date = (new URLSearchParams(window.location.search)).get("date");
-
-    window.latestPricingTimeseries = {};
+    
     let data = {};
+    let pricing = {};
     if(date){
         data = await getTimeseriesGenerationData(new Date(date));
     } else {
         let output = await getRelativeTimeseriesData(timeframe);
         data = output[0]
-        window.latestPricingTimeseries = output[1]
+        pricing = output[1]
     }
 
     const liveGenData = await getLiveGenerationData();
@@ -377,7 +377,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
         liveGenData.generators.push(decomissionedGenerator)
     })
 
-    let seriesData = await getChartSeriesDataByFuel(liveGenData, data, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
+    let seriesData = await getChartSeriesDataByFuel(liveGenData, data, pricing, siteToFilterTo, islandToFilterTo, zoneToFilterTo, fuelsToFilterTo);
 
     let title = `NZ Electricity Generation ${(filterDescription !== "") ? " - " + filterDescription : ""}`;
     createHighchart(title, subtitle, xAxisLabels, seriesData, plotLines, plotBands, getTooltipForFuelFilteredGraph, onRedraw);

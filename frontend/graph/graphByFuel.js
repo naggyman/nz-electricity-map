@@ -14,10 +14,11 @@ const keyOrder = [
     "BESS-C"
 ];
 
-export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [], islandFilter = [], zoneFilter = [], fuelFilter = []){
+export async function getChartSeriesDataByFuel(liveGenData, data, pricing, siteFilter = [], islandFilter = [], zoneFilter = [], fuelFilter = []){
     var tradingPeriodTimestamps = Object.keys(data);
     var outputGenerationByFuel = {};
     var capacityByTimestamp = [];
+    window.latestPricingTimeseries = [];
     
     var filteredGeneratorList = liveGenData.generators.filter(generator => {
         return isGeneratorInFilter(generator, siteFilter, islandFilter, zoneFilter);
@@ -50,8 +51,11 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
                 outputGenerationByFuel[fuel].push(null);
             });
             capacityByTimestamp.push(null);
+            window.latestPricingTimeseries.push(null)
             return;
         }
+
+        window.latestPricingTimeseries.push(pricing[tradingPeriodTimestamp])
 
         var generationData = data[tradingPeriodTimestamp];
         var thisTradingPeriodSummaryByFuel = {};
@@ -133,7 +137,6 @@ export function getTooltipForFuelFilteredGraph(){
     var totalCapacity = 0;
 
     let body = "";
-
     let pricingForThisTime = getPriceForIndex(window.latestPricingTimeseries, this.point.index);
 
     this.points.forEach(point => {
