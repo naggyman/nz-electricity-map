@@ -48,8 +48,8 @@ export async function getChartSeriesDataByFuel(liveGenData, data, siteFilter = [
         if(gens.length === 0){ //do generation data for this trading period - leave a gap in the graph
             allFuels.forEach(fuel => {
                 outputGenerationByFuel[fuel].push(null);
-                capacityByTimestamp.push(null);
             });
+            capacityByTimestamp.push(null);
             return;
         }
 
@@ -126,7 +126,7 @@ function getPriceForIndex(pricing, index){
     return {};
 }
 
-export function getTooltipForFuelFilteredGraph(pricing){
+export function getTooltipForFuelFilteredGraph(){
     let header = `<b>${this.x}</b><br>`;
     var renewableGeneration = 0;
     var totalGeneration = 0;
