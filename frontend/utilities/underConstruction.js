@@ -179,7 +179,7 @@ export const underConstruction = [
         "operator": "Contact Energy",
         "status": "Under Construction",
         "yearlyGenerationGWh": 11,
-        "openBy": "2024-12-17",
+        "openBy": "2025-01-08",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
