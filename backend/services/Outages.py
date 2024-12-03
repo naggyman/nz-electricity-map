@@ -10,11 +10,14 @@ class Outages:
         toDate = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
         apiQuery = pocpApiUrl + '&dateOption=absolute&outageAtFrom=' + fromDate + 'T00%3A00%3A00.000Z&outageAtTo=' + toDate + 'T00%3A00%3A00.000Z'
 
-        response = requests.get(apiQuery)
+        try:
+            response = requests.get(apiQuery, timeout=1)
 
-        if response.status_code == 200:
-            self.outages = response.json()['items']
-        else:
+            if response.status_code == 200:
+                self.outages = response.json()['items']
+            else:
+                self.outages = []
+        except:
             self.outages = []
 
         # add a fake outage for generators not yet commissioned
