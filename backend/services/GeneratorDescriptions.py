@@ -71,7 +71,7 @@ class GeneratorDescriptions:
             case '1404708d-a04a-495c-880a-82a4caf42f52':
                 return "Genesis Energy"
             case 'b7d81762-b73e-490d-a2f4-f805ab95d167':
-                return "Northpower"
+                return "Northpower Limited"
             case default:
                 return None
             
