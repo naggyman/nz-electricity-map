@@ -56,7 +56,7 @@ export const underConstruction = [
         "substation": "Maungaturoto",
         "fuel": "Solar",
         "operator": "Northpower",
-        "status": "Under Construction",
+        "status": "Commissioning",
         "costMillionDollars": 25,
         "capacityMW": 14,
         "capacityMWp": 16.7,
