@@ -130,19 +130,6 @@ export const underConstruction = [
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/wind-generation/kaiwera-downs-wind-farm"
     },
     {
-        "name": "Te Huka",
-        "locationDescription": "Unit 3",
-        "site": "TAA",
-        "fuel": "Geothermal",
-        "operator": "Contact Energy",
-        "status": "Commissioning",
-        "costMillionDollars": 300,
-        "capacityMW": 51.4,
-        "yearlyGenerationGWh": 430,
-        "openBy": "2024-11-30",
-        "link": "https://contact.co.nz/aboutus/our-story/our-projects/tehuka"
-    },
-    {
         "name": "Twin Rivers",
         "site": "TRS",
         "substation": "Kaikohe",
