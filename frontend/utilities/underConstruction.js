@@ -39,7 +39,7 @@ export const underConstruction = [
         "substation": "Waiotahi",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
-        "status": "Under Construction",
+        "status": "Commissioning",
         "capacityMW": 38,
         "capacityMWp": 42,
         "yearlyGenerationGWh": 69,
