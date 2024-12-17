@@ -350,11 +350,27 @@ export const underConstruction = [
         "site": "THI",
         "fuel": "Geothermal",
         "operator": "Contact Energy",
-        "status": "Comitted",
+        "status": "Committed",
         "costMillionDollars": 712,
         "capacityMW": 101.4,
         "yearlyGenerationGWh": 830,
         "openBy": "2027-09-31",
         "link": "https://api.nzx.com/public/announcement/441782/attachment/431773/441782-431773.pdf"
+    },
+    {
+        "name": "Kaiwaikawe",
+        "site": "",
+        "fuel": "Wind",
+        "operator": "Mercury",
+        "status": "Committed",
+        "costMillionDollars": 287,
+        "capacityMW": 77,
+        "yearlyGenerationGWh": 221,
+        "openBy": "2026-07-30",
+        "link": "https://www.mercury.co.nz/about-us/renewable-energy/wind-generation/kaiwaikawe-wind-farm",
+        "location": {
+            "lat": -35.89090838067845,
+            "long": 173.74157691101598
+        },
     }
 ]
