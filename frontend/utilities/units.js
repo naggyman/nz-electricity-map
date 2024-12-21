@@ -3,6 +3,7 @@ export function displayMegawattsOrGigawatts(input) {
         return input.toFixed(3) + " MW"
     }
 
+    //var rounded = input.toFixed(1);
 
     if (input >= 1000) {
         return (input / 1000).toFixed(3) + " GW";
@@ -12,7 +13,7 @@ export function displayMegawattsOrGigawatts(input) {
         return Math.floor(input) + " MW";
     }
 
-    return input + " MW"
+    return input.toFixed(2) + " MW"
 }
 
 export const RENEWABLE_FUELS = ["Hydro", "Geothermal", "Wind", "Solar"];
