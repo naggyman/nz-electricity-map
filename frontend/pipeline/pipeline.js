@@ -155,8 +155,19 @@ function sortList(list, sortKey){
         case 'nameplate': return list.sort(sortCapacity)
         case 'opening': return list.sort(sortOpening)
         case 'status': return list.sort((a, b) => a.status.localeCompare(b.status))
+        case 'cost': return list.sort(sortByCost)
         default: return list
     }
+}
+
+function sortByCost(a, b){
+    if(a.costMillionDollars === undefined){
+        return 1;
+    } else if(b.costMillionDollars === undefined){
+        return -1;
+    }
+
+    return b.costMillionDollars - a.costMillionDollars
 }
 
 function sortCapacity(a, b){
