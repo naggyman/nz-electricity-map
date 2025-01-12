@@ -126,7 +126,7 @@ export const underConstruction = [
         "costMillionDollars": 486,
         "capacityMW": 155,
         "yearlyGenerationGWh": 525,
-        "openBy": "2026-12-31",
+        "openBy": "2026-11-30",
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/wind-generation/kaiwera-downs-wind-farm"
     },
     {
@@ -202,22 +202,6 @@ export const underConstruction = [
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
-        "name": "Te Rāhui",
-        "locationDescription": "Stage 1",
-        "site": "TRU",
-        "substation": "",
-        "fuel": "Solar",
-        "operator": "Nova Energy",
-        "status": "Committed",
-        "capacityMW": 150,
-        "yearlyGenerationGWh": 213, // estimate
-        "location": {
-            "lat": -38.864246805972705,
-            "long": 176.45131322681257
-        },
-        "link": "https://www.waikatotimes.co.nz/nz-news/350327125/nzs-largest-solar-farm-gets-go-ahead"
-    },
-    {
         "name": "Taiohi",
         "site": "",
         "substation": "",
@@ -231,7 +215,6 @@ export const underConstruction = [
             "lat": -37.44080411617218,
             "long": 175.13234517360215
         },
-        "openBy": "2025-12-31",
         "link": "https://www.linkedin.com/posts/infratec_nz_a-bit-of-grey-weather-in-the-waikato-didn-activity-7221341384148992000-XnVG?utm_source=share&utm_medium=member_desktop"
     },
     {
@@ -366,7 +349,7 @@ export const underConstruction = [
         "costMillionDollars": 287,
         "capacityMW": 77,
         "yearlyGenerationGWh": 221,
-        "openBy": "2026-07-30",
+        "openBy": "2026-12-31",
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/wind-generation/kaiwaikawe-wind-farm",
         "location": {
             "lat": -35.89090838067845,
