@@ -372,5 +372,19 @@ export const underConstruction = [
             "lat": -35.89090838067845,
             "long": 173.74157691101598
         },
+    },
+    {
+        "name": "Ardmore",
+        "site": "",
+        "fuel": "Solar",
+        "operator": "Kiwi Solar",
+        "status": "Under Construction",
+        "capacityMWp": 13,
+        "yearlyGenerationGWh": 19,
+        "link": "https://www.kiwisolar.co.nz/2024/07/22/tahuna-solar-farm/",
+        "location": {
+            "lat": -37.035365999687336,
+            "long": 175.00148570469227
+        }
     }
 ]
