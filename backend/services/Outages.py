@@ -28,7 +28,7 @@ class Outages:
             "orgId": "f246144f-ec9b-4c32-8b92-5f78ddc7a641",
             "outageBlock": "RUK_0",
             "timeStart": "2024-01-01T00:00:00+13:00",
-            "timeEnd": "2025-03-31T23:59:59+13:00",
+            "timeEnd": "2025-01-17T07:00:00+13:00",
             "mwattRemaining": 0,
             "mwattLost": 100
             })
@@ -37,7 +37,7 @@ class Outages:
             "orgId": "f246144f-ec9b-4c32-8b92-5f78ddc7a641",
             "outageBlock": "RUK_99",
             "timeStart": "2024-01-01T00:00:00+13:00",
-            "timeEnd": "2025-03-31T23:59:59+13:00",
+            "timeEnd": "2025-01-17T07:00:00+13:00",
             "mwattRemaining": 0,
             "mwattLost": 100
             })
