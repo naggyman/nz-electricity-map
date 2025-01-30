@@ -176,7 +176,7 @@ export const underConstruction = [
         "substation": "",
         "fuel": "Solar",
         "operator": "NewPower Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMW": 22.4,
         "capacityMWp": 33,
         "yearlyGenerationGWh": 35, // estimate based off 18% capacity factor
@@ -314,7 +314,7 @@ export const underConstruction = [
         "site": "",
         "fuel": "Wind",
         "operator": "Mercury",
-        "status": "Committed",
+        "status": "Under Construction",
         "costMillionDollars": 287,
         "capacityMW": 77,
         "yearlyGenerationGWh": 221,
