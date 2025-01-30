@@ -22,11 +22,11 @@ export const underConstruction = [
         "substation": "Bream Bay",
         "fuel": "Battery",
         "operator": "Meridian Energy",
-        "status": "Under Construction",
+        "status": "Commissioning",
         "costMillionDollars": 186, 
         "capacityMW": 100,
         "capacityMWh": 200,
-        "openBy": "2025-03-31",
+        "openBy": "2025-02-28",
         "location": {
             "lat": -35.847508029631044,
             "long": 174.47769233992352
@@ -43,7 +43,7 @@ export const underConstruction = [
         "capacityMW": 38,
         "capacityMWp": 42,
         "yearlyGenerationGWh": 69,
-        "openBy": "2025-01-30",
+        "openBy": "2025-02-28",
         "location": {
             "lat": -38.02688240581342,
             "long": 177.18354792348188
@@ -61,7 +61,7 @@ export const underConstruction = [
         "capacityMW": 14,
         "capacityMWp": 16.7,
         "yearlyGenerationGWh": 28,
-        "openBy": "2025-01-30",
+        "openBy": "2025-02-28",
         "location": {
             "lat": -36.11523760044438,
             "long": 174.02666511899804
@@ -148,7 +148,6 @@ export const underConstruction = [
         "operator": "Contact Energy",
         "status": "Committed",
         "yearlyGenerationGWh": 11,
-        "openBy": "2025-05-02",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
@@ -169,7 +168,6 @@ export const underConstruction = [
         "operator": "Contact Energy",
         "status": "Committed",
         "yearlyGenerationGWh": 11,
-        "openBy": "2025-10-24",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
