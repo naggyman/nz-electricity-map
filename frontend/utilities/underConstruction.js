@@ -137,7 +137,7 @@ export const underConstruction = [
         "status": "Under Construction",
         "capacityMW": 5.5,
         "yearlyGenerationGWh": 10.7,
-        "openBy": "2025-08-27",
+        "openBy": "2025-09-28",
         "link": "https://www.mercury.co.nz/karapiro-dam"
     },
     {
@@ -146,8 +146,9 @@ export const underConstruction = [
         "site": "ROX",
         "fuel": "Hydro",
         "operator": "Contact Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "yearlyGenerationGWh": 11,
+        "openBy": "2025-07-30",
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
