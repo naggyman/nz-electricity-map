@@ -26,7 +26,7 @@ export const underConstruction = [
         "costMillionDollars": 186, 
         "capacityMW": 100,
         "capacityMWh": 200,
-        "openBy": "2025-02-28",
+        "openBy": "2025-04-30",
         "location": {
             "lat": -35.847508029631044,
             "long": 174.47769233992352
