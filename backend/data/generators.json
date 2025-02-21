@@ -679,7 +679,7 @@
                 "name": "Kinleith",
                 "unitCode": "KIN0",
                 "node": "KIN0112 KIN0",
-                "capacity": 40,
+                "capacity": 32,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             }
