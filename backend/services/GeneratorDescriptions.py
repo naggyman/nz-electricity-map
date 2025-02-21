@@ -72,6 +72,8 @@ class GeneratorDescriptions:
                 return "Genesis Energy"
             case 'b7d81762-b73e-490d-a2f4-f805ab95d167':
                 return "Northpower Limited"
+            case '664e64d1-416c-446b-814d-e73cab27b769':
+                return "Oji Fibre Solutions"
             case default:
                 return None
             

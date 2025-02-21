@@ -690,7 +690,7 @@
         },
         "gridZone": "CNI",
         "island": "NI",
-        "operator": "Carter Holt Harvey / Genesis Energy"
+        "operator": "Oji Fibre Solutions"
     },
     {
         "site": "MAH",
@@ -1570,7 +1570,7 @@
                 "name": "Wheao and Flaxy",
                 "unitCode": "WHE0",
                 "node": "ROT1101 WHE0",
-                "capacity": 26.1,
+                "capacity": 26,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
