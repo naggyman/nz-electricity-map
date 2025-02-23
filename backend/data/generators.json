@@ -1129,7 +1129,7 @@
                 "name": "Stratford Peaker 2",
                 "unitCode": "SFD22",
                 "node": "SFD2201 SFD22",
-                "capacity": 100,
+                "capacity": 103,
                 "fuel": "Gas",
                 "fuelCode": "GAS"
             },
@@ -1271,7 +1271,7 @@
                 "name": "Te Mihi Unit 2",
                 "unitCode": "THI2",
                 "node": "THI2201 THI2",
-                "capacity": 83,
+                "capacity": 84,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -1444,7 +1444,7 @@
                 "name": "Te Huka Units 1 & 2",
                 "unitCode": "TAA0",
                 "node": "WRK0331 TAA0",
-                "capacity": 29,
+                "capacity": 24,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             },
@@ -1453,7 +1453,7 @@
                 "unitCode": "TAC0",
                 "outageBlock": "TAC_1",
                 "node": "TAB0331 TAC0",
-                "capacity": 51.4,
+                "capacity": 51,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
