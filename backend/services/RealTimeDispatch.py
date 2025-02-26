@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+import datetime
 
 # This is the api powering the guages on the top of https://ngawhageneration.co.nz/
 ngawhaGenerationApiUrl = 'https://ngawhageneration.co.nz/api/ngawha/gauge'
@@ -23,6 +24,9 @@ class RealTimeDispatch:
         print("getting rtd data from api...")
 
         if response.status_code != 200:
+            with open('output/error.log', 'a') as file:
+                file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get data from RTD - Status Code: ' + str(response.status_code) + '\n')
+
             raise Exception('Failed to get Real Time Dispatch data')
         
         self.response = response.json()

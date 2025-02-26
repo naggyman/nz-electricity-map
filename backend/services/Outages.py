@@ -17,6 +17,11 @@ class Outages:
             if response.status_code == 200:
                 self.outages = response.json()['items']
             else:
+                print("Did not get outage data from POCP - Status Code: " + str(response.status_code))
+
+                with open('output/error.log', 'a') as file:
+                    file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get Outage data from POCP - Status Code: ' + str(response.status_code) + '\n')
+
                 self.outages = []
         except:
             self.outages = []
