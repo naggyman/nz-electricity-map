@@ -20,6 +20,7 @@ class RealTimeDispatch:
             return
 
         response = requests.get(emiApiUrl, headers={'Ocp-Apim-Subscription-Key': apiKey})
+        print("getting rtd data from api...")
 
         if response.status_code != 200:
             raise Exception('Failed to get Real Time Dispatch data')

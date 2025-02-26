@@ -11,6 +11,7 @@ class Outages:
         apiQuery = pocpApiUrl + '&dateOption=absolute&outageAtFrom=' + fromDate + 'T00%3A00%3A00.000Z&outageAtTo=' + toDate + 'T00%3A00%3A00.000Z'
 
         try:
+            print("getting outage data from POCP...")
             response = requests.get(apiQuery, timeout=1)
 
             if response.status_code == 200:

@@ -94,9 +94,8 @@ class LiveGenerators:
             'until': outage['timeEnd']
         }
     
-    def getIntervalGenerationSummary(self, existingSummary):
-        live = self.getLiveGeneratorOutput() #todo not do this twice
-        lastUpdated = live['lastUpdate']
+    def getIntervalGenerationSummary(self, existingSummary, liveGeneratorOutput):
+        lastUpdated = liveGeneratorOutput['lastUpdate']
 
         if lastUpdated in existingSummary:
             print('Last Updated already in existingSummary')
@@ -104,7 +103,7 @@ class LiveGenerators:
 
         existingSummary[lastUpdated] = []
 
-        for generator in live['generators']:
+        for generator in liveGeneratorOutput['generators']:
             totalGeneration = {}
             for unit in generator['units']:
                 if unit['fuelCode'] not in totalGeneration:
