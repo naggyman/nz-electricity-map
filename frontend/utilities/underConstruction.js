@@ -290,7 +290,7 @@ export const underConstruction = [
         "site": "HLY",
         "fuel": "Battery",
         "operator": "Genesis Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "costMillionDollars": 150,
         "capacityMW": 100,
         "capacityMWh": 200,
