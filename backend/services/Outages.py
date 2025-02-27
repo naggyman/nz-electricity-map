@@ -12,7 +12,7 @@ class Outages:
 
         try:
             print("getting outage data from POCP...")
-            response = requests.get(apiQuery, timeout=1)
+            response = requests.get(apiQuery, timeout=10)
 
             if response.status_code == 200:
                 self.outages = response.json()['items']
