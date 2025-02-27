@@ -1453,7 +1453,7 @@
                 "unitCode": "TAC0",
                 "outageBlock": "TAC_1",
                 "node": "TAB0331 TAC0",
-                "capacity": 51,
+                "capacity": 54,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
