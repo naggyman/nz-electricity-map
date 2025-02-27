@@ -23,11 +23,11 @@ class Outages:
                     file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get Outage data from POCP - Status Code: ' + str(response.status_code) + '\n')
 
                 self.outages = []
-        except:
+        except Exception as Argument:
             print("Did not get outage data from POCP - Exception")
 
             with open('output/error.log', 'a') as file:
-                file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get Outage data from POCP (Exception) \n')
+                file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get Outage data from POCP (Exception): ' + str(Argument) + ' \n')
             self.outages = []
 
         # add a fake outage for generators not yet commissioned
