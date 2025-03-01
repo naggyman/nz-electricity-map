@@ -346,6 +346,7 @@ export const underConstruction = [
         "fuel": "Solar",
         "operator": "Harmoney Energy / First Renewables",
         "status": "Committed",
+        "capacityMW": 150,
         "capacityMWp": 202,
         "yearlyGenerationGWh": 280,
         "openBy": "2026-12-31",
