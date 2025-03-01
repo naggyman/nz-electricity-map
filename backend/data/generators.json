@@ -1813,7 +1813,7 @@
                 "name": "Lauriston",
                 "unitCode": "LAU0",
                 "node": "ASB0661 LAU0",
-                "capacity": 48,
+                "capacity": 47.24,
                 "fuel": "Solar",
                 "fuelCode": "SOL"
             }
