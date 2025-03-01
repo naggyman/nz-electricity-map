@@ -257,7 +257,7 @@ export const underConstruction = [
         "operator": "Maungaturoto Solar Farm Ltd",
         "status": "Under Construction",
         "capacityMWp": 21,
-        "yearlyGenerationGWh": 30,
+        "yearlyGenerationGWh": 32,
         "openBy": "2025-12-31",
         "location": {
             "lat": -36.08995575600482,
