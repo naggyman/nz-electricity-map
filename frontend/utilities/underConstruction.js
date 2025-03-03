@@ -303,7 +303,7 @@ export const underConstruction = [
         "site": "THI",
         "fuel": "Geothermal",
         "operator": "Contact Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "costMillionDollars": 712,
         "capacityMW": 101.4,
         "yearlyGenerationGWh": 830,
