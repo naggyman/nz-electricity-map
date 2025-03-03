@@ -80,8 +80,8 @@ export const underConstruction = [
         "capacityMWh": 200,
         "openBy": "2026-03-31",
         "location": {
-            "lat": -37.20055447360045,
-            "long": 174.73164242576024
+            "lat": -37.2006925645924,
+            "long": 174.73559645343832
         },
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/30/contact-to-develop-a-gridscale-100-mw-battery-in-auckland"
     },
