@@ -299,7 +299,7 @@ export const underConstruction = [
     },
     {
         "name": "Te Mihi",
-        "locationDescription": "Stage 2",
+        "locationDescription": "Stage 2a",
         "site": "THI",
         "fuel": "Geothermal",
         "operator": "Contact Energy",
