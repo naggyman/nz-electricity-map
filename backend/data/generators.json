@@ -1444,7 +1444,7 @@
                 "name": "Te Huka Units 1 & 2",
                 "unitCode": "TAA0",
                 "node": "WRK0331 TAA0",
-                "capacity": 24,
+                "capacity": 25,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             },
