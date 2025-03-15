@@ -216,7 +216,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const fuelsToFilterTo = (new URLSearchParams(window.location.search)).get("fuel")?.split(',') || [];
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
     const date = (new URLSearchParams(window.location.search)).get("date");
-    
+
     let data = {};
     let pricing = {};
     if(date){
@@ -319,8 +319,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
     let xAxisLabels = [];
 
     var firstTradingPeriodDate = new Date(`${tradingPeriodTimestamps[0].split("T")[0]}T00:00:00`);
-    var sunrise = new Date(getSunrise(-41.2924, 174.7787, firstTradingPeriodDate) - 24 * 60 * 60 * 1000);
-    var sunset = getSunset(-41.2924, 174.7787, firstTradingPeriodDate);
+    var sunrise = new Date(new Date(getSunrise(-41.2924, 174.7787, firstTradingPeriodDate) - 24 * 60 * 60 * 1000).toLocaleString("en-US", { timeZone: "Pacific/Auckland" }))
+    var sunset = new Date(getSunset(-41.2924, 174.7787, firstTradingPeriodDate).toLocaleString("en-US", { timeZone: "Pacific/Auckland" }));
 
     var sunriseFound = false;
     var sunsetFound = false;
