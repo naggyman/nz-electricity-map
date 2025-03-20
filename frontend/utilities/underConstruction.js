@@ -51,24 +51,6 @@ export const underConstruction = [
         "link": "https://lodestoneenergy.co.nz/waiotahe/"
     },
     {
-        "name": "Te Puna Mauri ō Omaru",
-        "site": "RWI",
-        "substation": "Maungaturoto",
-        "fuel": "Solar",
-        "operator": "Northpower",
-        "status": "Commissioning",
-        "costMillionDollars": 25,
-        "capacityMW": 14,
-        "capacityMWp": 16.7,
-        "yearlyGenerationGWh": 28,
-        "openBy": "2025-03-30",
-        "location": {
-            "lat": -36.11523760044438,
-            "long": 174.02666511899804
-        },
-        "link": "https://northpower.nz/about-us/ruawai-solar-farm/"
-    },
-    {
         "name": "Glenbrook-Ohurua",
         "site": "",
         "substation": "Glenbrook",
