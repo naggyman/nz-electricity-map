@@ -9,7 +9,7 @@ export const underConstruction = [
         "capacityMW": 20.8,
         "capacityMWp": 22,
         "yearlyGenerationGWh": 37, // estimate
-        "openBy": "2025-03-31",
+        "openBy": "2025-05-31",
         "location": {
             "lat": -34.81847954912686,
             "long": 173.1106851473731
@@ -256,9 +256,10 @@ export const underConstruction = [
         "fuel": "Solar",
         "operator": "Maungaturoto Solar Farm Ltd",
         "status": "Under Construction",
+        "capacityMW": 17.6,
         "capacityMWp": 21,
         "yearlyGenerationGWh": 32,
-        "openBy": "2025-12-31",
+        "openBy": "2025-05-31",
         "location": {
             "lat": -36.08995575600482,
             "long": 174.34730610408738
