@@ -18,6 +18,7 @@ export const underConstruction = [
     },
     {
         "name": "Ruakākā",
+        "locationDescription": "BESS",
         "site": "RUK",
         "substation": "Bream Bay",
         "fuel": "Battery",
@@ -339,5 +340,21 @@ export const underConstruction = [
             "lat": -37.58021852639933, 
             "long": 175.71220320550398
         }
+    },
+    {
+        "name": "Ruakākā",
+        "locationDescription": "Solar Farm",
+        "site": "RUK",
+        "fuel": "Solar",
+        "operator": "Meridian Energy",
+        "status": "Committed",
+        "capacityMW": 130,
+        "yearlyGenerationGWh": 216,
+        "openBy": "2027-03-31",
+        "link": "https://meridianenergy.co.nz/public/Investors/Reports-and-presentations/Investor-presentations/2024/ruakaka-solar-announcement-March-2025.pdf",
+        "location": {
+            "lat": -35.847508029631044,
+            "long": 174.47769233992352
+        },
     }
 ]
