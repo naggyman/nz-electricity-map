@@ -163,6 +163,7 @@ export const underConstruction = [
         "capacityMW": 22.4,
         "capacityMWp": 33,
         "yearlyGenerationGWh": 35, // estimate based off 18% capacity factor
+        "openBy": "2025-12-31",
         "location": {
             "lat": -37.44080411617218,
             "long": 175.13234517360215
