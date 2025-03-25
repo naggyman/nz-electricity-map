@@ -25,6 +25,7 @@ function populatePipelineTable(){
     
     let totalAnnualGeneration = 0;
     let totalNameplateCapacity = 0;
+    let totalCost = 0;
 
     let newGenerationGWhByYear = {};
     let nameplateCapacityByYear = {};
@@ -33,6 +34,7 @@ function populatePipelineTable(){
         addRow(site);
         totalAnnualGeneration += site.yearlyGenerationGWh || 0;
         totalNameplateCapacity += site.capacityMW || site.predictedCapacityMW || 0;
+        totalCost += (site.costMillionDollars !== undefined) ? site.costMillionDollars : 0;
 
         if(site.openBy){
             let year = new Date(site.openBy).getFullYear();
@@ -62,7 +64,7 @@ function populatePipelineTable(){
     addCell(totalRow, totalNameplateCapacity.toFixed(1) + " MW");
     addCell(totalRow, "");
     addCell(totalRow, totalAnnualGeneration + " GWh");
-    addCell(totalRow, "");
+    addCell(totalRow, "$" + (totalCost/1000).toFixed(2) + "b");
     addCell(totalRow, "");
 
     Object.keys(newGenerationGWhByYear).forEach(year => {
