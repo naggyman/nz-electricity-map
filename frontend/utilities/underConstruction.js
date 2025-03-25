@@ -350,6 +350,7 @@ export const underConstruction = [
         "status": "Committed",
         "capacityMW": 130,
         "yearlyGenerationGWh": 216,
+        "costMillionDollars": 227,
         "openBy": "2027-03-31",
         "link": "https://meridianenergy.co.nz/public/Investors/Reports-and-presentations/Investor-presentations/2024/ruakaka-solar-announcement-March-2025.pdf",
         "location": {
