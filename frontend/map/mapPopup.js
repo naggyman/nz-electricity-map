@@ -64,13 +64,17 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
         popup += `| <a href="${pocpPrePopulatedSearch}" target="_blank">View Outage Info</a>`
     }
 
-    let underConstructionData = underConstruction.find((uc) => uc.site === generatorData.site);
-    if(underConstructionData){
-        popup += `<br><br>`+
-            `<b>${underConstructionData.status}:</b> ${(underConstructionData.locationDescription != undefined) ? ` ${underConstructionData.locationDescription}` : ""}<br>` + 
-            `<b>Capacity: </b>${newBuildGenerationCapacityString(underConstructionData)}<br>` + 
-            (underConstructionData.yearlyGenerationGWh ? `<b>Yearly Generation: </b>${underConstructionData.yearlyGenerationGWh} GWh</br>` : '') + 
-            `<b>Expected commissioning by: </b>${(underConstructionData.openBy) ? new Date(underConstructionData.openBy).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long' }) : ''}`
+
+    let underConstructionUnits = underConstruction.filter((uc) => uc.site === generatorData.site);
+    
+    if(underConstructionUnits.length > 0){
+        underConstructionUnits.forEach(unit => {
+            popup += `<br><br>`+
+            `<b>${unit.status}:</b> ${(unit.locationDescription != undefined) ? ` ${unit.locationDescription}` : ""}<br>` + 
+            `<b>Capacity: </b>${newBuildGenerationCapacityString(unit)}<br>` + 
+            (unit.yearlyGenerationGWh ? `<b>Yearly Generation: </b>${unit.yearlyGenerationGWh} GWh</br>` : '') + 
+            `<b>Expected commissioning by: </b>${(unit.openBy) ? new Date(unit.openBy).toLocaleDateString('en-NZ', { year: 'numeric', month: 'long' }) : ''}`
+        })
     }
     
     return popup;
