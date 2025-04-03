@@ -188,5 +188,45 @@ export const distributed = [
             "long": 174.12902023910175
         },
         "operator": "Energy Marlborough"
+    },
+    {
+        "name": "Ashburton",
+        "capacity": 7,
+        "fuel": "Solar",
+        "location": {
+            "lat": -43.94352368154086,
+            "long": 171.72117409578058
+        },
+        "operator": "Lightyears Solar/RCR Green"
+    },
+    {
+        "name": "Waingawa",
+        "capacity": 4.7,
+        "fuel": "Solar",
+        "location": {
+            "lat": -40.94897668975478, 
+            "long": 175.574194223121
+        },
+        "operator": "Lightyears Solar"
+    },
+    {
+        "name": "New Plymouth Airport",
+        "capacity": 10,
+        "fuel": "Solar",
+        "location": {
+            "lat": -39.01314112313353, 
+            "long": 174.17168870977216
+        },
+        "operator": "New Energy"
+    },
+    {
+        "name": "Ardmore",
+        "capacity": 9.75,
+        "fuel": "Solar",
+        "location": {
+            "lat": -37.035335987890015,
+            "long": 175.00213661627595
+        },
+        "operator": "Kiwi Solar"
     }
 ]
