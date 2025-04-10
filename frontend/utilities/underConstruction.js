@@ -316,7 +316,7 @@ export const underConstruction = [
         "site": "",
         "fuel": "Solar",
         "operator": "Harmoney Energy / First Renewables",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMW": 150,
         "capacityMWp": 202,
         "yearlyGenerationGWh": 280,
