@@ -9,7 +9,7 @@ export const underConstruction = [
         "capacityMW": 20.8,
         "capacityMWp": 22,
         "yearlyGenerationGWh": 37, // estimate
-        "openBy": "2025-05-31",
+        "openBy": "2025-06-30",
         "location": {
             "lat": -34.81847954912686,
             "long": 173.1106851473731
@@ -33,23 +33,6 @@ export const underConstruction = [
             "long": 174.47769233992352
         },
         "link": "https://www.meridianenergy.co.nz/new-projects/ruakaka-energy-park"
-    },
-    {
-        "name": "Te Herenga o Te Rā",
-        "site": "HTR",
-        "substation": "Waiotahi",
-        "fuel": "Solar",
-        "operator": "Lodestone Energy",
-        "status": "Commissioning",
-        "capacityMW": 38,
-        "capacityMWp": 42,
-        "yearlyGenerationGWh": 69,
-        "openBy": "2025-03-30",
-        "location": {
-            "lat": -38.02688240581342,
-            "long": 177.18354792348188
-        },
-        "link": "https://lodestoneenergy.co.nz/waiotahe/"
     },
     {
         "name": "Glenbrook-Ohurua",
