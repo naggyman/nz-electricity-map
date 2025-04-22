@@ -16,7 +16,7 @@ export function displayMegawattsOrGigawatts(input) {
     return input.toFixed(2) + " MW"
 }
 
-export const RENEWABLE_FUELS = ["Hydro", "Geothermal", "Wind", "Solar"];
+export const RENEWABLE_FUELS = ["Hydro", "Geothermal", "Wind", "Solar", "Battery (Discharging)"];
 
 export const FUELS_KEY = {
     "HYD": "Hydro",
