@@ -18,7 +18,11 @@ export async function fetchJson(path){
         data = await fetch(localUrl(path));
     }
 
-    return data.json();
+    if(data.status === 200){
+        return data.json();
+    }
+
+    return {};
 }
 
 function formatDate(date){
