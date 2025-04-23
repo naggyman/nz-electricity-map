@@ -2,7 +2,7 @@
 import { getRelativeTimeseriesData } from './graphData.js';
 import { getChartSeriesDataByFuel, getTooltipForFuelFilteredGraph } from './graphByFuel.js';
 import { FUELS_KEY, SKIP_LIST } from '../utilities/units.js';
-import { getLiveGenerationData, getTimeseriesGenerationData } from '../utilities/api.js';
+import { getLiveGenerationData, getTimeseriesGenerationData, getTimeseriesPriceData } from '../utilities/api.js';
 import { getCurrentTimeInNZ } from '../utilities/units.js';
 import { createHighchart } from './graphChart.js';
 import { TimeFrameSelector } from '../chart/timeframeSelector.js';
@@ -221,6 +221,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
     let pricing = {};
     if(date){
         data = await getTimeseriesGenerationData(new Date(date));
+        pricing = await getTimeseriesPriceData(new Date(date));
     } else {
         let output = await getRelativeTimeseriesData(timeframe);
 
