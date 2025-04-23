@@ -45,6 +45,11 @@ export async function getRelativeTimeseriesData(timeframe) {
         date = getDateRelativeToNowInNZ(relativeTimeUnit);
 
         let timeseriesData = await getTimeseriesGenerationData(date);
+
+        if(Object.keys(timeseriesData).length == 0){
+            return;
+        }
+
         let timeseriesPriceData = await getTimeseriesPriceData(date);
         Object.assign(data, timeseriesData);
         Object.assign(priceData, timeseriesPriceData);
