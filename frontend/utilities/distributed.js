@@ -228,5 +228,25 @@ export const distributed = [
             "long": 175.00213661627595
         },
         "operator": "Kiwi Solar"
+    },
+    {
+        "name": "Monowai",
+        "capacity": 7.6,
+        "fuel": "Hydro",
+        "location": {
+            "lat": -45.775265588730775,
+            "long": 167.6170158027707
+        },
+        "operator": "Pioneer Energy Renewables"
+    },
+    {
+        "name": "Wye Creek",
+        "capacity": 1.3,
+        "fuel": "Hydro",
+        "location": {
+            "lat": -45.13380689649254,
+            "long": 168.78664959353839
+        },
+        "operator": "Pioneer Energy Renewables"
     }
 ]
