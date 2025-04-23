@@ -223,6 +223,21 @@ async function getTradingPeriodStats(forceUpdate = false) {
         data = await getTimeseriesGenerationData(new Date(date));
     } else {
         let output = await getRelativeTimeseriesData(timeframe);
+
+        if(output == undefined){
+            updateInProgress = false;
+            statusSpan.innerHTML = "Error Loading data"
+
+            let chartHTML = document.getElementById("generation-chart");
+            chartHTML.innerHTML = ""+
+                "<div class=\"text-center\" style=\"padding-top: 30vh;\">"+
+                    "<div class=\"pt-4\">Error loading chart data</div>"+
+                    "<div class=\"pt-4\">Please try again later</div>"+
+                "</div>"
+
+            return;
+        }
+
         data = output[0]
         pricing = output[1]
     }
