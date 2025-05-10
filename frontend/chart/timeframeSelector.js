@@ -118,7 +118,10 @@ export class TimeFrameSelector {
     }
 
     datePickerChanged(date){
-        if(this.blockSelectionChanges) return;
+        if(this.blockSelectionChanges){
+            console.warn("blockSelectionChanges is true")
+            return;
+        } 
         if(date === undefined) return;
         this.update(ABSOLUTE_SELECTOR, formatDate(date));
     }
@@ -138,6 +141,7 @@ export class TimeFrameSelector {
 
     update(type = RELATIVE_SELECTOR, value = chartConfig.defaultTimeframe) {
         if(this.blockSelectionChanges){
+            console.warn("blockSelectionChanges is true")
             return;
         }
 

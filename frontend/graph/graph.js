@@ -324,6 +324,7 @@ async function getTradingPeriodStats(forceUpdate = false) {
         // don't update the graph if nothing has changed (forces a re-render)
         updateInProgress = false;
         statusSpan.innerHTML = lastUpdatedString;
+        timeframeSelector.toggleBlockSelectionChanges();
         return;
     }
 
