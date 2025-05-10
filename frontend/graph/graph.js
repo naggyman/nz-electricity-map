@@ -6,28 +6,21 @@ import { getLiveGenerationData, getTimeseriesGenerationData, getTimeseriesPriceD
 import { getCurrentTimeInNZ } from '../utilities/units.js';
 import { createHighchart } from './graphChart.js';
 import { TimeFrameSelector } from '../chart/timeframeSelector.js';
+import { QueryParams } from '../chart/queryParams.js';
 import { decomissioned } from '../utilities/decomissioned.js';
 import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
 import { NIGHTTIME_SHADING } from '../utilities/colours.js';
 
-const TIMEFRAME_QUERY_PARAM = "timeframe";
-const DATE_QUERY_PARAM = "date";
-
-var queryParams = new URLSearchParams(window.location.search)
-var timeframeSelection = queryParams.get(TIMEFRAME_QUERY_PARAM)
-var dateSelection = queryParams.get(DATE_QUERY_PARAM);
-
-const timeframeSelector = new TimeFrameSelector(timeframeSelection, dateSelection);
+const queryParamsNew = new QueryParams();
+const timeframeSelector = new TimeFrameSelector(queryParamsNew.timeframe, queryParamsNew.date);
 
 timeframeSelector.subscribe(updateQueryParams)
 
 function updateQueryParams(){
     if(timeframeSelector.selectionType == "relative"){
-        setQueryParam("timeframe", timeframeSelector.relativeTimeframe);
-        setQueryParam("date", "");
+        queryParamsNew.setRelativeTimeframe(timeframeSelector.relativeTimeframe);
     } else if(timeframeSelector.selectionType == "absolute") {
-        setQueryParam("timeframe", "");
-        setQueryParam("date", timeframeSelector.absoluteTimeframe);
+        queryParamsNew.setAbsoluteTimeframe(timeframeSelector.absoluteTimeframe);
     }
     
     getTradingPeriodStats(true)
