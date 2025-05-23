@@ -826,6 +826,13 @@
         "type": "ACSTN"
     },
     {
+        "long": 175.42710843966367,
+        "lat": -37.86948616885932,
+        "siteId": "HTU",
+        "description": "Hautapu",
+        "type": "ACSTN"
+    },
+    {
         "long": 173.243155157162,
         "lat": -41.3151934818933,
         "siteId": "STK",
