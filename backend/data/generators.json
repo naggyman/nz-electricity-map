@@ -1777,6 +1777,27 @@
         "alias": "KTS"
     },
     {
+        "site": "PSF",
+        "name": "Pukenui",
+        "units": [
+            {
+                "name": "Pukenui",
+                "unitCode": "PSF0",
+                "node": "KOE1101 PSF0",
+                "capacity": 20.8,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -34.81847954912686,
+            "long": 173.1106851473731
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "Far North Solar Farm"
+    },
+    {
         "site": "SZR",
         "name": "SolarZero",
         "units": [
