@@ -219,7 +219,7 @@ function getSubstationGenerationRows(substationData){
                     <td>${connection.generatorInfo.plantName}</td>
                     <td>${formatFuel(connection.generatorInfo.fuel)}</td>
                     <td>${displayMegawattsOrGigawatts(connection.generationMW || (-connection.loadMW))}</td>
-                    <td>${displayMegawattsOrGigawatts(connection.generatorInfo.nameplateCapacityMW)}</td>
+                    <td>${(connection.generatorInfo.plantName != "Unknown") ? displayMegawattsOrGigawatts(connection.generatorInfo.nameplateCapacityMW): ""}</td>
                     <td>
                          <div class="progress" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar bg-success" style="width: ${percentage}%">
