@@ -17,24 +17,6 @@ export const underConstruction = [
         "link": "https://www.nzherald.co.nz/northern-advocate/news/far-norths-next-solar-farm-to-produce-power-from-early-2025/WFDYOC6L2VCYRM5ZISTUG3XUIM/"
     },
     {
-        "name": "Ruakākā",
-        "locationDescription": "BESS",
-        "site": "RUK",
-        "substation": "Bream Bay",
-        "fuel": "Battery",
-        "operator": "Meridian Energy",
-        "status": "Commissioning",
-        "costMillionDollars": 186, 
-        "capacityMW": 100,
-        "capacityMWh": 200,
-        "openBy": "2025-05-30",
-        "location": {
-            "lat": -35.847508029631044,
-            "long": 174.47769233992352
-        },
-        "link": "https://www.meridianenergy.co.nz/new-projects/ruakaka-energy-park"
-    },
-    {
         "name": "Glenbrook-Ohurua",
         "site": "",
         "substation": "Glenbrook",
