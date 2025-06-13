@@ -5,7 +5,7 @@ export const underConstruction = [
         "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Far North Solar Farm",
-        "status": "Under Construction",
+        "status": "Commissioning",
         "capacityMW": 20.8,
         "capacityMWp": 22,
         "yearlyGenerationGWh": 37, // estimate
