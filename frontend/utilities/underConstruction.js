@@ -306,6 +306,7 @@ export const underConstruction = [
         "location": {
             "lat": -44.1911373684292,
             "long": 171.37590869305927
-        }
+        },
+        "link": "https://lodestoneenergy.co.nz/canterbury-solar-farm-project-underway/"
     }
 ]
