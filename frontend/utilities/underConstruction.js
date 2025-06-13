@@ -137,20 +137,6 @@ export const underConstruction = [
         "link": "https://www.linkedin.com/posts/infratec_nz_a-bit-of-grey-weather-in-the-waikato-didn-activity-7221341384148992000-XnVG?utm_source=share&utm_medium=member_desktop"
     },
     {
-        "name": "Dargaville",
-        "site": "DRG",
-        "substation": "Maungatapere",
-        "fuel": "Solar",
-        "operator": "Lodestone Energy",
-        "status": "Committed",
-        "capacityMWp": 52,
-        "location": {
-            "lat": -35.92376187513902,
-            "long": 173.84303589372522
-        },
-        "link": "https://lodestoneenergy.co.nz/"
-    },
-    {
         "name": "Pāmu Rā ki Whitianga",
         "site": "WTA",
         "substation": "Kopu",
