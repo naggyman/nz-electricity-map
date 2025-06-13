@@ -308,5 +308,18 @@ export const underConstruction = [
             "lat": -35.847508029631044,
             "long": 174.47769233992352
         },
+    },
+    {
+        "name": "Clandeboye",
+        "site": "CLB",
+        "fuel": "Solar",
+        "operator": "Lodestone Energy",
+        "status": "Committed",
+        "yearlyGenerationGWh": 43,
+        "openBy": "2026-09-30",
+        "location": {
+            "lat": -44.1911373684292,
+            "long": 171.37590869305927
+        }
     }
 ]
