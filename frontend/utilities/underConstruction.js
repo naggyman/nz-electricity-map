@@ -154,21 +154,6 @@ export const underConstruction = [
         "link": "https://lodestoneenergy.co.nz/whitianga-solar-farm/"
     },
     {
-        "name": "Omeheu",
-        "site": "EDS",
-        "substation": "Edgecumbe",
-        "fuel": "Solar",
-        "operator": "Far North Solar Farm",
-        "status": "Committed",
-        "capacityMWp": 38,
-        "yearlyGenerationGWh": 41,
-        "location": {
-            "lat": -37.980200616946675,
-            "long": 176.85378338623394
-        },
-        "link": "https://bopbusinessnews.co.nz/news/new-edgecumbe-solar-farm-underway/"
-    },
-    {
         "name": "TOPP2",
         "site": "",
         "substation": "Kawerau",
