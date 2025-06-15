@@ -301,6 +301,7 @@ export const underConstruction = [
         "fuel": "Solar",
         "operator": "Lodestone Energy",
         "status": "Committed",
+        "capacityMWp": 27.7,
         "yearlyGenerationGWh": 43,
         "openBy": "2026-09-30",
         "location": {
