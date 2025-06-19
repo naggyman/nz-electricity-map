@@ -50,7 +50,7 @@
                 "name": "Ōhaaki",
                 "unitCode": "OKI0",
                 "node": "OKI2201 OKI0",
-                "capacity": 40,
+                "capacity": 44,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
