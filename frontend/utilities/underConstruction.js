@@ -26,7 +26,7 @@ export const underConstruction = [
         "costMillionDollars": 163,
         "capacityMW": 100,
         "capacityMWh": 200,
-        "openBy": "2026-03-31",
+        "openBy": "2025-10-31",
         "location": {
             "lat": -37.2006925645924,
             "long": 174.73559645343832
@@ -69,7 +69,7 @@ export const underConstruction = [
         "capacityMWp": 31,
         "capacityMW": 24,
         "yearlyGenerationGWh": 42,
-        "openBy": "2025-06-30",
+        "openBy": "2025-07-30",
         "location": {
             "lat": -35.13850578292899,
             "long": 173.35440957656024
@@ -129,7 +129,7 @@ export const underConstruction = [
         "capacityMW": 22.4,
         "capacityMWp": 33,
         "yearlyGenerationGWh": 35, // estimate based off 18% capacity factor
-        "openBy": "2025-12-31",
+        "openBy": "2025-09-30",
         "location": {
             "lat": -37.44080411617218,
             "long": 175.13234517360215
@@ -179,7 +179,7 @@ export const underConstruction = [
         "capacityMW": 17.6,
         "capacityMWp": 21,
         "yearlyGenerationGWh": 32,
-        "openBy": "2025-07-31",
+        "openBy": "2025-09-30",
         "location": {
             "lat": -36.08995575600482,
             "long": 174.34730610408738
