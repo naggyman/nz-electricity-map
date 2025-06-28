@@ -833,6 +833,13 @@
         "type": "ACSTN"
     },
     {
+        "long": 175.42511843709696,
+        "lat": -37.86986984294279, 
+        "siteId": "HTT",
+        "description": "Hautapu Tee",
+        "type": "TEE"
+    },
+    {
         "long": 173.243155157162,
         "lat": -41.3151934818933,
         "siteId": "STK",
