@@ -5,10 +5,11 @@ import { getColourForFuel } from '../utilities/colours.js';
 const keyOrder = [
     "BESS",
     "DIE",
+    "GAS",
     "HYD",
     "SOL",
     "WIN",
-    "GAS",
+    
     "CLG",
     "GEO",
     "BESS-C"
@@ -71,7 +72,7 @@ export async function getChartSeriesDataByFuel(liveGenData, data, pricing, siteF
                 
                 if (unit.outage.length > 0){
                     unit.outage.forEach(outage => {
-                        var now = new Date(tradingPeriodTimestamp + "+13:00")
+                        var now = new Date(tradingPeriodTimestamp) // todo - daylight savings?
                         
                         var outageStarted = new Date(outage.from) <= now;
                         var outageEnded = new Date(outage.until) <= now;
