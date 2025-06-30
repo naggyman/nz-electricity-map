@@ -5,11 +5,12 @@ import { getColourForFuel } from '../utilities/colours.js';
 const keyOrder = [
     "BESS",
     "DIE",
-    "GAS",
+    
     "HYD",
     "SOL",
     "WIN",
     
+    "GAS",
     "CLG",
     "GEO",
     "BESS-C"
