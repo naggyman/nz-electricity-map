@@ -340,7 +340,7 @@
                 "name": "Coleridge",
                 "unitCode": "COL0",
                 "node": "COL0661 COL0",
-                "capacity": 39,
+                "capacity": 40,
                 "fuel": "Hydro",
                 "fuelCode": "HYD"
             }
