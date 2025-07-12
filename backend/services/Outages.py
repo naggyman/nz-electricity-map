@@ -29,25 +29,3 @@ class Outages:
             with open('output/error.log', 'a') as file:
                 file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get Outage data from POCP (Exception): ' + str(Argument) + ' \n')
             self.outages = []
-
-        # add a fake outage for generators not yet commissioned
-        # remove these once the Generator is generating, or an outage is added to POCP for it's commissioning
-            
-        # Ruakaka BESS
-        self.outages.append({
-            "orgId": "f246144f-ec9b-4c32-8b92-5f78ddc7a641",
-            "outageBlock": "RUK_0",
-            "timeStart": "2024-01-01T00:00:00+13:00",
-            "timeEnd": "2025-01-17T07:00:00+13:00",
-            "mwattRemaining": 0,
-            "mwattLost": 100
-            })
-
-        self.outages.append({
-            "orgId": "f246144f-ec9b-4c32-8b92-5f78ddc7a641",
-            "outageBlock": "RUK_99",
-            "timeStart": "2024-01-01T00:00:00+13:00",
-            "timeEnd": "2025-01-17T07:00:00+13:00",
-            "mwattRemaining": 0,
-            "mwattLost": 100
-            })
