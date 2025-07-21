@@ -1,22 +1,5 @@
 export const underConstruction = [
     {
-        "name": "Pukenui",
-        "site": "PSF",
-        "substation": "Kaikohe",
-        "fuel": "Solar",
-        "operator": "Far North Solar Farm",
-        "status": "Commissioning",
-        "capacityMW": 20.8,
-        "capacityMWp": 22,
-        "yearlyGenerationGWh": 37, // estimate
-        "openBy": "2025-06-30",
-        "location": {
-            "lat": -34.81847954912686,
-            "long": 173.1106851473731
-        },
-        "link": "https://www.nzherald.co.nz/northern-advocate/news/far-norths-next-solar-farm-to-produce-power-from-early-2025/WFDYOC6L2VCYRM5ZISTUG3XUIM/"
-    },
-    {
         "name": "Glenbrook-Ohurua",
         "site": "",
         "substation": "Glenbrook",
