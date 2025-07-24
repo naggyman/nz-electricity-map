@@ -268,7 +268,7 @@ export const underConstruction = [
         "site": "CLB",
         "fuel": "Solar",
         "operator": "Lodestone Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMWp": 27.7,
         "yearlyGenerationGWh": 43,
         "openBy": "2026-09-30",
