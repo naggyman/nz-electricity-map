@@ -29,3 +29,12 @@ class Outages:
             with open('output/error.log', 'a') as file:
                 file.write(str(datetime.datetime.now(datetime.timezone.utc)) + ' Failed to get Outage data from POCP (Exception): ' + str(Argument) + ' \n')
             self.outages = []
+
+        self.outages.append({
+            "orgId": "974531a4-e2e5-49ce-8681-292d353265c8",
+            "outageBlock": "TOH_0",
+            "timeStart": "2025-01-01T00:00:00+13:00",
+            "timeEnd": "2025-09-30T00:00:00+13:00",
+            "mwattRemaining": 0,
+            "mwattLost": 22.4
+            })
