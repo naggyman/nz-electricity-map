@@ -1918,5 +1918,26 @@
         "gridZone": "CNI",
         "island": "NI",
         "operator": "Lodestone Energy"
+    },
+    {
+        "site": "TOH",
+        "name": "Taiohi",
+        "units": [
+            {
+                "name": "Taiohi",
+                "unitCode": "TOH0",
+                "node": "HLY0331 TOH0",
+                "capacity": 22.4,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -37.44080411617218,
+            "long": 175.13234517360215
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "NewPower Energy"
     }
 ]
