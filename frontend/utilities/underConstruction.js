@@ -299,6 +299,7 @@ export const underConstruction = [
         "operator": "Far North Solar Farm",
         "status": "Under Construction",
         "capacityMWp": 38,
+        "capacityMW": 27,
         "openBy": "2026-03-31",
         "yearlyGenerationGWh": 41,
         "location": {
