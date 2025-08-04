@@ -73,17 +73,6 @@ export const underConstruction = [
     },
     {
         "name": "Roxburgh",
-        "locationDescription": "Turbine 2 Upgrade",
-        "site": "ROX",
-        "fuel": "Hydro",
-        "operator": "Contact Energy",
-        "status": "Under Construction",
-        "yearlyGenerationGWh": 11,
-        "openBy": "2025-07-30",
-        "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
-    },
-    {
-        "name": "Roxburgh",
         "locationDescription": "Turbine 3 Upgrade",
         "site": "ROX",
         "fuel": "Hydro",
