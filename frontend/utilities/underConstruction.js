@@ -26,7 +26,7 @@ export const underConstruction = [
         "costMillionDollars": 220,
         "capacityMW": 46,
         "yearlyGenerationGWh": 390,
-        "openBy": "2025-12-31",
+        "openBy": "2025-11-30",
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/geothermal/nga-tamariki-expansion"
     },
     {
@@ -151,7 +151,7 @@ export const underConstruction = [
         "capacityMW": 17.6,
         "capacityMWp": 21,
         "yearlyGenerationGWh": 32,
-        "openBy": "2025-08-30",
+        "openBy": "2025-09-30",
         "location": {
             "lat": -36.08995575600482,
             "long": 174.34730610408738
