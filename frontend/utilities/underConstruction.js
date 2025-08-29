@@ -297,4 +297,20 @@ export const underConstruction = [
         },
         "link": "https://bopbusinessnews.co.nz/news/new-edgecumbe-solar-farm-underway/"
     },
+    {
+        "name": "Te Rāhui",
+        "locationDescription": "Stage 1",
+        "site": "TRU",
+        "substation": "",
+        "fuel": "Solar",
+        "operator": "Nova Energy / Meridian Energy",
+        "status": "Committed",
+        "openBy": "2026-07-31",
+        "capacityMW": 200,
+        "location": {
+            "lat": -38.864246805972705,
+            "long": 176.45131322681257
+        },
+        "link": "https://www.waikatotimes.co.nz/nz-news/350327125/nzs-largest-solar-farm-gets-go-ahead"
+    },
 ]
