@@ -307,6 +307,8 @@ export const underConstruction = [
         "status": "Committed",
         "openBy": "2026-07-31",
         "capacityMW": 200,
+        "yearlyGenerationGWh": 325,
+        "costMillionDollars": 300,
         "location": {
             "lat": -38.864246805972705,
             "long": 176.45131322681257
