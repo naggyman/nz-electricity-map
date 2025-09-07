@@ -74,6 +74,8 @@ class GeneratorDescriptions:
                 return "Northpower Limited"
             case '664e64d1-416c-446b-814d-e73cab27b769':
                 return "Oji Fibre Solutions"
+            case '20cc9dfe-6dca-41b9-91a7-be627f71880d':
+                return "Ranui Generation"
             case default:
                 return None
             
