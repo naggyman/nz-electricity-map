@@ -659,6 +659,27 @@
         "operator": "Eastland Generation Ltd"
     },
     {
+        "site": "TOP2",
+        "name": "TOPP2",
+        "units": [
+            {
+                "name": "TOPP2",
+                "unitCode": "TOP2",
+                "node": "KAW2201 TOP2",
+                "capacity": 49,
+                "fuel": "Geothermal",
+                "fuelCode": "GEO"
+            }
+        ],
+        "location": {
+            "lat": -38.07497069187655,
+            "long": 176.69972269607476
+        },
+        "gridZone": "CNI",
+        "island": "NI",
+        "operator": "Eastland Generation Ltd"
+    },
+    {
         "site": "KAG",
         "name": "Kawerau",
         "units": [
