@@ -304,7 +304,7 @@ export const underConstruction = [
         "substation": "",
         "fuel": "Solar",
         "operator": "Nova Energy / Meridian Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "openBy": "2026-07-31",
         "capacityMW": 200,
         "yearlyGenerationGWh": 325,
