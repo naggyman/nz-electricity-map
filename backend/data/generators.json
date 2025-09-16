@@ -1968,5 +1968,26 @@
         "gridZone": "UNI",
         "island": "NI",
         "operator": "NewPower Energy"
+    },
+    {
+        "site": "TRS",
+        "name": "Twin Rivers",
+        "units": [
+            {
+                "name": "Twin Rivers",
+                "unitCode": "TRS0",
+                "node": "KOE1101 TRS0",
+                "capacity": 24,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -35.13850578292899,
+            "long": 173.35440957656024
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "Rānui Generation"
     }
 ]
