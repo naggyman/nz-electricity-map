@@ -48,7 +48,7 @@ export const underConstruction = [
         "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Rānui Generation",
-        "status": "Under Construction",
+        "status": "Pre-Commissioning",
         "capacityMWp": 31,
         "capacityMW": 24,
         "yearlyGenerationGWh": 42,
@@ -97,7 +97,7 @@ export const underConstruction = [
         "substation": "",
         "fuel": "Solar",
         "operator": "NewPower Energy",
-        "status": "Under Construction",
+        "status": "Pre-Commissioning",
         "capacityMW": 22.4,
         "capacityMWp": 33,
         "yearlyGenerationGWh": 35, // estimate based off 18% capacity factor
@@ -131,7 +131,7 @@ export const underConstruction = [
         "substation": "Kawerau",
         "fuel": "Geothermal",
         "operator": "Eastland Generation",
-        "status": "Under Construction",
+        "status": "Pre-Commissioning",
         "capacityMW": 49,
         "yearlyGenerationGWh": 407, //estimate assuming 95% capacity factor
         "openBy": "2025-10-30",
