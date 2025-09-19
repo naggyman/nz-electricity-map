@@ -639,7 +639,8 @@
                 "node": "KAW0111 TAM0",
                 "capacity": 26,
                 "fuel": "Geothermal",
-                "fuelCode": "GEO"
+                "fuelCode": "GEO",
+                "active": false
             },
             {
                 "name": "Te Ahi O Maui",

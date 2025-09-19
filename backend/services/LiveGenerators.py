@@ -28,7 +28,8 @@ class LiveGenerators:
                 unit['generation'] = 0
 
                 if rtd is None:
-                    print('Node not found in RealTimeDispatch - ' + unit['node'])
+                    if 'active' in unit and unit['active']:
+                        print('Node not found in RealTimeDispatch - ' + unit['node'])
                     continue
                 
                 unit['generation'] = rtd['SPDGenerationMegawatt'] - rtd['SPDLoadMegawatt']
