@@ -81,8 +81,11 @@ export function populateGeneratorPopup(generatorData, lastUpdated) {
 }
 
 function populateGenerationData(generatorData) {
-    if (generatorData.units.filter((unit) => unit.capacity != 0).length > 1) {
+    var validUnits = generatorData.units.filter((unit) => unit.capacity != 0);
+    if (validUnits.length > 1) {
         return populateGeneratorUnitList(generatorData);
+    } else if (validUnits.length == 1) {
+        return populateGenerationUnit(validUnits[0], false);
     }
 
     return populateGenerationUnit(generatorData.units[0], false);
