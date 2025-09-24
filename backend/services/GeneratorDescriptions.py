@@ -76,6 +76,8 @@ class GeneratorDescriptions:
                 return "Oji Fibre Solutions"
             case '20cc9dfe-6dca-41b9-91a7-be627f71880d':
                 return "Rānui Generation"
+            case 'f3c9c115-f9b4-402b-b055-6d5eaf2c130d':
+                return "Maungaturoto Solar Farm Project LP"
             case default:
                 return None
             

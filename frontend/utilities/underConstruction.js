@@ -146,7 +146,7 @@ export const underConstruction = [
         "site": "",
         "substation": "Maungaturoto",
         "fuel": "Solar",
-        "operator": "Maungaturoto Solar Farm Ltd",
+        "operator": "Maungaturoto Solar Farm Project LP",
         "status": "Under Construction",
         "capacityMW": 17.6,
         "capacityMWp": 21,
