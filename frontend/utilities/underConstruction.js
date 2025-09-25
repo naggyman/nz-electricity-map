@@ -48,7 +48,7 @@ export const underConstruction = [
         "substation": "Kaikohe",
         "fuel": "Solar",
         "operator": "Rānui Generation",
-        "status": "Pre-Commissioning",
+        "status": "Commissioning",
         "capacityMWp": 31,
         "capacityMW": 24,
         "yearlyGenerationGWh": 42,
@@ -58,18 +58,6 @@ export const underConstruction = [
             "long": 173.35440957656024
         },
         "link": "https://ranuigen.co.nz/twinrivers/"
-    },
-    {
-        "name": "Karāpiro",
-        "locationDescription": "Unit 3 Upgrade",
-        "site": "KPO",
-        "fuel": "Hydro",
-        "operator": "Mercury",
-        "status": "Under Construction",
-        "capacityMW": 5.5,
-        "yearlyGenerationGWh": 10.7,
-        "openBy": "2025-09-28",
-        "link": "https://www.mercury.co.nz/karapiro-dam"
     },
     {
         "name": "Roxburgh",
