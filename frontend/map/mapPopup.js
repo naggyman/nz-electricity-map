@@ -212,28 +212,35 @@ function getSubstationBusbarRows(substationData){
 function getSubstationGenerationRows(substationData){
     let html = '';
 
+    let generationConnections = [];
     Object.keys(substationData.busbars).forEach((busbar) => {
         substationData.busbars[busbar].connections.forEach(connection => {
             if (connection.generatorInfo.plantName != undefined) {
-                let percentage = Math.round(connection.generationMW / connection.generatorInfo.nameplateCapacityMW * 100);
-                let percentageDiv = `<div style="margin-left: 4px;">${percentage}% </div>`
-
-                html += `<tr>
-                    <td>${connection.generatorInfo.plantName}</td>
-                    <td>${formatFuel(connection.generatorInfo.fuel)}</td>
-                    <td>${displayMegawattsOrGigawatts(connection.generationMW || (-connection.loadMW))}</td>
-                    <td>${(connection.generatorInfo.plantName != "Unknown") ? displayMegawattsOrGigawatts(connection.generatorInfo.nameplateCapacityMW): ""}</td>
-                    <td>
-                         <div class="progress" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-success" style="width: ${percentage}%">
-                                ${(percentage >= 40) ? percentageDiv : ''}
-                            </div>
-                            ${(percentage < 40 && percentage > 0) ? percentageDiv : ''}
-                        </div>
-                    </td>
-                </tr>`
+                generationConnections.push(connection);
             }
     })});
+
+    generationConnections.sort((a, b) => a.generatorInfo.plantName.localeCompare(b.generatorInfo.plantName)).forEach(connection => {
+        if (connection.generatorInfo.plantName != undefined) {
+            let percentage = Math.round(connection.generationMW / connection.generatorInfo.nameplateCapacityMW * 100);
+            let percentageDiv = `<div style="margin-left: 4px;">${percentage}% </div>`
+
+            html += `<tr>
+                <td>${connection.generatorInfo.plantName}</td>
+                <td>${formatFuel(connection.generatorInfo.fuel)}</td>
+                <td>${displayMegawattsOrGigawatts(connection.generationMW || (-connection.loadMW))}</td>
+                <td>${(connection.generatorInfo.plantName != "Unknown") ? displayMegawattsOrGigawatts(connection.generatorInfo.nameplateCapacityMW): ""}</td>
+                <td>
+                        <div class="progress" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: ${percentage}%">
+                            ${(percentage >= 40) ? percentageDiv : ''}
+                        </div>
+                        ${(percentage < 40 && percentage > 0) ? percentageDiv : ''}
+                    </div>
+                </td>
+            </tr>`
+        }
+    });
 
     return html;
 }
