@@ -10,9 +10,13 @@ import { QueryParams } from '../chart/queryParams.js';
 import { decomissioned } from '../utilities/decomissioned.js';
 import { getSunrise, getSunset } from '../utilities/sunrise-sunset.js';
 import { NIGHTTIME_SHADING } from '../utilities/colours.js';
+import { ChartTimestamp } from '../chart/chartTimestamp.js';
+import { ChartByFuel } from '../chart/chartByFuel.js';
 
 const queryParamsNew = new QueryParams();
 const timeframeSelector = new TimeFrameSelector(queryParamsNew.timeframe, queryParamsNew.date);
+
+const chart = new ChartByFuel();
 
 timeframeSelector.subscribe(updateQueryParams)
 
@@ -210,6 +214,8 @@ async function getTradingPeriodStats(forceUpdate = false) {
     const timeframe = (new URLSearchParams(window.location.search)).get("timeframe") || "-0d";
     const date = (new URLSearchParams(window.location.search)).get("date");
 
+    chart.setSiteFilter(siteToFilterTo)
+
     let data = {};
     let pricing = {};
     if(date){
@@ -235,6 +241,14 @@ async function getTradingPeriodStats(forceUpdate = false) {
         data = output[0]
         pricing = output[1]
     }
+
+    Object.keys(data).forEach((timestamp) => {
+        let timestampData = data[timestamp];
+        let chartTimestamp = new ChartTimestamp(timestamp, timestampData);
+        chart.setTimestamp(chartTimestamp);
+    })
+    let newSeriesData = chart.getHighchartSeriesData();
+    console.log(newSeriesData);
 
     const liveGenData = await getLiveGenerationData();
 
