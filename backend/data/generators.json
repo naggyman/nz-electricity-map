@@ -1990,5 +1990,34 @@
         "gridZone": "UNI",
         "island": "NI",
         "operator": "Rānui Generation"
+    },
+    {
+        "site": "GLB",
+        "name": "Glenbrook-Ohurua",
+        "units": [
+            {
+                "name": "Glenbrook-Ohurua",
+                "unitCode": "GLB0",
+                "node": "GLN0332 GLB0",
+                "capacity": 100,
+                "fuel": "Battery (Discharging)",
+                "fuelCode": "BESS"
+            },
+            {
+                "name": "Glenbrook-Ohurua",
+                "unitCode": "GLB99",
+                "node": "GLN0332 GLB99",
+                "capacity": -100,
+                "fuel": "Battery (Charging)",
+                "fuelCode": "BESS-C"
+            }
+        ],
+        "location": {
+            "lat": -37.2006925645924,
+            "long": 174.73559645343832
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "Contact Energy"
     }
 ]
