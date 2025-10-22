@@ -5,11 +5,11 @@ export const underConstruction = [
         "substation": "Glenbrook",
         "fuel": "Battery",
         "operator": "Contact Energy",
-        "status": "Under Construction",
+        "status": "Pre-Commissioning",
         "costMillionDollars": 163,
         "capacityMW": 100,
         "capacityMWh": 200,
-        "openBy": "2025-12-30",
+        "openBy": "2026-01-30",
         "location": {
             "lat": -37.2006925645924,
             "long": 174.73559645343832
@@ -85,7 +85,7 @@ export const underConstruction = [
         "substation": "",
         "fuel": "Solar",
         "operator": "NewPower Energy",
-        "status": "Pre-Commissioning",
+        "status": "Commissioning",
         "capacityMW": 22.4,
         "capacityMWp": 33,
         "yearlyGenerationGWh": 35, // estimate based off 18% capacity factor
@@ -122,7 +122,7 @@ export const underConstruction = [
         "status": "Pre-Commissioning",
         "capacityMW": 49,
         "yearlyGenerationGWh": 407, //estimate assuming 95% capacity factor
-        "openBy": "2025-10-30",
+        "openBy": "2025-11-30",
         "location": {
             "lat": -38.07497069187655,
             "long": 176.69972269607476
