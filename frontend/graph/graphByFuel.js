@@ -174,7 +174,7 @@ export function getTooltipForFuelFilteredGraph(){
         }
     })
 
-    const renewablePercentage = (totalGeneration != 0) ? Math.round(renewableGeneration / totalGeneration * 100) : 0;
+    const renewablePercentage = (totalGeneration != 0) ? Math.floor(renewableGeneration / totalGeneration * 100) : 0;
     
     let totalCapacityText = (totalCapacity > 0) ? ` / <b>${displayMegawattsOrGigawatts(totalCapacity)}</b> (${Math.round(totalGeneration / totalCapacity * 100)}%)` : "";
     let footer = `<br>Total Generation: <b>${displayMegawattsOrGigawatts(totalGeneration)}</b>${totalCapacityText}<br>`;
