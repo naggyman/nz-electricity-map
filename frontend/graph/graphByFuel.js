@@ -148,7 +148,7 @@ export function getTooltipForFuelFilteredGraph(){
 
         if(point.series.name === "Capacity"){
             totalCapacity = point.y;
-        } else {
+        } else if (point.series.name !== "Battery (Charging)") {
             totalGeneration += point.y;
         }
     });
