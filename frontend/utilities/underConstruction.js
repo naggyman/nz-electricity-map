@@ -105,7 +105,7 @@ export const underConstruction = [
         "status": "Pre-Commissioning",
         "capacityMW": 29,
         "capacityMWp": 33,
-        "openBy": "2025-11-30",
+        "openBy": "2025-12-30",
         "yearlyGenerationGWh": 49,
         "location": {
             "lat": -36.851852353029905,
