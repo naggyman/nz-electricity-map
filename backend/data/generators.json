@@ -2049,7 +2049,7 @@
                 "name": "Pāmu Rā ki Whitianga",
                 "unitCode": "WTA0",
                 "node": "KPU0661 WTA0",
-                "capacity": 29,
+                "capacity": 23.75,
                 "fuel": "Solar",
                 "fuelCode": "SOL"
             }
