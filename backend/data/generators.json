@@ -2040,5 +2040,26 @@
         "gridZone": "UNI",
         "island": "NI",
         "operator": "Maungaturoto Solar Farm Project LP"
+    },
+    {
+        "site": "WTA",
+        "name": "Pāmu Rā ki Whitianga",
+        "units": [
+            {
+                "name": "Pāmu Rā ki Whitianga",
+                "unitCode": "WTA0",
+                "node": "KPU0661 WTA0",
+                "capacity": 29,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -36.851852353029905,
+            "long": 175.66313578186515
+        },
+        "gridZone": "CNI",
+        "island": "NI",
+        "operator": "Lodestone Energy"
     }
 ]
