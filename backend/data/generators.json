@@ -2019,5 +2019,26 @@
         "gridZone": "UNI",
         "island": "NI",
         "operator": "Contact Energy"
+    },
+    {
+        "site": "GDS",
+        "name": "Papareireiā",
+        "units": [
+            {
+                "name": "Papareireiā",
+                "unitCode": "GDS0",
+                "node": "MTO0331 GDS0",
+                "capacity": 17.6,
+                "fuel": "Solar",
+                "fuelCode": "SOL"
+            }
+        ],
+        "location": {
+            "lat": -36.08995575600482,
+            "long": 174.34730610408738
+        },
+        "gridZone": "UNI",
+        "island": "NI",
+        "operator": "Maungaturoto Solar Farm Project LP"
     }
 ]
