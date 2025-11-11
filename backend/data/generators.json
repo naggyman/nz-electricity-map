@@ -1483,7 +1483,7 @@
                 "unitCode": "TAC0",
                 "outageBlock": "TAC_1",
                 "node": "TAB0331 TAC0",
-                "capacity": 54,
+                "capacity": 52,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
@@ -1742,7 +1742,7 @@
                 "name": "Tauhara",
                 "unitCode": "TAB0",
                 "node": "TAB2201 TAB0",
-                "capacity": 177,
+                "capacity": 173,
                 "fuel": "Geothermal",
                 "fuelCode": "GEO"
             }
