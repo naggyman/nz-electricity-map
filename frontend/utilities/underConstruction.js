@@ -229,7 +229,7 @@ export const underConstruction = [
         "site": "RUK",
         "fuel": "Solar",
         "operator": "Meridian Energy",
-        "status": "Committed",
+        "status": "Under Construction",
         "capacityMW": 130,
         "yearlyGenerationGWh": 216,
         "costMillionDollars": 227,
