@@ -135,7 +135,7 @@ export const underConstruction = [
         "substation": "Maungaturoto",
         "fuel": "Solar",
         "operator": "Maungaturoto Solar Farm Project LP",
-        "status": "Pre-Commissioning",
+        "status": "Commissioning",
         "capacityMW": 17.6,
         "capacityMWp": 21,
         "yearlyGenerationGWh": 32,
