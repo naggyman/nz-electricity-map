@@ -303,4 +303,19 @@ export const underConstruction = [
         },
         "link": "https://www.waikatotimes.co.nz/nz-news/350327125/nzs-largest-solar-farm-gets-go-ahead"
     },
+    {
+        "name": "Edgecumbe",
+        "fuel": "Solar",
+        "operator": "Genesis Energy",
+        "status": "Committed",
+        "capacityMWp": 136,
+        "annualGenerationGWh": 238,
+        "openBy": "2027-06-31",
+        "costMillionDollars": 236,
+        "location": {
+            "lat": -37.96345685777786, 
+            "long":176.85587901848913
+        },
+        "link": "https://www.genesisenergy.co.nz/about/news/genesis-reaches-final-investment-decision-for-edgecumbe-solar-farm"
+    }
 ]
