@@ -309,7 +309,7 @@ export const underConstruction = [
         "operator": "Genesis Energy",
         "status": "Committed",
         "capacityMWp": 136,
-        "annualGenerationGWh": 238,
+        "yearlyGenerationGWh": 238,
         "openBy": "2027-06-31",
         "costMillionDollars": 236,
         "location": {
