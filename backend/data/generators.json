@@ -2028,7 +2028,7 @@
                 "name": "Papareireiā",
                 "unitCode": "GDS0",
                 "node": "MTO0331 GDS0",
-                "capacity": 17.6,
+                "capacity": 18,
                 "fuel": "Solar",
                 "fuelCode": "SOL"
             }
