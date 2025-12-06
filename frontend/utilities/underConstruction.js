@@ -9,7 +9,7 @@ export const underConstruction = [
         "costMillionDollars": 163,
         "capacityMW": 100,
         "capacityMWh": 200,
-        "openBy": "2026-01-30",
+        "openBy": "2026-02-28",
         "location": {
             "lat": -37.2006925645924,
             "long": 174.73559645343832
@@ -26,7 +26,7 @@ export const underConstruction = [
         "costMillionDollars": 220,
         "capacityMW": 46,
         "yearlyGenerationGWh": 390,
-        "openBy": "2025-11-30",
+        "openBy": "2025-12-30",
         "link": "https://www.mercury.co.nz/about-us/renewable-energy/geothermal/nga-tamariki-expansion"
     },
     {
@@ -52,7 +52,7 @@ export const underConstruction = [
         "capacityMWp": 31,
         "capacityMW": 24,
         "yearlyGenerationGWh": 42,
-        "openBy": "2025-09-30",
+        "openBy": "2025-12-30",
         "location": {
             "lat": -35.13850578292899,
             "long": 173.35440957656024
@@ -80,23 +80,6 @@ export const underConstruction = [
         "link": "https://contact.co.nz/aboutus/media-centre/2024/06/09/new-turbines-at-contacts-roxburgh-dam"
     },
     {
-        "name": "Taiohi",
-        "site": "",
-        "substation": "",
-        "fuel": "Solar",
-        "operator": "NewPower Energy",
-        "status": "Commissioning",
-        "capacityMW": 22.4,
-        "capacityMWp": 33,
-        "yearlyGenerationGWh": 35, // estimate based off 18% capacity factor
-        "openBy": "2025-10-30",
-        "location": {
-            "lat": -37.44080411617218,
-            "long": 175.13234517360215
-        },
-        "link": "https://www.linkedin.com/posts/infratec_nz_a-bit-of-grey-weather-in-the-waikato-didn-activity-7221341384148992000-XnVG?utm_source=share&utm_medium=member_desktop"
-    },
-    {
         "name": "Pāmu Rā ki Whitianga",
         "site": "WTA",
         "substation": "Kopu",
@@ -122,7 +105,7 @@ export const underConstruction = [
         "status": "Pre-Commissioning",
         "capacityMW": 49,
         "yearlyGenerationGWh": 407, //estimate assuming 95% capacity factor
-        "openBy": "2025-11-30",
+        "openBy": "2025-12-30",
         "location": {
             "lat": -38.07497069187655,
             "long": 176.69972269607476
@@ -139,7 +122,7 @@ export const underConstruction = [
         "capacityMW": 17.6,
         "capacityMWp": 21,
         "yearlyGenerationGWh": 32,
-        "openBy": "2025-11-30",
+        "openBy": "2025-12-30",
         "location": {
             "lat": -36.08995575600482,
             "long": 174.34730610408738
@@ -259,7 +242,7 @@ export const underConstruction = [
         "name": "Rānui",
         "fuel": "Solar",
         "status": "Under Construction",
-        "openBy": "2025-12-31",
+        "openBy": "2026-01-31",
         "operator": "Rānui Solar Ltd",
         "capacityMW": 12.6,
         "capacityMWp": 14.6,
