@@ -72,14 +72,18 @@ export async function getChartSeriesDataByFuel(liveGenData, data, pricing, siteF
 
                 
                 if (unit.outage.length > 0){
+                    let seenOutages = [];
                     unit.outage.forEach(outage => {
                         var now = new Date(tradingPeriodTimestamp) // todo - daylight savings?
+                        var outageKey = outage.outageBlock + "_" + outage.from + "_" + outage.mwLost;
                         
                         var outageStarted = new Date(outage.from) <= now;
                         var outageEnded = new Date(outage.until) <= now;
+                        var duplicateOutage = seenOutages.includes(outageKey);
 
-                        if(outageStarted && !outageEnded){
+                        if(outageStarted && !outageEnded && !duplicateOutage){
                             thisTimestampCapacity -= outage.mwLost;
+                            seenOutages.push(outageKey);
                         }
                     });
                 }

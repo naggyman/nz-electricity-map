@@ -152,9 +152,20 @@ function calculateOutageLoss(outages) {
 }
 
 function filterOutages(outages){
+    let seenOutages = [];
     return outages.filter((outage) => {
         var current = new Date(outage.from) < new Date() && new Date(outage.until) > new Date();
-        return current;
+
+        var outageKey = outage.outageBlock + "_" + outage.from + "_" + outage.mwLost;
+        var duplicateOutage = seenOutages.includes(outageKey);
+
+        if(current && duplicateOutage){
+            console.log(`Duplicate outage found for ${outageKey}`);
+        }
+        
+        seenOutages.push(outageKey);
+
+        return current && !duplicateOutage;
     })
 }
 
